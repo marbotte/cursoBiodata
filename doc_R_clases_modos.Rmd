@@ -1,0 +1,398 @@
+---
+title: "Clases, modos y filtros en R"
+lang: "es_CL"
+description: "Formato y estructura de los diferentes objetos de datos en R - Filtrar y seleccionar elementos de los objectos de R"
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    pandoc_args: ["--number-sections"]
+---
+
+```{r echo=F, message=F,warning=F, purl=FALSE}
+library(knitr)
+library(kableExtra)
+library(downloadthis)
+```
+
+
+
+```{r echo=F, message=F,warning=F, purl=FALSE, results='hide', eval=!interactive()}
+fileR<-purl(knitr::current_input(),documentation = 0, quiet=T)
+file.rename(fileR,paste0("./download/R_code/documentation/",fileR))
+```
+
+```r 
+echo=F, message=F,warning=F, purl=FALSE, results='hide', eval=!interactive()
+download_link(
+  
+)
+```
+
+
+
+# Objetos de datos en R
+
+## Clases simples: vectores y matrices
+
+Existen varios tipos de objetos en R. Dentro de los más simples están 
+
+### vector
+
+Una noción central para entender el funcionamiento de R es el **vector**.
+Un vector es un ensamblaje de valores, y casi todos los objetos de R son vectores.
+La forma más simple de crear un vector es la función `c`:
+
+```{r}
+(numeros <- c(3,1,6))
+```
+
+Un vector es un objeto de una dimensión, que tiene una longitud.
+
+```{r}
+length(numeros)
+```
+
+Los elementos de los vectores pueden tener nombres:
+
+```{r}
+names(numeros)<-c("a","b","c")
+numeros
+```
+
+### Arrays y Matrices
+
+Existen también objetos que tienen más de una dimensión, en R usualmente pertenecen a la familia de los **arrays**.
+El objeto de la clase array más simple es la matriz, que se puede crear con la función `matrix`.
+
+```{r}
+(matExample <- matrix(letters[1:12],nrow=4,ncol=3))
+```
+
+Los arrays tienen dimensiones. Acá vamos a trabajar con arrays de 2 dimensiones pero existen arrays de más de 2 dimensiones.
+
+```{r}
+dim(matExample)
+nrow(matExample)
+ncol(matExample)
+```
+
+Los arrays pueden tambien tener nombres de filas y nombres de columnas
+
+```{r}
+colnames(matExample)<-c("A","B","C")
+rownames(matExample)<-c("fila1","fila2","fila3","fila4")
+matExample
+```
+
+## Los modos de datos
+
+En R existen varios *modos* que corresponden a varios tipos de datos que se pueden manejar, y que se almacenan de manera diferente en la memoria del computador.
+Por ejemplo, los objetos *numeros* y *matExample* tienen modos diferentes:
+
+```{r}
+mode(numeros)
+mode(matExample)
+```
+
+### Modo logico
+
+El modo más simple y más ligero es el modo de logica booleana **logical**, puede contener los valores TRUE y FALSE
+
+```{r}
+(vecLog <- c(T,F,F,T,T))
+mode(vecLog)
+```
+
+### Modo numerico
+
+Existen los modos numéricos, así como en el objeto numeros. Los objetos de modo numérico tienen varías precisiones y forma de almacenamiento. Los más importantes para conocer son los números enteros (integer) y los números generales (numeric que pueden ser de tipos single precision y double precision).
+
+```{r}
+(numInt <- c(5L,3L,1L))
+is.integer(numInt)
+(numOtros <- c(8.1837, 6.94785, 5, 17/9))
+is.integer(numOtros)
+```
+
+### Modo caracter
+
+Luego podemos mencionar los objetos de modo "character", como en la matriz matExample.
+Los objetos de tipo character pueden almacenar cadenas de caracter con varías letras y simbolos alphanumericos:
+
+```{r}
+(vecCar <- c("palabras","con espacio", "o numeros 123", "o otras cosa [^"))
+mode(vecCar)
+nchar(vecCar)
+```
+
+Anotar: el modo caracter es el modo más pesado para la memoria en R.
+Si tienen problemas de memoria limitada en un script es mejor evitarlos...
+
+### Modo factor
+
+Finalmente existe el modo factor, para almacenar variables con un numero de posibilidades de valores limitado.
+
+```{r}
+(factorExample <- factor(c("Sí","No","Sí","Tal vez"),levels=c("Sí","No","Tal vez")))
+mode(factorExample)
+```
+
+Anotar: R almacena los factores como numéricos en memoria:
+
+```{r}
+as.numeric(factorExample)
+```
+
+Permite economizar mucho espacio en memoria, pero también puede ser la raíz de errores difíciles de detectar en un código, cuidado!
+
+
+NB: para que lo sepan, existen otros modos como los números complejos, pero son poco útiles en la gestión de datos de biodiversidad
+
+
+## Clases compuestas: list y data.frame
+
+### Un solo modo en los vectores y matrices
+
+Los vectores y matrices solo pueden contener datos de un modo:
+
+```{r}
+(vecTestMode <- c(T, 1L, 4.14, "palabra"))
+mode(vecTestMode)
+```
+
+Anotar: lo que pasó con este vector es que todo se volvió *character* porque este modo puede integrar los demás (logical < factor < numeric < character).
+
+### Las listas
+
+Existen una clase de objetos que pueden mezclar diferentes modos: la clase *list*.
+Una *list* es un *vector* de otros objetos.
+
+Se puede crear con la función `list` 
+
+
+```{r}
+(list1 <- list(numeros, matExample))
+```
+Se pueden también poner nombres a los sub-objetos de la *list* en la creación del objeto:
+
+```{r}
+(list1_withNames <- list(numeros=numeros, `Un ejemplo de matriz`=matExample))
+```
+
+
+### Los data frames
+
+Existe un caso particular de *list*: el *data.frame*.
+Es una *list* de *vectors* que tienen todos la misma longitud.
+Dado que es una *list*, cada uno de los vectores puede tener un modo diferente.
+También es un *array*: es decir que los *vectors*, que tienen todos la misma longitud, representan las columnas de una tabla.
+
+```{r}
+(DF_example <- data.frame(
+  country=c("Chile","Colombia","Francia"),
+  surAmerica=c(T,T,F),
+  superficie_km2=c(756626,1142000,549134)
+))
+```
+
+
+## Recapitulativo de las clases de los objetos en R
+
+
+```{r echo=F}
+objetos<-data.frame(
+  vector=c(T,T,T,F),
+  array=c(F,T,F,T),
+  `modo único`=c(T,T,F,F),
+  list=c(F,F,T,T)
+)
+rownames(objetos) <- c("vector","matriz","list","data.frame")
+kbl(objetos,booktabs=T, label="clases" ,caption="Tipos principales de objetos, y sus caracteristicas heredadas. La columna modo unico indica si el objeto solo puede contenir datos de un modo (ver noción de *atomic mode*).")
+```
+
+La tabla \@ref(tab:clases) contiene las características principales de las clases de objetos principales en R (anotar: existen otras clases de objetos, pero esas son las clases de objetos más comunes para almacenar datos).
+
+----
+
+Para los que quieren ir más allá en la comprensión de la tabla \@ref(tab:clases): el lenguaje de programación R es un lenguaje de *programación orientado a objeto*.
+Eso implica que el tratamiento del objeto en el lenguaje va a depender de características que cada objeto va a heredar de familias de objetos que se llaman *clases* (classes).
+Por ejemplo, los objetos *matrix* en R heredan las características de las clases *vector* y *array*.
+Basicamente, una *matrix* es un vector que tiene dos dimensiones (filas y columnas).
+Por esa razon, tiene una longitud, como todos los vectores, pero tambien un numero de filas y un numero de columnas, como todos los arrays:
+
+```{r}
+length(matExample)
+nrow(matExample)
+```
+
+Un *data.frame* hereda las caracteristicas de los *list*. Además, hereda las características de los *arrays*!
+
+---
+
+# Applicar filtros a los objetos
+
+Para filtrar objetos en R, se utilizan los operadores de tipo `[...]`.
+Esos operadores aceptan 3 tipos de filtros:
+
+* un vector de modo *logical* que indica con valores *TRUE/FALSE* cuales son los elementos que queremos guardar
+* un vector de modo *integer* que indica los indices de los elementos que queremos guardar
+* un vector de modo *character* que indica los nombres de los elementos que queremos guardar
+
+## Filtros sobre vectores
+
+### Modo *logical*
+
+```{r}
+numeros
+numeros[c(T,F,T)]
+```
+
+Si el vector utilizado en el filtro tiene una longitud inferior al vector que queremos filtrar, los valores están repetidos hasta obtener la longitud final
+
+```{r}
+factorExample
+factorExample[c(F, T)]
+```
+
+Por ejemplo, para conocer todos los múltiples de 3 entre 1 y 100:
+
+```{r}
+(mul3 <- (1:100)[c(F, F, T)])
+```
+
+#### Operadores logicos
+
+Varios operadores permiten obtener vectores logicos, por ejemplo:
+
+* `==`: *es igual a*
+* `!=`: *es diferente de*
+* `>`, `>=`: *es superior a*, *es superior o igual a*
+* `>`, `>=`: *es inferior a*, *es inferior o igual a*
+* `&` : operador booleano *y*
+* `|`: operador booleano *o*
+* `!`: operador booleano *no*
+
+Así, todos esos operadores se pueden utilizar en los filtros logicos:
+
+```{r}
+numeros >= 2
+numeros[numeros >= 2]
+numeros[numeros >= 2 & numeros != 6]
+numeros[!(numeros >= 2 & numeros != 6)]
+```
+
+
+
+
+### Indices
+
+```{r}
+numeros[2:3]
+```
+
+Permite cambiar el orden de los vectores:
+
+```{r}
+numeros[length(numeros):1]
+```
+
+Podemos tambien repetir elementos
+
+```{r}
+numeros[c(1:3,2)]
+```
+
+### Nombres
+
+```{r}
+numeros[c("a","c")]
+```
+
+### Filtros de vectores heredados
+
+
+Vimos antes que una matriz es un "vector con dimensiones", así que los filtros de vectores se pueden aplicar:
+
+```{r}
+matExample
+matExample[c(T,T,F,T)]
+```
+Anotar: el orden del vector incluido en la matriz es por columna, así que lo que hicímos con este filtro es buscar el vector de valores que excluye la fila 3.
+
+
+Tambien vimos que las *list* son vectores de objetos, los filtros de vectores funcionan tambien sobre esos objetos:
+
+```{r}
+list1_withNames["numeros"]
+```
+
+Anotar también que las filas o las columnas de un *array* son *vectores*, entonces se pueden aplicar los filtros de vectores sobre la extracción de columnas y filas de *array*, como los *data.frame*.
+
+
+
+## Filtros sobre *arrays*
+
+En los casos de los arrays, se pueden aplicar filtros sobre filas y columnas. También funcionan con el operador `[...]`, solo se separan por una coma:
+
+
+```{r}
+matExample
+matExample[2:3,c(T,F,T)]
+```
+
+Cuando se utiliza la coma, pero el filtro de columna o fila es vacío entonces corresponde a guardar todos los elementos de la dimensión sin filtro:
+
+```{r}
+DF_example
+DF_example[,"surAmerica"]
+DF_example[DF_example[,"surAmerica"],]
+```
+
+En este ejemplo utilizamos un filtro logico extraído de la columna *surAmerica* para aplicarlo sobre las filas de la tabla misma.
+
+## Filtros sobre *list*
+
+Para las *list* existen operadores particulares: `$` y `[[...]]`
+
+### El operador `$`
+El operador `$` permite extraer un elemento de la *list* con su nombre:
+
+```{r}
+list1_withNames$numeros
+```
+Cuando los nombres de los elementos tienen espacios o caracteres particulares, el operador se puede utilizar con el caracter `
+
+```{r}
+list1_withNames$`Un ejemplo de matriz`
+```
+
+
+### El operador `[[...]]`
+
+Otra forma de extraer un elemento de una *list* es utilizar el operador `[[...]]`.
+
+```{r}
+list1_withNames[[1]]
+list1_withNames[["Un ejemplo de matriz"]]
+```
+
+Anotar: la diferencia entre `[...]` y `[[...]]` es que la primera solución envía una lista, y la segunda envia el contenido del elemento.
+
+```{r}
+list1_withNames[1]
+is.list(list1_withNames[1])
+list1_withNames[[1]]
+is.list(list1_withNames[[1]])
+```
+
+### Los data.frame son listas
+
+No olvidar que los *data.frames* heredan las caracteristicas de las *list*:
+
+```{r}
+DF_example[["country"]]
+DF_example[DF_example$surAmerica,]$superficie_km2
+```
+
+

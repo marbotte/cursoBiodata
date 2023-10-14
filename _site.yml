@@ -1,12 +1,31 @@
 name: "cursoBiodata"
-title: "My Website"
+title: "Curso Biodata"
 description: |
-  My Website
+  Datos de biodiversidad
 output_dir: "docs"
 navbar:
   right:
-    - text: "Home"
-      href: index.html
+    - text: "Documentación R y SQL"
+      href: doc_main.html
+      menu:
+        - text: "R"
+        - text: "---"
+        - text: "Clases y modos en R"
+          href: doc_R_clases_modos.html
+        - text: "Filtrar y seleccionar datos en R"
+        - text: "---"
+        - text: "SQL"
+        - text: "---"
+        - text: "Consultas simples"
+        - text: "Consultas avanzadas"
+        - text: "Bases de datos y connecciones"
+        - text: "Crear tablas"
+        - text: "Modificar tablas"
+    - text: "Documentación taxonomía"
+      href: doc_main.html
+      menu:
+        - text: "Clases y modos en R" 
+        - text: "Filtrar y seleccionar datos en R"
     - text: "About"
       href: about.html
 output: distill::distill_article
