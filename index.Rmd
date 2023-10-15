@@ -1,8 +1,10 @@
 ---
-title: "My Website"
+title: "Curso Biodata"
 description: |
-  Welcome to the website. I hope you enjoy it!
-site: distill::distill_website
+  Gestión de bases de datos de biodiversidad
+site: 
+  distill::distill_website:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
@@ -15,4 +17,25 @@ knitr::opts_chunk$set(echo = FALSE)
 # https://rstudio.github.io/distill/publish_website.html#github-pages
 
 ```
+
+
+
+Este sitio web presenta el material para el curso presencial intensivo *Biodata: Gestión de bases de datos de biodiversidad*, organisado por el Instituto de Ecología & Biodiversidad del 13 al 17 de noviembre de 2023, en la Facultad de Ciencias Naturales y Oceanograficas de la Universidad de Concepción (UdeC).
+
+
+# Programa
+
+TO DO: incluír programa final
+
+# Presentaciones
+
+
+# Ejercicios
+
+
+# Datos
+
+Los datos necesarios para los ejercicios y actividades están disponibles en [Google drive](https://drive.google.com/drive/folders/1hnp4NwjEXu4uNVZYKagMY5CNkEX6XNg2?usp=drive_link). Para poder acceder, por favor llenar este [formulario](https://docs.google.com/forms/d/e/1FAIpQLScM2bj_UTcHs4sEzfuQDJAdn-Kxs5vUYs7Y97fLiZBHxps5mA/viewform?usp=sf_link).
+
+# Documentación
 

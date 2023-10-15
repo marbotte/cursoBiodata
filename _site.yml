@@ -5,14 +5,15 @@ description: |
 output_dir: "docs"
 navbar:
   right:
+    - text: "Actividades"
     - text: "Documentación R y SQL"
       href: doc_main.html
       menu:
         - text: "R"
         - text: "---"
-        - text: "Clases y modos en R"
+        - text: "Clases, modos y filtros en R"
           href: doc_R_clases_modos.html
-        - text: "Filtrar y seleccionar datos en R"
+        - text: "Importar y exportar datos en R"
         - text: "---"
         - text: "SQL"
         - text: "---"
