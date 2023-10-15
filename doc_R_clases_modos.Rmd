@@ -18,15 +18,21 @@ library(downloadthis)
 
 
 ```{r echo=F, message=F,warning=F, purl=FALSE, results='hide', eval=!interactive()}
-fileR<-purl(knitr::current_input(),documentation = 0, quiet=T)
+fileR<-purl(knitr::current_input(),documentation = 1, quiet=T)
 file.rename(fileR,paste0("./download/R_code/documentation/",fileR))
 ```
 
-```r 
-echo=F, message=F,warning=F, purl=FALSE, results='hide', eval=!interactive()
+
+
+```{r echo=F, message=F,warning=F, purl=FALSE, eval=!interactive()}
 download_link(
-  
-)
+  link = paste0("https://raw.githubusercontent.com/marbotte/cursoBiodata/master/download/R_code/documentation/",fileR),
+  button_label = "Download R script",
+  button_type = "default",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = TRUE
+)  
 ```
 
 
