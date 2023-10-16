@@ -401,4 +401,17 @@ DF_example[["country"]]
 DF_example[DF_example$surAmerica,]$superficie_km2
 ```
 
+## Cambiar los contenidos filtrados
+
+Todos los filtros que vimos en este documento pueden permitir afectar nuevos valores a los elementos filtrados:
+
+```{r}
+numeros
+numeros["b"] <- 12
+numeros
+```
+
+
+
+
 

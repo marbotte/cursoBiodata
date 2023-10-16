@@ -27,10 +27,15 @@ Este sitio web presenta el material para el curso presencial intensivo *Biodata:
 
 TO DO: incluír programa final
 
+# Instalación de los software y paquetes
+
+
 # Presentaciones
 
+* [Presentación introductoria del curso](https://docs.google.com/presentation/d/1l-kktBV9cM-4mRmelO9Q10KaTazcKD3NpXsdHmhPIIQ/edit?usp=sharing)
 
-# Ejercicios
+
+# Actividades
 
 
 # Datos

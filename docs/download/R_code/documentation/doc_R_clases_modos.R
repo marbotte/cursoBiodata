@@ -177,5 +177,11 @@ is.list(list1_withNames[[1]])
 DF_example[["country"]]
 DF_example[DF_example$surAmerica,]$superficie_km2
 
+
+## -------------------------------------------------------------------
+numeros
+numeros["b"] <- 12
+numeros
+
 ```{.r .distill-force-highlighting-css}
 ```
