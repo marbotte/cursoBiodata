@@ -48,3 +48,8 @@ vignettes/*.pdf
 
 # Excel files
 */*.xlsx
+
+# Jabref files
+*/*.bib.sav
+*/*.bib.bak
+

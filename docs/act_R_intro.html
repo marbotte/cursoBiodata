@@ -86,6 +86,28 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+      margin-bottom: 0em;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
+</style>
 
   <!--radix_placeholder_meta_tags-->
   <title>Curso Biodata: Manejar datos en R</title>
@@ -107,10 +129,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="twitter:description" content="Ejercicios para la gestión de datos en R"/>
 
   <!--/radix_placeholder_meta_tags-->
+  
+  <meta name="citation_reference" content="citation_title=Do spatial patterns of benthic diatom assemblages vary across regions and years?;citation_volume=33;citation_author=M Bottin;citation_author=J Soininen;citation_author=M Ferreol;citation_author=J. Tison-Rosebery"/>
+  <meta name="citation_reference" content="citation_title=Typology of diatom communities and the influence of hydro-ecoregions: A study on the french hydrosystem scale;citation_volume=39;citation_author=J. Tison;citation_author=Y. S. Park;citation_author=M. Coste;citation_author=J. G. Wasson;citation_author=L. Ector;citation_author=F. Rimet;citation_author=F. Delmas"/>
+  <meta name="citation_reference" content="citation_title=Rôles des facteurs locaux dans la distribution et la persistance des communautés à hêtre (fagus sylvatica) en marge d’aire de répartition;citation_author=Marion Walbott"/>
+  <meta name="citation_reference" content="citation_title=La végétation de l&#39; entre-deux-mers: Chênaies, châtaigneraies et charmaies mésophiles sur sol acide;citation_volume=3;citation_author=G Lapraz"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","lang","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Manejar datos en R"]},{"type":"character","attributes":{},"value":["es_CL"]},{"type":"character","attributes":{},"value":["Ejercicios para la gestión de datos en R"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","pandoc_args"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["--number-sections"]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","lang","description","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Manejar datos en R"]},{"type":"character","attributes":{},"value":["es_CL"]},{"type":"character","attributes":{},"value":["Ejercicios para la gestión de datos en R"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","pandoc_args"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["--number-sections"]}]}]},{"type":"character","attributes":{},"value":["./cursoBiodata.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2130,7 +2157,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <a href="index.html" class="title">Curso Biodata</a>
 </div>
 <div class="nav-right">
-<span class="nav-dropdown-header">Actividades</span>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Actividades
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="act_R_intro.html">Manejar datos con R</a>
+</div>
+</div>
 <div class="nav-dropdown">
 <button class="nav-dropbtn">
 Documentación R y SQL
@@ -2182,7 +2218,162 @@ Documentación taxonomía
 
 
 <div class="d-article">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#utilizar-filtros-simples" id="toc-utilizar-filtros-simples"><span class="toc-section-number">1</span> Utilizar filtros simples</a>
+<ul>
+<li><a href="#ejercicio" id="toc-ejercicio"><span class="toc-section-number">1.1</span> Ejercicio</a></li>
+<li><a href="#los-datos" id="toc-los-datos"><span class="toc-section-number">1.2</span> Los datos</a></li>
+<li><a href="#indicaciones-para-el-ejercicio" id="toc-indicaciones-para-el-ejercicio"><span class="toc-section-number">1.3</span> Indicaciones para el ejercicio</a></li>
+</ul></li>
+<li><a href="#leer-un-archivo-complejo" id="toc-leer-un-archivo-complejo"><span class="toc-section-number">2</span> Leer un archivo complejo</a>
+<ul>
+<li><a href="#ejercicio-1" id="toc-ejercicio-1"><span class="toc-section-number">2.1</span> Ejercicio</a></li>
+<li><a href="#los-datos-1" id="toc-los-datos-1"><span class="toc-section-number">2.2</span> Los datos</a></li>
+</ul></li>
+<li><a href="#construir-funciones" id="toc-construir-funciones"><span class="toc-section-number">3</span> Construir funciones</a></li>
+</ul>
+</nav>
+</div>
+<p>En este documento, vamos a utilizar varios ejercicios para familiarizarnos con la gestión de datos en R.
+Les aconsejo:</p>
+<ul>
+<li>Crear una carpeta única para poner todo el contenido del curso</li>
+<li>descargar la carpeta de datos del curso, y ponerla como sub-carpeta “Datos”</li>
+<li>Crear una subcarpeta “scripts_R” donde poner todos los codigos R que van a escribir en los proximos días:
+<ul>
+<li>Pensar en la organización de esos codigos (1 archivo por sesión, o un archivo por ejercicio)</li>
+<li>Poner nombres de archivos que les permita volver a mirarlo, en 1 mes, o 10 años, si necesitan hacer un tratamiento parecido a lo que hicieron en un ejercicio</li>
+</ul></li>
+<li>Crear una subcarpeta diferente “Resultados” para guardar archivos creados desde sus codigos en R, figuras, o datos</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fol_Datos</span> <span class='op'>&lt;-</span> <span class='st'>"../Datos/"</span></span>
+<span><span class='va'>fol_Results</span> <span class='op'>&lt;-</span> <span class='st'>"../Resultados/"</span></span></code></pre>
+</div>
+</div>
+<h1 data-number="1" id="utilizar-filtros-simples"><span class="header-section-number">1</span> Utilizar filtros simples</h1>
+<h2 data-number="1.1" id="ejercicio"><span class="header-section-number">1.1</span> Ejercicio</h2>
+<ol type="1">
+<li>Crear una matriz de abundancia con únicamente los sitios de referencia de las hydro-eco-región de primer nivel: 2, 6 y 7 (Sur-Este de Francia)
+<ul>
+<li>la matriz no puede tener especies que no están presentes en esos sitios</li>
+<li>ordenar las columnas por orden alfabético de los códigos de especies</li>
+</ul></li>
+<li>Comparar la riqueza de las especies en los 5% de los sitios de agua más acida y lo 5% de los sitios de agua más alcalina de esa nueva matriz</li>
+</ol>
+<h2 data-number="1.2" id="los-datos"><span class="header-section-number">1.2</span> Los datos</h2>
+<p>En esta actividad vamos a utilizar un juego de datos de diatomeas de los ríos franceses que se utilizó para varios proyectos, incluído mi tesis de doctorado <span class="citation" data-cites="Tison2005 Bottin2014a">(<a href="#ref-Tison2005" role="doc-biblioref">Tison et al. 2005</a>; <a href="#ref-Bottin2014a" role="doc-biblioref">Bottin et al. 2014</a>)</span>.</p>
+<p>El juego de datos está en la carpeta de los datos en un archivo “diatomeas.RData”.
+Se carga así:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>fol_Datos</span>,<span class='st'>"diatomeas.RData"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;sp_abund_mat&quot;    &quot;reference_sites&quot; &quot;env_info&quot;       
+[4] &quot;coord_x_y&quot;      </code></pre>
+</div>
+<p>Pueden ver que el archivo tiene variós elementos:</p>
+<ul>
+<li><em>sp_abund_mat</em> es la matriz de abundancia de las especies de diatomeas en los sitios</li>
+<li><em>reference_sites</em> es un vector logico que indica para cada sitio si es un sitio de referencia (en terminos de calidad del agua)</li>
+<li><em>env_info</em> es un data.frame que contiene las variables de caracterisación ambiental de los sitios muestreados</li>
+<li><em>coord_x_y</em> contiene las coordenadas de los sitios</li>
+</ul>
+<p>El juego de datos está organizado de una manera que permite hacer vinculos directos entre las tablas: todas los objetos se corresponden elemento por elemento.</p>
+<hr />
+<p><strong>Anotar</strong>: esa organización de los datos es una mala practica. Es mucho mejor utilizar nombres de sitios y referencias explicitas a esos nombres en cada una de las tablas, pero nos sirve para este primer ejercicio!</p>
+<hr />
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>sp_abund_mat</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 836</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>reference_sites</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 836</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>env_info</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 836</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>coord_x_y</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 836</code></pre>
+</div>
+<p>Dentro de las variables de caracterización ambiental, existen variables que nos interesan para el ejercicio.
+La variable <code>HER1Lyon</code> permite separar las hydro-eco-regiones:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/barplot.html'>barplot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>env_info</span><span class='op'>$</span><span class='va'>HER1Lyon</span><span class='op'>)</span>,cex.names<span class='op'>=</span><span class='fl'>.65</span>,xlab<span class='op'>=</span><span class='st'>"Hydro-Eco-Región de nivel 1"</span>,ylab<span class='op'>=</span><span class='st'>"Número de muestreos"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="act_R_intro_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div>
+<p>La variable <code>PH</code> nos da el valor de potencial <span class="math inline">\(H^+\)</span> (los valores más pequeños son las aguas más acidas, los valores más altos son las aguas más alcalinas).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>env_info</span><span class='op'>$</span><span class='va'>PH</span>,main<span class='op'>=</span><span class='st'>""</span>,xlab<span class='op'>=</span><span class='st'>"pH"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="act_R_intro_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+</div>
+<h2 data-number="1.3" id="indicaciones-para-el-ejercicio"><span class="header-section-number">1.3</span> Indicaciones para el ejercicio</h2>
+<p>Para poder hacer este ejercicio, consultar la documentación sobre:</p>
+<ul>
+<li><a href="./doc_R_clases_modos.html">Clases modos y filtros en R</a></li>
+</ul>
+<p>Además, puede ser útil mirar las ayudas de las funciones siguientes:</p>
+<ul>
+<li><code>matrix</code> para crear una matriz</li>
+<li><code>Comparison</code> para las pruebas booleanas <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code></li>
+<li><code>Logic</code> para los operadores logicos <code>&amp;</code> y <code>|</code></li>
+<li><code>as.logical</code> y <code>mode</code> para cambiar el modo de variables numericas a logicas</li>
+<li><code>colSums</code> y <code>rowSums</code> para calcular las sumas de las filas y columnas de un array</li>
+<li><code>quantile</code> para calcular los cuantiles de valor de un vector</li>
+</ul>
+<h1 data-number="2" id="leer-un-archivo-complejo"><span class="header-section-number">2</span> Leer un archivo complejo</h1>
+<h2 data-number="2.1" id="ejercicio-1"><span class="header-section-number">2.1</span> Ejercicio</h2>
+<p>Pasar los datos contenidos en el archivo “fitosociologiaFagusFrancia.xlsx” en:</p>
+<ul>
+<li>Una matriz de cobertura sitio x especie y la cobertura en porcentaje en la matriz</li>
+<li>Un data frame de información sobre los sitios</li>
+</ul>
+<p><strong>No modifiquen el archivo excel, todo se puede hacer en R</strong>, es por enfrentarse a este tipo de dificultades que nos mejoremos en R.</p>
+<h2 data-number="2.2" id="los-datos-1"><span class="header-section-number">2.2</span> Los datos</h2>
+<p>Para su tesis de doctorado en la universidad de Burdeos sobre las comunidades de los bosques de hayas y sus distribuciones en la región de Burdeos, Marion Walbott <span class="citation" data-cites="Walbott2018">(<a href="#ref-Walbott2018" role="doc-biblioref">2018</a>)</span> ha utilizado varios datos fitosociológicos antiguos.
+En el archivo, pueden ver la transcripción de las tablas fitosociologicas de <span class="citation" data-cites="Lapraz1963">Lapraz (<a href="#ref-Lapraz1963" role="doc-biblioref">1963</a>)</span>.</p>
+<p>Esa tablas utilizan una escala de Braun-Blanquet:</p>
+<h1 data-number="3" id="construir-funciones"><span class="header-section-number">3</span> Construir funciones</h1>
+<p>En una base de datos, utilizamos este tipo de tablas para almacenar las abundancias o presencias de especies:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Unidad de muestreo</th>
+<th>Especie</th>
+<th>abundancia</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Bottin2014a" class="csl-entry" role="listitem">
+Bottin, M, J Soininen, M Ferreol, y J. Tison-Rosebery. 2014. <span>“Do spatial patterns of benthic diatom assemblages vary across regions and years?”</span> <em>Freshwater Science</em> 33 (2): 402–16.
+</div>
+<div id="ref-Lapraz1963" class="csl-entry" role="listitem">
+Lapraz, G. 1963. <span>“La v<span>é</span>g<span>é</span>tation de l' Entre-Deux-Mers: ch<span>ê</span>naies, ch<span>â</span>taigneraies et charmaies m<span>é</span>sophiles sur sol acide”</span>. <em>M<span>é</span>moire Soci. Sci. Physiques et Naturelles de Bordeaux</em> 3: 1–36.
+</div>
+<div id="ref-Tison2005" class="csl-entry" role="listitem">
+Tison, J., Y. S. Park, M. Coste, J. G. Wasson, L. Ector, F. Rimet, y F. Delmas. 2005. <span>“Typology of diatom communities and the influence of hydro-ecoregions: A study on the French hydrosystem scale”</span>. <em>Water Research</em> 39 (14): 3177–88. <a href="http://www.sciencedirect.com/science/article/B6V73-4GJM3GM-7/2/f4972eed7c2f635394bb0516fe897cad ">http://www.sciencedirect.com/science/article/B6V73-4GJM3GM-7/2/f4972eed7c2f635394bb0516fe897cad </a>.
+</div>
+<div id="ref-Walbott2018" class="csl-entry" role="listitem">
+Walbott, Marion. 2018. <span>“Rôles des facteurs locaux dans la distribution et la persistance des communautés à hêtre (Fagus sylvatica) en marge d’aire de répartition”</span>. Tesis doctoral. <a href="http://www.theses.fr/2018BORD0455">http://www.theses.fr/2018BORD0455</a>.
+</div>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2190,11 +2381,23 @@ Documentación taxonomía
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="references">References</h3>
+<div id="references-listing"></div>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->
