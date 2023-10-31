@@ -29,6 +29,12 @@ TO DO: incluír programa final
 
 # Instalación de los software y paquetes
 
+En el curso, vamos a utilizar lo más posible software libre.
+En las paginas siguientes pueden encontrar los enlaces y instrucciones para instalar los software:
+
+* [Windows](./inst_software_windows.html)
+* [Linux](./inst_software_linux.html)
+
 
 # Presentaciones
 

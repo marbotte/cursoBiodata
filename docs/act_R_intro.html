@@ -2178,6 +2178,9 @@ Documentación R y SQL
 <hr/>
 <a href="doc_R_clases_modos.html">Clases, modos y filtros en R</a>
 <span class="nav-dropdown-header">Importar y exportar datos en R</span>
+<span class="nav-dropdown-header">Buscar datos y correspondencias entre objetos</span>
+<span class="nav-dropdown-header">Bucles, funciones *pply, y estructuras de control</span>
+<span class="nav-dropdown-header">Crear funciones en R</span>
 <hr/>
 <span class="nav-dropdown-header">SQL</span>
 <hr/>
@@ -2232,8 +2235,10 @@ Documentación taxonomía
 <ul>
 <li><a href="#ejercicio-1" id="toc-ejercicio-1"><span class="toc-section-number">2.1</span> Ejercicio</a></li>
 <li><a href="#los-datos-1" id="toc-los-datos-1"><span class="toc-section-number">2.2</span> Los datos</a></li>
+<li><a href="#indicaciones-para-el-ejercicio-1" id="toc-indicaciones-para-el-ejercicio-1"><span class="toc-section-number">2.3</span> Indicaciones para el ejercicio</a></li>
 </ul></li>
-<li><a href="#construir-funciones" id="toc-construir-funciones"><span class="toc-section-number">3</span> Construir funciones</a></li>
+<li><a href="#relaciones-entre-tablas-en-r" id="toc-relaciones-entre-tablas-en-r"><span class="toc-section-number">3</span> Relaciones entre tablas en R</a></li>
+<li><a href="#construir-funciones" id="toc-construir-funciones"><span class="toc-section-number">4</span> Construir funciones</a></li>
 </ul>
 </nav>
 </div>
@@ -2332,7 +2337,7 @@ La variable <code>HER1Lyon</code> permite separar las hydro-eco-regiones:</p>
 <li><code>Logic</code> para los operadores logicos <code>&amp;</code> y <code>|</code></li>
 <li><code>as.logical</code> y <code>mode</code> para cambiar el modo de variables numericas a logicas</li>
 <li><code>colSums</code> y <code>rowSums</code> para calcular las sumas de las filas y columnas de un array</li>
-<li><code>quantile</code> para calcular los cuantiles de valor de un vector</li>
+<li><a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/quantile"><code>quantile</code></a> para calcular los cuantiles de valor de un vector</li>
 </ul>
 <h1 data-number="2" id="leer-un-archivo-complejo"><span class="header-section-number">2</span> Leer un archivo complejo</h1>
 <h2 data-number="2.1" id="ejercicio-1"><span class="header-section-number">2.1</span> Ejercicio</h2>
@@ -2346,7 +2351,106 @@ La variable <code>HER1Lyon</code> permite separar las hydro-eco-regiones:</p>
 <p>Para su tesis de doctorado en la universidad de Burdeos sobre las comunidades de los bosques de hayas y sus distribuciones en la región de Burdeos, Marion Walbott <span class="citation" data-cites="Walbott2018">(<a href="#ref-Walbott2018" role="doc-biblioref">2018</a>)</span> ha utilizado varios datos fitosociológicos antiguos.
 En el archivo, pueden ver la transcripción de las tablas fitosociologicas de <span class="citation" data-cites="Lapraz1963">Lapraz (<a href="#ref-Lapraz1963" role="doc-biblioref">1963</a>)</span>.</p>
 <p>Esa tablas utilizan una escala de Braun-Blanquet:</p>
-<h1 data-number="3" id="construir-funciones"><span class="header-section-number">3</span> Construir funciones</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>bbScale</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span></span>
+<span>  code<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"r"</span>,<span class='st'>"+"</span>,<span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span>  description<span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Menos del 1% de cobertura, 3-5 individuos"</span>, <span class='st'>"Menos del 5% de cobertura, pocos individuos"</span>,<span class='st'>"~5% más individuos"</span>,<span class='st'>"5%-25%"</span>,<span class='st'>"25%-50%"</span>,<span class='st'>"50%-75%"</span>,<span class='st'>"75%-100%"</span><span class='op'>)</span>,</span>
+<span>  minPercent<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>5</span>,<span class='fl'>5</span>,<span class='fl'>25</span>,<span class='fl'>50</span>,<span class='fl'>75</span><span class='op'>)</span>,</span>
+<span>  maxPercent<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>5</span>,<span class='fl'>5</span>,<span class='fl'>25</span>,<span class='fl'>50</span>,<span class='fl'>75</span>,<span class='fl'>100</span><span class='op'>)</span></span>
+<span><span class='op'>)</span></span>
+<span><span class='va'>bbScale</span><span class='op'>$</span><span class='va'>finalVal</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='va'>bbScale</span><span class='op'>$</span><span class='va'>minPercent</span><span class='op'>+</span><span class='va'>bbScale</span><span class='op'>$</span><span class='va'>maxPercent</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 55%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">code</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: right;">minPercent</th>
+<th style="text-align: right;">maxPercent</th>
+<th style="text-align: right;">finalVal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">r</td>
+<td style="text-align: left;">Menos del 1% de cobertura, 3-5 individuos</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">Menos del 5% de cobertura, pocos individuos</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">3.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">~5% más individuos</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">5%-25%</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">15.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">25%-50%</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">37.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">50%-75%</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">62.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">75%-100%</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">87.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 data-number="2.3" id="indicaciones-para-el-ejercicio-1"><span class="header-section-number">2.3</span> Indicaciones para el ejercicio</h2>
+<p>Para poder hacer este ejercicio, consultar la documentación sobre:</p>
+<ul>
+<li><a href="./doc_R_clases_modos.html">Clases modos y filtros en R</a></li>
+</ul>
+<p>Además, puede ser útil mirar las ayudas de las funciones siguientes:</p>
+<ul>
+<li><code>openxlsx::read.xlsx</code> es una de las funciones para leer datos en archivos excel, no dudar en buscar los argumentos que les pueden facilitar el ejercicio</li>
+<li><code>is.na</code> permite saber cuales son los valores que faltan en un vector, da un vector logico</li>
+<li><code>matrix</code> para crear una matriz</li>
+<li><code>cbind</code> y <code>rbind</code> permiten concatenar arrays por filas o columnas</li>
+<li><code>paste</code> permite pegar varias cadenas de caracter juntas</li>
+<li><code>Comparison</code> para las pruebas booleanas <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code></li>
+<li><code>Logic</code> para los operadores logicos <code>&amp;</code> y <code>|</code></li>
+<li><code>as.logical</code> y <code>mode</code> para cambiar el modo de variables numericas a logicas</li>
+</ul>
+<h1 data-number="3" id="relaciones-entre-tablas-en-r"><span class="header-section-number">3</span> Relaciones entre tablas en R</h1>
+<h1 data-number="4" id="construir-funciones"><span class="header-section-number">4</span> Construir funciones</h1>
 <p>En una base de datos, utilizamos este tipo de tablas para almacenar las abundancias o presencias de especies:</p>
 <table>
 <thead>
@@ -2357,6 +2461,11 @@ En el archivo, pueden ver la transcripción de las tablas fitosociologicas de <s
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td></td>
+<td>Especie</td>
+<td>abundancia</td>
+</tr>
 </tbody>
 </table>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>

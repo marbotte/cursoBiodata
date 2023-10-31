@@ -95,7 +95,7 @@ Además, puede ser útil mirar las ayudas de las funciones siguientes:
 * `Logic` para los operadores logicos `&` y `|`
 * `as.logical` y `mode` para cambiar el modo de variables numericas a logicas
 * `colSums` y `rowSums` para calcular las sumas de las filas y columnas de un array
-* `quantile` para calcular los cuantiles de valor de un vector
+* [`quantile`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/quantile) para calcular los cuantiles de valor de un vector
 
 # Leer un archivo complejo
 
@@ -115,6 +115,45 @@ En el archivo, pueden ver la transcripción de las tablas fitosociologicas de @L
 
 Esa tablas utilizan una escala de Braun-Blanquet:
 
+```{r}
+bbScale <-data.frame(
+  code=c("r","+",as.character(1:5)),
+  description= c("Menos del 1% de cobertura, 3-5 individuos", "Menos del 5% de cobertura, pocos individuos","~5% más individuos","5%-25%","25%-50%","50%-75%","75%-100%"),
+  minPercent=c(0,1,5,5,25,50,75),
+  maxPercent=c(1,5,5,25,50,75,100)
+)
+bbScale$finalVal <- (bbScale$minPercent+bbScale$maxPercent)/2
+
+```
+
+
+```{r purl=FALSE, echo=F, eval=!interactive()}
+knitr::kable(bbScale)
+```
+
+
+## Indicaciones para el ejercicio
+
+Para poder hacer este ejercicio, consultar la documentación sobre:
+
+* [Clases modos y filtros en R](./doc_R_clases_modos.html)
+
+
+Además, puede ser útil mirar las ayudas de las funciones siguientes:
+
+* `openxlsx::read.xlsx` es una de las funciones para leer datos en archivos excel, no dudar en buscar los argumentos que les pueden facilitar el ejercicio
+* `is.na` permite saber cuales son los valores que faltan en un vector, da un vector logico
+* `matrix` para crear una matriz
+* `cbind` y `rbind` permiten concatenar arrays por filas o columnas
+* `paste` permite pegar varias cadenas de caracter juntas
+* `Comparison` para las pruebas booleanas `==`, `!=`, `>`, `>=`, `<` 
+* `Logic` para los operadores logicos `&` y `|`
+* `as.logical` y `mode` para cambiar el modo de variables numericas a logicas
+
+
+
+
+# Relaciones entre tablas en R
 
 
 
@@ -125,6 +164,7 @@ En una base de datos, utilizamos este tipo de tablas para almacenar las abundanc
 
 | Unidad de muestreo | Especie | abundancia|
 |--------------------|---------|-----------|
+|  | Especie | abundancia|
 
 
 

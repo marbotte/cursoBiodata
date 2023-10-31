@@ -1,0 +1,86 @@
+---
+title: "Instalación de software para el curso Biodata en Windows"
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    pandoc_args: ["--number-sections"]
+bibliography: "./cursoBiodata.bib"
+---
+
+
+# R
+
+Para utilizar R en Windows, vamos a instalar 4 herramientas principales:
+
+* **R base**: es el software base y bruto de programación estadística
+* **Rtools**: permite "compilar" los códigos escritos en otros lenguajes de programación, es importante tenerlo si queremos instalar paquetes en versiones de desarrollo (por ejemplo desde github)
+* **MikTeX o tinyTex**: es una distribución de TeX/LaTeX, permite crear archivos de ayuda para las funciones en un paquete R y documentos PDF con el paquete rmarkdown
+* **Rstudio**: es el ambiente de desarrollo que vamos a utilizar durante el curso. Anotar: RStudio contiene un componente util que se llama `pandoc`, que permite traducir documentos entre varios formatos (word, markdown, html, latex/pdf etc.). No requiere una instalación suplementaria (se puede, si quieren!), pero se tiene que mencionar como elemento para instalar también.
+
+
+## R (base y Rtools)
+
+Lo que les aconsejo es:
+
+1. desinstalar R y Rstudio en sus computadores para tener un sistema totalmente limpio, averiguar si ya tienen pandoc, y una distribución de LaTeX.
+1. descargar la ultima versión de R, desde <https://cran.dcc.uchile.cl/bin/windows/>, en el desenlace `base`
+1. descargar la ultima versión de Rtools, desde <https://cran.dcc.uchile.cl/bin/windows/>, en el desenlace `Rtools`
+1. Instalar los programas descargados, primero R y luego Rtools, siguiendo las instrucciones 
+
+
+## Software complementarios
+
+### Distribución LaTeX
+
+Hay dos soluciones posibles: *MikTeX*, una distribución de LaTeX completa, o *TinyTeX*, una pequeña distribución de LaTeX que está soportada por la comunidad que maneja rmarkdown.
+La solución MikTex es más compleja para instalar y que RStudio, pandoc y rmarkdown la reconozca al momento de compilar los códigos LaTeX.
+Sin embargo, si piensan utilizar LaTeX en otros contextos que simplemente en los documentos rmarkdown y los archivos de documentación de función R, es la solución más adecuada.
+
+Si eligen la solución MikTex, seguir: <https://miktex.org/howto/install-miktex>
+No lo he intentado yo mismo, pero tienen que asegurarse que los archivos de ejecución de MikTeX están en el path de Windows (buscar ayuda en google con la palabras "MikTeX rmarkdown path rstudio" puede ser útil).
+
+La solución más simple es utilizar la distribución TinyTeX, que se puede instalar desde el paquete `tinytex` de R.
+Sin embargo, si utilizan esta solución, pueden esperar después de la instalación de RStudio para manejar todo desde rstudio
+
+Después de haber instalado Rstudio, instalar el paquete `tinytex` en Rstudio y seguir las instrucciones en: <https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html>
+
+
+### Rstudio
+
+RStudio es un ambiente de desarrollo, no es obligatorio utilizarlo, pero simplifica mucho el trabajo con R (y otros lenguajes de programación).
+Anotar: hay muchos movimientos alrededor de la nueva empresa de RStudio (posit) y de quarto, es muy posible que en los próximos años, haya soluciones nuevas para mejorar el ambiente de desarrollo, no duden en seguir las noticias de [Posit](https://posit.co).
+
+Seguir las instrucciones en <https://posit.co/download/rstudio-desktop/> (el instalador exe de la ultima versión para Windows 10/11 debería funcionar)
+
+
+# SQLite
+
+SQLite es un motor de gestión de base de datos muy ligero y muy practico.
+No funciona en un modelo cliente/servidor, las bases de datos SQLite están contenidas en un archivo y se consultan directamente, de manera local.
+
+La instalación de SQLite en Windows simplemente consiste en descargar unos archivos en un zip y ponerlos en el path de la maquina.
+Este proceso es tan simple que el paquete R que permite interactuar con las bases de datos SQLite contiene un motor SQLite completo.
+
+SQLite tiene una extensión espacial que se llama Spatialite, 
+
+Sin embargo, se puede instalar SQLite 
+
+
+# PostgreSQL
+
+Para utilizar PostgreSQL en Windows, vamos a instalar los elementos siguientes:
+
+* PostgreSQL, el sistema de gestión de base de datos
+* 
+
+
+
+
+https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+
+
+# Interfaces para PostgreSQL y SQLite
+
+# Qgis
+

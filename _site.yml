@@ -17,6 +17,9 @@ navbar:
         - text: "Clases, modos y filtros en R"
           href: doc_R_clases_modos.html
         - text: "Importar y exportar datos en R"
+        - text: "Buscar datos y correspondencias entre objetos"
+        - text: "Bucles, funciones *pply, y estructuras de control"
+        - text: "Crear funciones en R"
         - text: "---"
         - text: "SQL"
         - text: "---"
