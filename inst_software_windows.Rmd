@@ -1,5 +1,6 @@
 ---
-title: "Instalación de software para el curso Biodata en Windows"
+title: "Instalaciones"
+description: "Instalación de software para el curso Biodata en Windows"
 output:
   distill::distill_article:
     toc: true
@@ -23,9 +24,9 @@ Para utilizar R en Windows, vamos a instalar 4 herramientas principales:
 
 Lo que les aconsejo es:
 
-1. desinstalar R y Rstudio en sus computadores para tener un sistema totalmente limpio, averiguar si ya tienen pandoc, y una distribución de LaTeX.
-1. descargar la ultima versión de R, desde <https://cran.dcc.uchile.cl/bin/windows/>, en el desenlace `base`
-1. descargar la ultima versión de Rtools, desde <https://cran.dcc.uchile.cl/bin/windows/>, en el desenlace `Rtools`
+1. desinstalar R y Rstudio en sus computadores para tener un sistema totalmente limpio.
+1. descargar la ultima versión de R, desde <https://cran.dcc.uchile.cl/bin/windows/>, en el enlace `base`
+1. descargar la ultima versión de Rtools, desde <https://cran.dcc.uchile.cl/bin/windows/>, en el enlace `Rtools`
 1. Instalar los programas descargados, primero R y luego Rtools, siguiendo las instrucciones 
 
 
@@ -38,10 +39,11 @@ La solución MikTex es más compleja para instalar y que RStudio, pandoc y rmark
 Sin embargo, si piensan utilizar LaTeX en otros contextos que simplemente en los documentos rmarkdown y los archivos de documentación de función R, es la solución más adecuada.
 
 Si eligen la solución MikTex, seguir: <https://miktex.org/howto/install-miktex>
-No lo he intentado yo mismo, pero tienen que asegurarse que los archivos de ejecución de MikTeX están en el path de Windows (buscar ayuda en google con la palabras "MikTeX rmarkdown path rstudio" puede ser útil).
+Tienen que asegurarse que los archivos de ejecución de MikTeX están en el path de Windows (buscar ayuda en google con la palabras "MikTeX rmarkdown path rstudio" puede ser útil). 
+Una prueba rapida en Windows 10 me ha permitido averiguar que todo se debería hacer automaticamente, sin una operación particular.
 
 La solución más simple es utilizar la distribución TinyTeX, que se puede instalar desde el paquete `tinytex` de R.
-Sin embargo, si utilizan esta solución, pueden esperar después de la instalación de RStudio para manejar todo desde rstudio
+Sin embargo, si utilizan esta solución, pueden esperar después de la instalación de RStudio para manejar todo desde RStudio
 
 Después de haber instalado Rstudio, instalar el paquete `tinytex` en Rstudio y seguir las instrucciones en: <https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html>
 
@@ -54,33 +56,55 @@ Anotar: hay muchos movimientos alrededor de la nueva empresa de RStudio (posit) 
 Seguir las instrucciones en <https://posit.co/download/rstudio-desktop/> (el instalador exe de la ultima versión para Windows 10/11 debería funcionar)
 
 
-# SQLite
+# PostgreSQL
+
+Para utilizar PostgreSQL en Windows, vamos a instalar los elementos siguientes:
+
+* PostgreSQL, el sistema de gestión de base de datos
+* Postgis la extensión espacial del sistema PostgreSQL
+
+Para instalar esos elementos en Windows:
+
+1. Descargar PostgreSQL desde la pagina: <https://www.enterprisedb.com/downloads/postgres-postgresql-downloads>. La ultima versión debería funcionar. Parece que al momento de empezar el curso, debería ser la versión 16
+2. Instalarla siguiendo las instrucciones. El archivo de ejecución debería proponer los elementos siguientes:
+  + PostgreSQL Server: Obligatorio
+  + pgAdmin4: (facultativo) es un software para poder interactuar directamente con las bases de datos de PostgreSQL. Es una buena interfaz para PostgreSQL, pero vamos a utilizar PostgreSQL y SQLite en el curso, entonces, si tienen suficiente espacio, lo pueden instalar, pero si su espacio está limitado, no lo vamos a necesitar.
+  + StackBuilder (obligatorio): nos va a permitir instalar postgis después
+  + Command Line Tools: (facultativo) no estoy seguro que vayamos a utilizar esas herramientas en el curso, pero es relativamente ligero, y siempre es útil, les aconsejo instalarlo
+3. Al final de la instalación de PostgreSQL, una nueva ventana va a abrirse con la ejecución de StackBuilder, seleccionar la base local. En "Spatial extensions" seleccionar Postgis y seguir con el proceso de instalación
+
+# SQLite (no hay nada obligatorio que instalar!)
 
 SQLite es un motor de gestión de base de datos muy ligero y muy practico.
 No funciona en un modelo cliente/servidor, las bases de datos SQLite están contenidas en un archivo y se consultan directamente, de manera local.
 
 La instalación de SQLite en Windows simplemente consiste en descargar unos archivos en un zip y ponerlos en el path de la maquina.
 Este proceso es tan simple que el paquete R que permite interactuar con las bases de datos SQLite contiene un motor SQLite completo.
+Para interactuar con las bases de datos SQLite y sus elementos espaciales en QGIS, no se necesita ninguna instalación tampoco, QGIS contiene de manera nativa todos los elementos 
 
-SQLite tiene una extensión espacial que se llama Spatialite, 
-
-Sin embargo, se puede instalar SQLite 
-
-
-# PostgreSQL
-
-Para utilizar PostgreSQL en Windows, vamos a instalar los elementos siguientes:
-
-* PostgreSQL, el sistema de gestión de base de datos
-* 
-
-
-
-
-https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
-
+Sin embargo, se puede instalar SQLite para interactuar con SQLite sin pasar por R, QGIS ni DBeaver. Si quieren hacerlo, la pagina <https://www.sqlite.org/index.html> contiene toda la documentación y los enlaces de descarga
 
 # Interfaces para PostgreSQL y SQLite
 
+Existen varios software para interactuar con las bases de datos en SQL.
+Uno de los más fáciles es DBeaver.
+Nos permitirá conectarnos y interactuar con las bases de datos en PostgreSQL y SQLite
+
+Ir a <https://dbeaver.io/download/>, descargar y instalar DBeaver Community edition para Windows.
+
+
+
 # Qgis
+
+Quantum gis es un sistema de gestión de información geográfica libre.
+
+Lo pueden descargar y instalar desde la pagina: <https://www.qgis.org/es/site/forusers/alldownloads.html>.
+Les aconsejo instalar la versión estable "Lanzamiento de Largo Plazo".
+
+
+# Git y Github
+
+Git es un software de control de versiones (permite seguir las modificaciones en la carpeta de un proyecto).
+Para instalarlo, les aconsejo seguir las instrucciones de instalación en <https://docs.github.com/es/get-started/quickstart/set-up-git>. 
+Solo tienen que instalar el software, pueden explorar más posibilidades si quieren, pero les mostraré en detalles como manejar git y github.
 

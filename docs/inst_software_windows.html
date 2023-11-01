@@ -88,27 +88,30 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Curso Biodata: Instalación de software para el curso Biodata en Windows</title>
+  <title>Curso Biodata: Instalaciones</title>
 
+  <meta property="description" itemprop="description" content="Instalación de software para el curso Biodata en Windows"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Curso Biodata: Instalación de software para el curso Biodata en Windows"/>
+  <meta property="og:title" content="Curso Biodata: Instalaciones"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Instalación de software para el curso Biodata en Windows"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Curso Biodata"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Curso Biodata: Instalación de software para el curso Biodata en Windows"/>
+  <meta property="twitter:title" content="Curso Biodata: Instalaciones"/>
+  <meta property="twitter:description" content="Instalación de software para el curso Biodata en Windows"/>
 
   <!--/radix_placeholder_meta_tags-->
   
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Instalación de software para el curso Biodata en Windows"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","pandoc_args"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["--number-sections"]}]}]},{"type":"character","attributes":{},"value":["./cursoBiodata.bib"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Instalaciones"]},{"type":"character","attributes":{},"value":["Instalación de software para el curso Biodata en Windows"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","pandoc_args"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["--number-sections"]}]}]},{"type":"character","attributes":{},"value":["./cursoBiodata.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2117,7 +2120,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Instalación de software para el curso Biodata en Windows","authors":[]}
+{"title":"Instalaciones","description":"Instalación de software para el curso Biodata en Windows","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2183,11 +2186,11 @@ Documentación taxonomía
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Instalación de software para el curso Biodata en Windows</h1>
+<h1>Instalaciones</h1>
 
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-
+<p>Instalación de software para el curso Biodata en Windows</p>
 </div>
 
 
@@ -2205,10 +2208,11 @@ Documentación taxonomía
 <li><a href="#rstudio" id="toc-rstudio"><span class="toc-section-number">1.2.2</span> Rstudio</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#sqlite" id="toc-sqlite"><span class="toc-section-number">2</span> SQLite</a></li>
-<li><a href="#postgresql" id="toc-postgresql"><span class="toc-section-number">3</span> PostgreSQL</a></li>
+<li><a href="#postgresql" id="toc-postgresql"><span class="toc-section-number">2</span> PostgreSQL</a></li>
+<li><a href="#sqlite-no-hay-nada-obligatorio-que-instalar" id="toc-sqlite-no-hay-nada-obligatorio-que-instalar"><span class="toc-section-number">3</span> SQLite (no hay nada obligatorio que instalar!)</a></li>
 <li><a href="#interfaces-para-postgresql-y-sqlite" id="toc-interfaces-para-postgresql-y-sqlite"><span class="toc-section-number">4</span> Interfaces para PostgreSQL y SQLite</a></li>
 <li><a href="#qgis" id="toc-qgis"><span class="toc-section-number">5</span> Qgis</a></li>
+<li><a href="#git-y-github" id="toc-git-y-github"><span class="toc-section-number">6</span> Git y Github</a></li>
 </ul>
 </nav>
 </div>
@@ -2223,9 +2227,9 @@ Documentación taxonomía
 <h2 data-number="1.1" id="r-base-y-rtools"><span class="header-section-number">1.1</span> R (base y Rtools)</h2>
 <p>Lo que les aconsejo es:</p>
 <ol type="1">
-<li>desinstalar R y Rstudio en sus computadores para tener un sistema totalmente limpio, averiguar si ya tienen pandoc, y una distribución de LaTeX.</li>
-<li>descargar la ultima versión de R, desde <a href="https://cran.dcc.uchile.cl/bin/windows/" class="uri">https://cran.dcc.uchile.cl/bin/windows/</a>, en el desenlace <code>base</code></li>
-<li>descargar la ultima versión de Rtools, desde <a href="https://cran.dcc.uchile.cl/bin/windows/" class="uri">https://cran.dcc.uchile.cl/bin/windows/</a>, en el desenlace <code>Rtools</code></li>
+<li>desinstalar R y Rstudio en sus computadores para tener un sistema totalmente limpio.</li>
+<li>descargar la ultima versión de R, desde <a href="https://cran.dcc.uchile.cl/bin/windows/" class="uri">https://cran.dcc.uchile.cl/bin/windows/</a>, en el enlace <code>base</code></li>
+<li>descargar la ultima versión de Rtools, desde <a href="https://cran.dcc.uchile.cl/bin/windows/" class="uri">https://cran.dcc.uchile.cl/bin/windows/</a>, en el enlace <code>Rtools</code></li>
 <li>Instalar los programas descargados, primero R y luego Rtools, siguiendo las instrucciones</li>
 </ol>
 <h2 data-number="1.2" id="software-complementarios"><span class="header-section-number">1.2</span> Software complementarios</h2>
@@ -2234,30 +2238,55 @@ Documentación taxonomía
 La solución MikTex es más compleja para instalar y que RStudio, pandoc y rmarkdown la reconozca al momento de compilar los códigos LaTeX.
 Sin embargo, si piensan utilizar LaTeX en otros contextos que simplemente en los documentos rmarkdown y los archivos de documentación de función R, es la solución más adecuada.</p>
 <p>Si eligen la solución MikTex, seguir: <a href="https://miktex.org/howto/install-miktex" class="uri">https://miktex.org/howto/install-miktex</a>
-No lo he intentado yo mismo, pero tienen que asegurarse que los archivos de ejecución de MikTeX están en el path de Windows (buscar ayuda en google con la palabras “MikTeX rmarkdown path rstudio” puede ser útil).</p>
+Tienen que asegurarse que los archivos de ejecución de MikTeX están en el path de Windows (buscar ayuda en google con la palabras “MikTeX rmarkdown path rstudio” puede ser útil).
+Una prueba rapida en Windows 10 me ha permitido averiguar que todo se debería hacer automaticamente, sin una operación particular.</p>
 <p>La solución más simple es utilizar la distribución TinyTeX, que se puede instalar desde el paquete <code>tinytex</code> de R.
-Sin embargo, si utilizan esta solución, pueden esperar después de la instalación de RStudio para manejar todo desde rstudio</p>
+Sin embargo, si utilizan esta solución, pueden esperar después de la instalación de RStudio para manejar todo desde RStudio</p>
 <p>Después de haber instalado Rstudio, instalar el paquete <code>tinytex</code> en Rstudio y seguir las instrucciones en: <a href="https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html" class="uri">https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html</a></p>
 <h3 data-number="1.2.2" id="rstudio"><span class="header-section-number">1.2.2</span> Rstudio</h3>
 <p>RStudio es un ambiente de desarrollo, no es obligatorio utilizarlo, pero simplifica mucho el trabajo con R (y otros lenguajes de programación).
 Anotar: hay muchos movimientos alrededor de la nueva empresa de RStudio (posit) y de quarto, es muy posible que en los próximos años, haya soluciones nuevas para mejorar el ambiente de desarrollo, no duden en seguir las noticias de <a href="https://posit.co">Posit</a>.</p>
 <p>Seguir las instrucciones en <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a> (el instalador exe de la ultima versión para Windows 10/11 debería funcionar)</p>
-<h1 data-number="2" id="sqlite"><span class="header-section-number">2</span> SQLite</h1>
-<p>SQLite es un motor de gestión de base de datos muy ligero y muy practico.
-No funciona en un modelo cliente/servidor, las bases de datos SQLite están contenidas en un archivo y se consultan directamente, de manera local.</p>
-<p>La instalación de SQLite en Windows simplemente consiste en descargar unos archivos en un zip y ponerlos en el path de la maquina.
-Este proceso es tan simple que el paquete R que permite interactuar con las bases de datos SQLite contiene un motor SQLite completo.</p>
-<p>SQLite tiene una extensión espacial que se llama Spatialite,</p>
-<p>Sin embargo, se puede instalar SQLite</p>
-<h1 data-number="3" id="postgresql"><span class="header-section-number">3</span> PostgreSQL</h1>
+<h1 data-number="2" id="postgresql"><span class="header-section-number">2</span> PostgreSQL</h1>
 <p>Para utilizar PostgreSQL en Windows, vamos a instalar los elementos siguientes:</p>
 <ul>
 <li>PostgreSQL, el sistema de gestión de base de datos</li>
-<li></li>
+<li>Postgis la extensión espacial del sistema PostgreSQL</li>
 </ul>
-<p><a href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads" class="uri">https://www.enterprisedb.com/downloads/postgres-postgresql-downloads</a></p>
+<p>Para instalar esos elementos en Windows:</p>
+<ol type="1">
+<li>Descargar PostgreSQL desde la pagina: <a href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads" class="uri">https://www.enterprisedb.com/downloads/postgres-postgresql-downloads</a>. La ultima versión debería funcionar. Parece que al momento de empezar el curso, debería ser la versión 16</li>
+<li>Instalarla siguiendo las instrucciones. El archivo de ejecución debería proponer los elementos siguientes:</li>
+</ol>
+<ul>
+<li>PostgreSQL Server: Obligatorio</li>
+<li>pgAdmin4: (facultativo) es un software para poder interactuar directamente con las bases de datos de PostgreSQL. Es una buena interfaz para PostgreSQL, pero vamos a utilizar PostgreSQL y SQLite en el curso, entonces, si tienen suficiente espacio, lo pueden instalar, pero si su espacio está limitado, no lo vamos a necesitar.</li>
+<li>StackBuilder (obligatorio): nos va a permitir instalar postgis después</li>
+<li>Command Line Tools: (facultativo) no estoy seguro que vayamos a utilizar esas herramientas en el curso, pero es relativamente ligero, y siempre es útil, les aconsejo instalarlo</li>
+</ul>
+<ol start="3" type="1">
+<li>Al final de la instalación de PostgreSQL, una nueva ventana va a abrirse con la ejecución de StackBuilder, seleccionar la base local. En “Spatial extensions” seleccionar Postgis y seguir con el proceso de instalación</li>
+</ol>
+<h1 data-number="3" id="sqlite-no-hay-nada-obligatorio-que-instalar"><span class="header-section-number">3</span> SQLite (no hay nada obligatorio que instalar!)</h1>
+<p>SQLite es un motor de gestión de base de datos muy ligero y muy practico.
+No funciona en un modelo cliente/servidor, las bases de datos SQLite están contenidas en un archivo y se consultan directamente, de manera local.</p>
+<p>La instalación de SQLite en Windows simplemente consiste en descargar unos archivos en un zip y ponerlos en el path de la maquina.
+Este proceso es tan simple que el paquete R que permite interactuar con las bases de datos SQLite contiene un motor SQLite completo.
+Para interactuar con las bases de datos SQLite y sus elementos espaciales en QGIS, no se necesita ninguna instalación tampoco, QGIS contiene de manera nativa todos los elementos</p>
+<p>Sin embargo, se puede instalar SQLite para interactuar con SQLite sin pasar por R, QGIS ni DBeaver. Si quieren hacerlo, la pagina <a href="https://www.sqlite.org/index.html" class="uri">https://www.sqlite.org/index.html</a> contiene toda la documentación y los enlaces de descarga</p>
 <h1 data-number="4" id="interfaces-para-postgresql-y-sqlite"><span class="header-section-number">4</span> Interfaces para PostgreSQL y SQLite</h1>
+<p>Existen varios software para interactuar con las bases de datos en SQL.
+Uno de los más fáciles es DBeaver.
+Nos permitirá conectarnos y interactuar con las bases de datos en PostgreSQL y SQLite</p>
+<p>Ir a <a href="https://dbeaver.io/download/" class="uri">https://dbeaver.io/download/</a>, descargar y instalar DBeaver Community edition para Windows.</p>
 <h1 data-number="5" id="qgis"><span class="header-section-number">5</span> Qgis</h1>
+<p>Quantum gis es un sistema de gestión de información geográfica libre.</p>
+<p>Lo pueden descargar y instalar desde la pagina: <a href="https://www.qgis.org/es/site/forusers/alldownloads.html" class="uri">https://www.qgis.org/es/site/forusers/alldownloads.html</a>.
+Les aconsejo instalar la versión estable “Lanzamiento de Largo Plazo”.</p>
+<h1 data-number="6" id="git-y-github"><span class="header-section-number">6</span> Git y Github</h1>
+<p>Git es un software de control de versiones (permite seguir las modificaciones en la carpeta de un proyecto).
+Para instalarlo, les aconsejo seguir las instrucciones de instalación en <a href="https://docs.github.com/es/get-started/quickstart/set-up-git" class="uri">https://docs.github.com/es/get-started/quickstart/set-up-git</a>.
+Solo tienen que instalar el software, pueden explorar más posibilidades si quieren, pero les mostraré en detalles como manejar git y github.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
