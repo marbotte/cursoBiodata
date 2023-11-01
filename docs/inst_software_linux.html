@@ -2207,6 +2207,7 @@ Documentación taxonomía
 <li><a href="#rstudio" id="toc-rstudio"><span class="toc-section-number">2.3</span> Rstudio</a></li>
 </ul></li>
 <li><a href="#postgresql-postgis-sqlite-y-spatialite" id="toc-postgresql-postgis-sqlite-y-spatialite"><span class="toc-section-number">3</span> PostgreSQL, postgis, SQLite y spatialite</a></li>
+<li><a href="#interfaces-para-sql" id="toc-interfaces-para-sql"><span class="toc-section-number">4</span> Interfaces para SQL</a></li>
 </ul>
 </nav>
 </div>
@@ -2236,12 +2237,12 @@ Si tienen otra versión, el principio es el mismo y la mayoría de los comandos 
 <p>Para instalar LaTeX en Ubuntu linux, o Linux Mint, la solución más completa es:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install texlive-full</span></code></pre></div>
 <p>Si tienen un espacio limitado, pueden utilizar:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install texlive</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install texlive <span class="at">-y</span></span></code></pre></div>
 <p>Si utilizan <code>texlive</code> en lugar de <code>texlive-full</code>, es posible que no tengan todos los paquetes de LaTeX necesarios, pueden referirse a <a href="https://linuxconfig.org/how-to-install-latex-on-ubuntu-22-04-jammy-jellyfish-linux" class="uri">https://linuxconfig.org/how-to-install-latex-on-ubuntu-22-04-jammy-jellyfish-linux</a>.</p>
 <p>Anotar, si prefieren no instalar texlive, existe la alternativa de utilizar <code>tinytex</code> para tener una instalación minimalista de los elementos de LaTeX que podrían necesitar para rmarkdown, ver <a href="https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html" class="uri">https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html</a></p>
 <h2 data-number="2.2" id="pandoc"><span class="header-section-number">2.2</span> pandoc</h2>
 <p>Para instalar pandoc:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install pandoc</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install pandoc <span class="at">-y</span></span></code></pre></div>
 <h2 data-number="2.3" id="rstudio"><span class="header-section-number">2.3</span> Rstudio</h2>
 <p>RStudio no está en los repositorios apt para ubuntu, tienen que descargarlo y instalarlo:</p>
 <p><strong>Para Linux Mint 21 y Ubuntu 22.04 Jammy Jellyfish</strong>:</p>
@@ -2249,8 +2250,17 @@ Si tienen otra versión, el principio es el mismo y la mayoría de los comandos 
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install ./rstudio-2023.09.1-494-amd64.deb</span></code></pre></div>
 <p>Para otras versiones, mirar: <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a></p>
 <h1 data-number="3" id="postgresql-postgis-sqlite-y-spatialite"><span class="header-section-number">3</span> PostgreSQL, postgis, SQLite y spatialite</h1>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install postgresql postgresql-contrib</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Para instalar todos los paquetes SQL que vamos a necesitar (eso es valido el 1 de noviembre de 2022):</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install postgresql postgresql-contrib postgis postgresql-14-postgis-3 sqlite3 libsqlite3-mod-spatialite <span class="at">-y</span></span></code></pre></div>
+<h1 data-number="4" id="interfaces-para-sql"><span class="header-section-number">4</span> Interfaces para SQL</h1>
+<p>Vamos a utilizar DBeaver.
+Como para R, tenemos que instalar un repositorio particular para DBeaver:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://dbeaver.io/debs/dbeaver.gpg.key <span class="kw">|</span> <span class="fu">sudo</span> gpg <span class="at">--dearmor</span> <span class="at">-o</span> /etc/apt/trusted.gpg.d/dbeaver.gpg</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;deb https://dbeaver.io/debs/dbeaver-ce /&quot;</span> <span class="kw">|</span> <span class="fu">sudo</span> tee /etc/apt/sources.list.d/dbeaver.list</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install dbeaver-ce <span class="at">-y</span></span></code></pre></div>
+<p>Si quieren, pueden instalar una interfaz especifica para PostgreSQL:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install pgAdmin4</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -77,7 +77,7 @@ sudo apt install texlive-full
 Si tienen un espacio limitado, pueden utilizar:
 
 ```bash
-sudo apt install texlive
+sudo apt install texlive -y
 ```
 
 Si utilizan `texlive` en lugar de `texlive-full`, es posible que no tengan todos los paquetes de LaTeX necesarios, pueden referirse a <https://linuxconfig.org/how-to-install-latex-on-ubuntu-22-04-jammy-jellyfish-linux>.
@@ -90,7 +90,7 @@ Anotar, si prefieren no instalar texlive, existe la alternativa de utilizar `tin
 Para instalar pandoc:
 
 ```bash
-sudo apt install pandoc
+sudo apt install pandoc -y
 ```
 
 ## Rstudio
@@ -109,11 +109,27 @@ Para otras versiones, mirar: <https://posit.co/download/rstudio-desktop/>
 
 # PostgreSQL, postgis, SQLite y spatialite
 
+Para instalar todos los paquetes SQL que vamos a necesitar (eso es valido el 1 de noviembre de 2022):
 
 ```bash
-sudo apt install postgresql postgresql-contrib
-
+sudo apt install postgresql postgresql-contrib postgis postgresql-14-postgis-3 sqlite3 libsqlite3-mod-spatialite -y
 ```
 
+# Interfaces para SQL
+
+Vamos a utilizar DBeaver.
+Como para R, tenemos que instalar un repositorio particular para DBeaver:
+
+```bash
+curl -fsSL https://dbeaver.io/debs/dbeaver.gpg.key | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/dbeaver.gpg
+echo "deb https://dbeaver.io/debs/dbeaver-ce /" | sudo tee /etc/apt/sources.list.d/dbeaver.list
+sudo apt install dbeaver-ce -y
+```
+
+Si quieren, pueden instalar una interfaz especifica para PostgreSQL:
+
+```bash
+sudo apt install pgAdmin4
+```
 
 
