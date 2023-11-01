@@ -137,7 +137,7 @@ sudo apt install pgAdmin4
 
 
 ```bash
-sudo add-apt-repository "https://qgis.org/ubuntu-ltr"
+sudo add-apt-repository "deb https://qgis.org/ubuntu $(lsb_release -c -s) main"
 sudo wget -O /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
 sudo apt update
 sudo apt install qgis python3-qgis
