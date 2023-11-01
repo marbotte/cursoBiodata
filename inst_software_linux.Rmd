@@ -123,6 +123,7 @@ Como para R, tenemos que instalar un repositorio particular para DBeaver:
 ```bash
 curl -fsSL https://dbeaver.io/debs/dbeaver.gpg.key | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/dbeaver.gpg
 echo "deb https://dbeaver.io/debs/dbeaver-ce /" | sudo tee /etc/apt/sources.list.d/dbeaver.list
+sudo apt update
 sudo apt install dbeaver-ce -y
 ```
 
@@ -130,6 +131,16 @@ Si quieren, pueden instalar una interfaz especifica para PostgreSQL:
 
 ```bash
 sudo apt install pgAdmin4
+```
+
+# QGIS
+
+
+```bash
+sudo add-apt-repository "https://qgis.org/ubuntu-ltr"
+sudo wget -O /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
+sudo apt update
+sudo apt install qgis python3-qgis
 ```
 
 

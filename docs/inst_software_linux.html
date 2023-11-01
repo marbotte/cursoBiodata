@@ -2208,6 +2208,7 @@ Documentación taxonomía
 </ul></li>
 <li><a href="#postgresql-postgis-sqlite-y-spatialite" id="toc-postgresql-postgis-sqlite-y-spatialite"><span class="toc-section-number">3</span> PostgreSQL, postgis, SQLite y spatialite</a></li>
 <li><a href="#interfaces-para-sql" id="toc-interfaces-para-sql"><span class="toc-section-number">4</span> Interfaces para SQL</a></li>
+<li><a href="#qgis" id="toc-qgis"><span class="toc-section-number">5</span> QGIS</a></li>
 </ul>
 </nav>
 </div>
@@ -2257,10 +2258,16 @@ Si tienen otra versión, el principio es el mismo y la mayoría de los comandos 
 Como para R, tenemos que instalar un repositorio particular para DBeaver:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://dbeaver.io/debs/dbeaver.gpg.key <span class="kw">|</span> <span class="fu">sudo</span> gpg <span class="at">--dearmor</span> <span class="at">-o</span> /etc/apt/trusted.gpg.d/dbeaver.gpg</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;deb https://dbeaver.io/debs/dbeaver-ce /&quot;</span> <span class="kw">|</span> <span class="fu">sudo</span> tee /etc/apt/sources.list.d/dbeaver.list</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install dbeaver-ce <span class="at">-y</span></span></code></pre></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install dbeaver-ce <span class="at">-y</span></span></code></pre></div>
 <p>Si quieren, pueden instalar una interfaz especifica para PostgreSQL:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install pgAdmin4</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h1 data-number="5" id="qgis"><span class="header-section-number">5</span> QGIS</h1>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository <span class="st">&quot;https://qgis.org/ubuntu-ltr&quot;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> wget <span class="at">-O</span> /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install qgis python3-qgis</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
