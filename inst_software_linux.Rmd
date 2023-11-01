@@ -1,0 +1,119 @@
+---
+title: "Instalaciones"
+description: "Instalación de software para el curso Biodata en Linux"
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    pandoc_args: ["--number-sections"]
+bibliography: "./cursoBiodata.bib"
+---
+
+Según la distribución de linux, los procesos de instalación son muy diferentes.
+
+En este documento voy a enfocarme en los paquetes de Ubuntu y Linux Mint con el gestor de paquetes *apt*, considerando que son las distribuciones por las cuales los usuarios usualmente empiezan en el mundo Linux. Si necesitan ayuda para instalar paquetes en otras distribuciones, no duden en contactarme.
+
+Este documento funciona con las ultimas versiones "LTS" de ubuntu (Jammy Jellyfish) y las versiones 21 de Linux Mint.
+Si tienen otra versión, el principio es el mismo y la mayoría de los comandos de apt funcionan igual, excepto los comandos que se refieren directamente a "Jammy" o `lsb_release`.
+
+
+# R
+
+Voy a reproducir los comandos acá, si quieren entender mejor el proceso, referirse a <https://cran.r-project.org/bin/linux/ubuntu/> o <https://es.linux-console.net/?p=14068>.
+
+
+Existe un repositorio dedicado a los paquetes del CRAN (que maneja R y los paquetes de R) para apt.
+
+Prerequisitos:
+
+```bash
+sudo apt update
+sudo apt install software-properties-common dirmngr -y
+```
+
+
+
+
+Añadir el CRAN como repositorio de paquetes para apt:
+
+**En ubuntu** *(notar, eso funciona con todas las versiones LTS)*:
+
+```bash
+sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+```
+
+**En Linux Mint 21** *(potencialmente puede ser una solución, aunque imperfecta, en las versiones de ubuntu que no son LTS)*:
+
+```bash
+sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/"
+```
+
+
+Hay un proceso de seguridad que necesita integrar llaves en el sistema apt:
+
+```bash
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+```
+
+Ahora pueden instalar R:
+
+```bash
+sudo apt update
+sudo apt install r-base r-base-dev -y
+```
+
+# Rstudio, LaTeX y pandoc
+
+## LaTeX
+
+Rstudio es un ambiente de desarrollo para R, LaTeX permite escribir documentos pdf y los archivos de documentos de las funciones, y pandoc es un sistema de conversión de formatos de documentos (markdown, html, pdf, word etc.)
+
+Para instalar LaTeX en Ubuntu linux, o Linux Mint, la solución más completa es:
+
+```bash
+sudo apt install texlive-full
+```
+
+Si tienen un espacio limitado, pueden utilizar:
+
+```bash
+sudo apt install texlive
+```
+
+Si utilizan `texlive` en lugar de `texlive-full`, es posible que no tengan todos los paquetes de LaTeX necesarios, pueden referirse a <https://linuxconfig.org/how-to-install-latex-on-ubuntu-22-04-jammy-jellyfish-linux>.
+
+Anotar, si prefieren no instalar texlive, existe la alternativa de utilizar `tinytex` para tener una instalación minimalista de los elementos de LaTeX que podrían necesitar para rmarkdown, ver <https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html>
+
+## pandoc
+
+
+Para instalar pandoc:
+
+```bash
+sudo apt install pandoc
+```
+
+## Rstudio
+
+RStudio no está en los repositorios apt para ubuntu, tienen que descargarlo y instalarlo:
+
+**Para Linux Mint 21 y Ubuntu 22.04 Jammy Jellyfish**:
+
+```bash
+wget https://download1.rstudio.org/electron/jammy/amd64/rstudio-2023.09.1-494-amd64.deb
+sudo apt install ./rstudio-2023.09.1-494-amd64.deb
+```
+
+Para otras versiones, mirar: <https://posit.co/download/rstudio-desktop/>
+
+
+# PostgreSQL, postgis, SQLite y spatialite
+
+
+```bash
+sudo apt install postgresql postgresql-contrib
+
+```
+
+
+
