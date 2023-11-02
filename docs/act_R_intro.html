@@ -2228,17 +2228,26 @@ Documentación taxonomía
 <li><a href="#utilizar-filtros-simples" id="toc-utilizar-filtros-simples"><span class="toc-section-number">1</span> Utilizar filtros simples</a>
 <ul>
 <li><a href="#ejercicio" id="toc-ejercicio"><span class="toc-section-number">1.1</span> Ejercicio</a></li>
-<li><a href="#los-datos" id="toc-los-datos"><span class="toc-section-number">1.2</span> Los datos</a></li>
+<li><a href="#diatomeas" id="toc-diatomeas"><span class="toc-section-number">1.2</span> Los datos</a></li>
 <li><a href="#indicaciones-para-el-ejercicio" id="toc-indicaciones-para-el-ejercicio"><span class="toc-section-number">1.3</span> Indicaciones para el ejercicio</a></li>
 </ul></li>
 <li><a href="#leer-un-archivo-complejo" id="toc-leer-un-archivo-complejo"><span class="toc-section-number">2</span> Leer un archivo complejo</a>
 <ul>
 <li><a href="#ejercicio-1" id="toc-ejercicio-1"><span class="toc-section-number">2.1</span> Ejercicio</a></li>
-<li><a href="#los-datos-1" id="toc-los-datos-1"><span class="toc-section-number">2.2</span> Los datos</a></li>
+<li><a href="#los-datos" id="toc-los-datos"><span class="toc-section-number">2.2</span> Los datos</a></li>
 <li><a href="#indicaciones-para-el-ejercicio-1" id="toc-indicaciones-para-el-ejercicio-1"><span class="toc-section-number">2.3</span> Indicaciones para el ejercicio</a></li>
 </ul></li>
-<li><a href="#relaciones-entre-tablas-en-r" id="toc-relaciones-entre-tablas-en-r"><span class="toc-section-number">3</span> Relaciones entre tablas en R</a></li>
-<li><a href="#construir-funciones" id="toc-construir-funciones"><span class="toc-section-number">4</span> Construir funciones</a></li>
+<li><a href="#relaciones-entre-tablas-en-r" id="toc-relaciones-entre-tablas-en-r"><span class="toc-section-number">3</span> Relaciones entre tablas en R</a>
+<ul>
+<li><a href="#ejercicio-2" id="toc-ejercicio-2"><span class="toc-section-number">3.1</span> Ejercicio</a></li>
+<li><a href="#los-datos-1" id="toc-los-datos-1"><span class="toc-section-number">3.2</span> Los datos</a></li>
+<li><a href="#indicaciones-para-el-ejercicio-2" id="toc-indicaciones-para-el-ejercicio-2"><span class="toc-section-number">3.3</span> Indicaciones para el ejercicio</a></li>
+</ul></li>
+<li><a href="#construir-funciones" id="toc-construir-funciones"><span class="toc-section-number">4</span> Construir funciones</a>
+<ul>
+<li><a href="#ejercicio-3" id="toc-ejercicio-3"><span class="toc-section-number">4.1</span> Ejercicio</a></li>
+<li><a href="#indicaciones-para-el-ejercicio-3" id="toc-indicaciones-para-el-ejercicio-3"><span class="toc-section-number">4.2</span> Indicaciones para el ejercicio</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
@@ -2270,7 +2279,7 @@ Les aconsejo:</p>
 </ul></li>
 <li>Comparar la riqueza de las especies en los 5% de los sitios de agua más acida y lo 5% de los sitios de agua más alcalina de esa nueva matriz</li>
 </ol>
-<h2 data-number="1.2" id="los-datos"><span class="header-section-number">1.2</span> Los datos</h2>
+<h2 data-number="1.2" id="diatomeas"><span class="header-section-number">1.2</span> Los datos</h2>
 <p>En esta actividad vamos a utilizar un juego de datos de diatomeas de los ríos franceses que se utilizó para varios proyectos, incluído mi tesis de doctorado <span class="citation" data-cites="Tison2005 Bottin2014a">(<a href="#ref-Tison2005" role="doc-biblioref">Tison et al. 2005</a>; <a href="#ref-Bottin2014a" role="doc-biblioref">Bottin et al. 2014</a>)</span>.</p>
 <p>El juego de datos está en la carpeta de los datos en un archivo “diatomeas.RData”.
 Se carga así:</p>
@@ -2347,7 +2356,7 @@ La variable <code>HER1Lyon</code> permite separar las hydro-eco-regiones:</p>
 <li>Un data frame de información sobre los sitios</li>
 </ul>
 <p><strong>No modifiquen el archivo excel, todo se puede hacer en R</strong>, es por enfrentarse a este tipo de dificultades que nos mejoremos en R.</p>
-<h2 data-number="2.2" id="los-datos-1"><span class="header-section-number">2.2</span> Los datos</h2>
+<h2 data-number="2.2" id="los-datos"><span class="header-section-number">2.2</span> Los datos</h2>
 <p>Para su tesis de doctorado en la universidad de Burdeos sobre las comunidades de los bosques de hayas y sus distribuciones en la región de Burdeos, Marion Walbott <span class="citation" data-cites="Walbott2018">(<a href="#ref-Walbott2018" role="doc-biblioref">2018</a>)</span> ha utilizado varios datos fitosociológicos antiguos.
 En el archivo, pueden ver la transcripción de las tablas fitosociologicas de <span class="citation" data-cites="Lapraz1963">Lapraz (<a href="#ref-Lapraz1963" role="doc-biblioref">1963</a>)</span>.</p>
 <p>Esa tablas utilizan una escala de Braun-Blanquet:</p>
@@ -2450,6 +2459,53 @@ En el archivo, pueden ver la transcripción de las tablas fitosociologicas de <s
 <li><code>as.logical</code> y <code>mode</code> para cambiar el modo de variables numericas a logicas</li>
 </ul>
 <h1 data-number="3" id="relaciones-entre-tablas-en-r"><span class="header-section-number">3</span> Relaciones entre tablas en R</h1>
+<h2 data-number="3.1" id="ejercicio-2"><span class="header-section-number">3.1</span> Ejercicio</h2>
+<p>La base de datos de diatomeas descrita en el primer ejercicio referencia los taxones por sus códigos, que están definidos por varios expertos europeos, pero esos códigos no son siempre especies, pueden corresponder a varios niveles taxonómicos.</p>
+<p>Imaginemos que un grupo de investigadores quiere desarrollar un indice simple de calidad del agua como un cociente entre la abundancia de la familia <em>Fragilariaceae</em> y la familia <em>Naviculaceae</em>.</p>
+<ol type="1">
+<li>Calcular ese indice para cada una de las muestras de la matriz sp_abund_mat</li>
+<li>Comparar los valores entre los sitios de referencia y los demás</li>
+</ol>
+<p><em>Ejercicio suplementario para utilizar el mismo tipo de razonamiento</em> (solo para si tenemos tiempo):</p>
+<p>Hacer una matriz por nivel taxonomico!</p>
+<h2 data-number="3.2" id="los-datos-1"><span class="header-section-number">3.2</span> Los datos</h2>
+<p>El archivo “diatomTaxonomy.RData” contiene 2 objetos:</p>
+<ul>
+<li>taxonomy que contiene informaciones sobre los taxones</li>
+<li>synonyms que contiene las sinonimías entre taxones (la taxonomía de las diatomeas es muy… dinámica!)</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>fol_Datos</span>, <span class='st'>"diatomTaxonomy.RData"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;taxonomy&quot; &quot;synonyms&quot;</code></pre>
+</div>
+<p>La tabla que nos interesa es el data.frame “taxonomy”:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>taxonomy</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>&#39;data.frame&#39;:   16739 obs. of  17 variables:
+ $ cd           : chr  &quot;AAAP&quot; &quot;AAAR&quot; &quot;AABE&quot; &quot;AABL&quot; ...
+ $ division     : chr  &quot;Bacillariophyta&quot; &quot;Bacillariophyta&quot; &quot;Bacillariophyta&quot; &quot;Bacillariophyta&quot; ...
+ $ subdivision  : chr  &quot;Bacillariophytina&quot; &quot;Bacillariophytina&quot; &quot;Bacillariophytina&quot; &quot;Bacillariophytina&quot; ...
+ $ class        : chr  &quot;Bacillariophyceae&quot; &quot;Bacillariophyceae&quot; &quot;Bacillariophyceae&quot; &quot;Bacillariophyceae&quot; ...
+ $ order        : chr  &quot;Achnanthales&quot; &quot;Thalassiophysales&quot; &quot;Achnanthales&quot; &quot;Thalassiophysales&quot; ...
+ $ suborder     : chr  NA NA NA NA ...
+ $ family       : chr  &quot;Achnanthaceae&quot; &quot;Catenulaceae&quot; &quot;Achnanthaceae&quot; &quot;Catenulaceae&quot; ...
+ $ genus        : chr  &quot;Achnanthes&quot; &quot;Amphora&quot; &quot;Achnanthes&quot; &quot;Amphora&quot; ...
+ $ species      : chr  &quot;Achnanthes aapajaervensis&quot; &quot;Amphora acuta&quot; &quot;Achnanthes abundans&quot; &quot;Amphora abludens&quot; ...
+ $ subspecies   : chr  NA NA NA NA ...
+ $ group        : chr  NA NA NA NA ...
+ $ variety      : chr  NA &quot;var. arcuata&quot; &quot;var. elliptica&quot; NA ...
+ $ form         : chr  NA NA NA NA ...
+ $ sp.          : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+ $ authors_notes: chr  &quot;Cleve Euler &quot; &quot;var. arcuata (Schmidt in Schmidt &amp; al.) Cleve &quot; &quot;var. elliptica Manguin in Bourrelly &amp; Manguin &quot; &quot;Simonsen &quot; ...
+ $ Family_Coste : chr  &quot;MO&quot; NA &quot;MO&quot; NA ...
+ $ genus_cd     : chr  &quot;ACHN&quot; &quot;AMPH&quot; &quot;ACHN&quot; &quot;AMPH&quot; ...</code></pre>
+</div>
+<p>Como pueden ver la primera columna contiene los códigos que tenemos como nombres de columna de la matriz sp_abund_mat</p>
+<h2 data-number="3.3" id="indicaciones-para-el-ejercicio-2"><span class="header-section-number">3.3</span> Indicaciones para el ejercicio</h2>
 <h1 data-number="4" id="construir-funciones"><span class="header-section-number">4</span> Construir funciones</h1>
 <p>En una base de datos, utilizamos este tipo de tablas para almacenar las abundancias o presencias de especies:</p>
 <table>
@@ -2462,13 +2518,80 @@ En el archivo, pueden ver la transcripción de las tablas fitosociologicas de <s
 </thead>
 <tbody>
 <tr class="odd">
-<td></td>
-<td>Especie</td>
-<td>abundancia</td>
+<td>Bogotá</td>
+<td>Canis lupus</td>
+<td>3000</td>
+</tr>
+<tr class="even">
+<td>Bogotá</td>
+<td>Felis catus</td>
+<td>1000</td>
+</tr>
+<tr class="odd">
+<td>Chingaza</td>
+<td>Tremarctos ornatus</td>
+<td>50</td>
+</tr>
+<tr class="even">
+<td>Chingaza</td>
+<td>Canis lupus</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>Chingaza</td>
+<td>Odocoileus virginianus</td>
+<td>200</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Cuando vayamos a explorar las bases de datos estructuradas, les explicaré el porque de esa forma!</p>
+<p>Desafortunadamente, los programas de análisis estadísticos funcionan mejor con este formato:</p>
+<table>
+<colgroup>
+<col style="width: 1%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 28%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Canis lupus</th>
+<th>Felis catus</th>
+<th>Tremarctos ornatus</th>
+<th>Odocoileus virginianus</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bogotá</td>
+<td>3000</td>
+<td>1000</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Chingaza</td>
+<td>100</td>
+<td>0</td>
+<td>50</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<h2 data-number="4.1" id="ejercicio-3"><span class="header-section-number">4.1</span> Ejercicio</h2>
+<p>Contruir las funciones en R que permiten pasar de un formato “base de datos” a una matriz de abundancia o de presencia.</p>
+<p>Las funciones deben tener los argumentos adecuados para :</p>
+<ul>
+<li>poder dar el nombre de la columna que contiene los taxones y de las unidades de muestreo</li>
+<li>poder manejar casos de presencia/ausencia, abundancia</li>
+<li>poder llenar las matrices con 0 o NA, y transformar las matrices con NA o 0 cuando las especies son ausentes</li>
+<li>añadir todas las opciones que les parecen útil (un ejercicio más tarde consistira en publicar esas funciones en la forma de un paquete R en GitHub)</li>
+</ul>
+<p>Construir una función que permita utilizar el formato “base de datos” y hacer la suma de todos las filas que tienen el mismo taxon en la misma unidad de muestreo, y utilizarla para construir la matriz de genero de diatomeas (ver ejercicio previo).</p>
+<h2 data-number="4.2" id="indicaciones-para-el-ejercicio-3"><span class="header-section-number">4.2</span> Indicaciones para el ejercicio</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-Bottin2014a" class="csl-entry" role="listitem">
 Bottin, M, J Soininen, M Ferreol, y J. Tison-Rosebery. 2014. <span>“Do spatial patterns of benthic diatom assemblages vary across regions and years?”</span> <em>Freshwater Science</em> 33 (2): 402–16.

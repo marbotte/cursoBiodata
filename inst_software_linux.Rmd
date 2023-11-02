@@ -135,12 +135,19 @@ sudo apt install pgAdmin4
 
 # QGIS
 
+Existen soluciones para instalar las ultimas versiones de QGIS (ver <https://www.qgis.org/en/site/forusers/alldownloads.html>), pero la versión en los repositorio por defecto es suficiente para el curso:
 
 ```bash
-sudo add-apt-repository "deb https://qgis.org/ubuntu $(lsb_release -c -s) main"
-sudo wget -O /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
-sudo apt update
 sudo apt install qgis python3-qgis
 ```
 
+# Git
+
+
+Git es un software libre de control de versión (para grabar y seguir los archivos en la carpeta de un proyecto).
+
+
+```bash
+sudo apt install git
+```
 

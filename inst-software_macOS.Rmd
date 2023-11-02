@@ -1,0 +1,46 @@
+---
+title: "Instalaciones"
+description: "Instalación de software para el curso Biodata en MacOS"
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    pandoc_args: ["--number-sections"]
+bibliography: "./cursoBiodata.bib"
+---
+
+Anotar: no conozco mac OS, lo unico que puedo hacer es mirar en la documentación en internet cuales son las soluciones que me parecen correctas y compatibles con las actividades del curso... Si alguien tiene más conocimientos de este sistema y quiere ayudarme ¡bienvenido!
+
+
+# R, compilador para R, LaTeX y RStudio
+
+Vamos a necesitar poder compilar los paquetes de R para obtener las ultimas versiones, seguir: <https://mac.r-project.org/tools/> (sobretodo la primera parte con Xcode y el compilador de fortran)
+
+Parece que la pagina <https://www.reed.edu/data-at-reed/software/R/r_studio.html> es un buen recurso para buscar como instalar R Rstudio y los componentes LaTeX de rmarkdown
+
+<https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-macos-high-sierra-e7b5705c9fd> parece completo tambien!
+
+
+# PostgreSQL
+
+Vamos a necesitar PostgreSQL y postgis (su extensión espacial).
+
+Parece que la applicación [postgres.app](https://postgresapp.com/) contiene todo lo que necesitamos
+
+# SQLite
+
+Parece que para instalar spatialite, la extension espacial de SQLite la mejor solución es brew (<https://medium.com/@carusot42/installing-and-loading-spatialite-on-macos-28bf677f0436>).
+
+Ahora bien, no les puedo asegurar que sea util instalarla... En Windows me dí cuenta que no era muy útil porque los software que ibamos a utilizar como interfaz ya tenían encapsulado SQLite y spatiaLite, así que tal vez, lo más practico es que no lo instalen y que miremos si funciona juntos (de todas formas, no es pesado instalar esos programas si los necesitamos)
+
+# Interfaces
+
+Vamos a utilizar DBeaver, que es disponible como dmg en <https://dbeaver.io/download/>
+
+# Qgis
+
+Para instalar Qgis, programa de sistema de información geografica libre, seguir las instrucciones en <https://www.qgis.org/es/site/forusers/alldownloads.html#mac-os-x-macos>. No es necesario utilizar los macports, la versión "Todo-en-uno" debería ser suficiente.
+
+# Git
+
+Lo más probable es que instalaron git al momento de instalar XCode, por favor averiguar según las explicaciones de <https://www.hostinger.co/tutoriales/instalar-git-en-distintos-sistemas-operativos>

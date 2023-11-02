@@ -36,7 +36,7 @@ fol_Results <- "../Resultados/"
 2. Comparar la riqueza de las especies en los 5% de los sitios de agua más acida y lo 5% de los sitios de agua más alcalina de esa nueva matriz
 
 
-## Los datos
+## Los datos {#diatomeas}
 
 En esta actividad vamos a utilizar un juego de datos de diatomeas de los ríos franceses que se utilizó para varios proyectos, incluído mi tesis de doctorado [@Tison2005;@Bottin2014a].
 
@@ -155,7 +155,42 @@ Además, puede ser útil mirar las ayudas de las funciones siguientes:
 
 # Relaciones entre tablas en R
 
+## Ejercicio
 
+La base de datos de diatomeas descrita en el primer ejercicio referencia los taxones por sus códigos, que están definidos por varios expertos europeos, pero esos códigos no son siempre especies, pueden corresponder a varios niveles taxonómicos.
+
+Imaginemos que un grupo de investigadores quiere desarrollar un indice simple de calidad del agua como un cociente entre la abundancia de la familia *Fragilariaceae* y la familia *Naviculaceae*.
+
+1. Calcular ese indice para cada una de las muestras de la matriz sp_abund_mat
+1. Comparar los valores entre los sitios de referencia y los demás
+
+*Ejercicio suplementario para utilizar el mismo tipo de razonamiento* (solo para si tenemos tiempo):
+
+Hacer una matriz por nivel taxonomico!
+
+
+
+## Los datos
+
+El archivo "diatomTaxonomy.RData" contiene 2 objetos:
+
+* taxonomy que contiene informaciones sobre los taxones
+* synonyms que contiene las sinonimías entre taxones (la taxonomía de las diatomeas es muy... dinámica!)
+
+```{r}
+(load(paste0(fol_Datos, "diatomTaxonomy.RData")))
+```
+
+
+La tabla que nos interesa es el data.frame "taxonomy":
+
+```{r}
+str(taxonomy)
+```
+
+Como pueden ver la primera columna contiene los códigos que tenemos como nombres de columna de la matriz sp_abund_mat
+
+## Indicaciones para el ejercicio
 
 # Construir funciones
 
@@ -164,7 +199,34 @@ En una base de datos, utilizamos este tipo de tablas para almacenar las abundanc
 
 | Unidad de muestreo | Especie | abundancia|
 |--------------------|---------|-----------|
-|  | Especie | abundancia|
+| Bogotá | Canis lupus | 3000 |
+| Bogotá | Felis catus | 1000 |
+| Chingaza | Tremarctos ornatus | 50 |
+| Chingaza | Canis lupus | 100 |
+| Chingaza | Odocoileus virginianus | 200 |
+
+Cuando vayamos a explorar las bases de datos estructuradas, les explicaré el porque de esa forma!
 
 
+Desafortunadamente, los programas de análisis estadísticos funcionan mejor con este formato:
+
+| | Canis lupus | Felis catus | Tremarctos ornatus | Odocoileus virginianus|
+|-|-------------|-------------|--------------------|-----------------------|
+|Bogotá|3000|1000|0|0|
+|Chingaza|100|0|50|200|
+
+## Ejercicio
+
+Contruir las funciones en R que permiten pasar de un formato "base de datos" a una matriz de abundancia o de presencia.
+
+Las funciones deben tener los argumentos adecuados para :
+
+* poder dar el nombre de la columna que contiene los taxones y de las unidades de muestreo
+* poder manejar casos de presencia/ausencia, abundancia
+* poder llenar las matrices con 0 o NA, y transformar las matrices con NA o 0 cuando las especies son ausentes
+* añadir todas las opciones que les parecen útil (un ejercicio más tarde consistira en publicar esas funciones en la forma de un paquete R en GitHub)
+
+Construir una función que permita utilizar el formato "base de datos" y hacer la suma de todos las filas que tienen el mismo taxon en la misma unidad de muestreo, y utilizarla para construir la matriz de genero de diatomeas (ver ejercicio previo).
+
+## Indicaciones para el ejercicio
 
