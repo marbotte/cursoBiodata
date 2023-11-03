@@ -166,7 +166,7 @@ Imaginemos que un grupo de investigadores quiere desarrollar un indice simple de
 
 *Ejercicio suplementario para utilizar el mismo tipo de razonamiento* (solo para si tenemos tiempo):
 
-Hacer una matriz por nivel taxonomico!
+¡Hacer una matriz por nivel taxonomico!
 
 
 

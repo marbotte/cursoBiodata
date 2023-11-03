@@ -1,0 +1,420 @@
+---
+title: "Manejar datos en R"
+lang: "es_CL"
+description: "Propuesta de solución para los ejercicios para la gestión de datos en R"
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    pandoc_args: ["--number-sections"]
+bibliography: "./cursoBiodata.bib"
+---
+
+```{r echo=F, message=F,warning=F, purl=FALSE}
+library(knitr)
+library(kableExtra)
+library(downloadthis)
+```
+
+
+```{r echo=F, message=F,warning=F, purl=FALSE, results='hide', eval=!interactive()}
+fileR<-purl(knitr::current_input(),documentation = 1, quiet=T)
+file.rename(fileR,paste0("./download/R_code/documentation/",fileR))
+```
+
+
+
+```{r echo=F, message=F,warning=F, purl=FALSE, eval=!interactive()}
+download_link(
+  link = paste0("https://raw.githubusercontent.com/marbotte/cursoBiodata/master/download/R_code/documentation/",fileR),
+  button_label = "Download R script",
+  button_type = "default",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = TRUE
+)  
+```
+
+```{r}
+fol_Datos <- "../Datos/"
+fol_Results <- "../Resultados/"
+```
+  
+
+# Utilizar filtros simples
+
+## Ejercicio
+
+1. Crear una matriz de abundancia con únicamente los sitios de referencia de las hydro-eco-región de primer nivel: 2, 6 y 7 (Sur-Este de Francia)
+   + la matriz no puede tener especies que no están presentes en esos sitios
+   + ordenar las columnas por orden alfabético de los códigos de especies
+2. Comparar la riqueza de las especies en los 5% de los sitios de agua más acida y lo 5% de los sitios de agua más alcalina de esa nueva matriz
+
+## Parte 1: filtrar la matriz de diatomeas
+
+```{r}
+# Aqui empiezan los codigos del ejercicio 1 sobre los filtros simples----
+(load(paste0(fol_Datos,"diatomeas.RData")))
+```
+La manera más simple para filtrar las HER 2, 6 y 7 es utilizar este filtro
+
+```{r}
+fil_her <- env_info$HER1Lyon == 2 | env_info$HER1Lyon == 6 | env_info$HER1Lyon == 7
+```
+
+Note: existe una forma más simple que consiste en utilizar el operador `%in%`
+
+```r
+fil_her <- env_info %in% c(2,6,7) 
+```
+
+
+
+El filtro completo para las HER y los sitios de referencia es:
+
+```{r}
+fil_comp <- fil_her & reference_sites
+```
+
+Para conocer el numero de sitios que combinan las condiciones de HER y referencias, se puede utilizar la función `sum`, por el hecho que los vectores logicos almacenen sus contenidos utilizando los valores 0 y 1:
+
+```{r}
+sum(fil_comp)
+```
+
+
+Ahora lo podemos aplicar a la matriz:
+
+```{r}
+sp_abund_mat_filtered <- sp_abund_mat[fil_comp,]
+```
+
+La función `colSums` nos permite conocer el total de abundancia de las taxones:
+
+```{r}
+tot_abund_fil <- colSums(sp_abund_mat_filtered)
+tot_abund_fil[1:10]
+```
+
+Como lo pueden ver en los 10 primeros taxones, con la matriz reducida, muchos taxones ya no tienen ningunos individuos.
+
+Podemos utilizar la función `as.logical` para filtrar esas columnas: cuando la utilizamos con un vector numérico, da "FALSE" para todos los elementos que valen 0, y "TRUE" para los elementos superiores a 0.
+
+```{r}
+as.logical(tot_abund_fil[1:10])
+```
+
+Así, se puede utilizar para guardar en la matriz unicamente las especies que tienen al menos un individuo:
+
+```{r}
+dim(sp_abund_mat_filtered)
+sp_abund_mat_filtered <- sp_abund_mat_filtered[, as.logical(colSums(sp_abund_mat_filtered))]
+dim(sp_abund_mat_filtered)
+```
+
+Para ordenar las columnas por orden alfabetico, una de las soluciones es utilizar la función sort sobre los nombres de columnas (una alternativa sería utilizar la función `order`)
+
+```{r}
+colnames(sp_abund_mat_filtered)[1:10]
+sort(colnames(sp_abund_mat_filtered))[1:10]
+sp_abund_mat_filtered <- sp_abund_mat_filtered[,sort(colnames(sp_abund_mat_filtered))]
+```
+## Parte 2: comparar la riqueza de los sitios acidos y alcalinos
+
+Primero, tenemos que obtener el data.frame env_info filtrado como la matriz de abundancia:
+
+```{r}
+env_info_filtered <- env_info[fil_comp,]
+```
+
+Luego, tenemos que obtener una matriz que nos permita calcular la riqueza de los sitios.
+Otra vez, podemos utilizas las funciones de transformación entre modos numéricos y logicos.
+Eso nos permite obtener una matriz que tenga 0 (FALSE) cuando el taxon no está presente, y 1 (TRUE) cuando el taxon es presente.
+
+```{r}
+sp_01_filtered <- sp_abund_mat_filtered
+mode(sp_01_filtered) <- "logical"
+```
+
+Así, calcular la riqueza se puede hacer con:
+
+```{r}
+(riqueza <- rowSums(sp_01_filtered))
+```
+
+Now, cual es el valor limite de las muestras más acidas y más alcalinas:
+
+```{r}
+(acid5pc <- quantile(env_info_filtered$PH,0.05))
+(alka5pc <- quantile(env_info_filtered$PH,0.95))
+```
+Ahora, cuales son las riquezas que corresponden a cada uno de esos grupos
+
+```{r}
+(riq_acid <- riqueza[env_info_filtered$PH <= acid5pc])
+(riq_alka <- riqueza[env_info_filtered$PH >= alka5pc])
+```
+
+Para guardar los resultados podemos utilizar:
+
+```{r}
+save(list=c("sp_abund_mat_filtered","riq_acid","riq_alka"), file = paste0(fol_Results,"filteredDiatoms.RData"))
+```
+
+
+
+# Leer un archivo complejo
+
+## Ejercicio
+
+Pasar los datos contenidos en el archivo "fitosociologiaFagusFrancia.xlsx" en:
+
+- Una matriz de cobertura sitio x especie y la cobertura en porcentaje en la matriz
+- Un data frame de información sobre los sitios
+
+**No modifiquen el archivo excel, todo se puede hacer en R**, es por enfrentarse a este tipo de dificultades que nos mejoremos en R.
+
+## Parte 1: Leer la información desde el archivo Excel
+
+Existen varias estrategías para resolver este ejercicio, no descarten una solución por ser diferente de la solución que yo proponga...
+Es muy probable que tengamos que leer cada una de las pestañas.
+En esos casos, lo más practico es utilizar las funciones `loadWorkbook`
+
+```{r}
+# Ejercicio 2 sobre la lectura de archivos complejos ----
+require(openxlsx)
+fFF <- loadWorkbook(paste0(fol_Datos,"fitosociologiaFagusFrancia.xlsx"))
+(sheetNames<-names(fFF))
+```
+
+Lo que vamos a hacer es leer las 2 pestañas de manera totalmente bruta y ponerlas en una lista, después, podemos extraer la información de esa lista.
+Vamos a utilizar los argumentos colNames=F y rowNames=F, para poder acceder a todas la información desde los elementos de la lista, incluído las filas y columnas que vamos a utilizar como nombres.
+Vamos a utilizar los argumentos skipEmptyRows=T y skipEmptyCols=T para suprimir automaticamente las columnas y filas vacías.
+
+```{r}
+rawList<-list()
+rawList$Lapraz1<- read.xlsx(fFF,sheet=sheetNames[1],colNames = F, rowNames = F, skipEmptyRows=T, skipEmptyCols = T)
+rawList$Lapraz2<- read.xlsx(fFF,sheet=sheetNames[2],colNames = F, rowNames = F, skipEmptyRows=T, skipEmptyCols = T)
+
+```
+
+Ahora, vamos a suprimir la ultima columna, que tiene información que no hace parte de la tabla
+
+```{r}
+rawList[[1]]<-rawList[[1]][,-ncol(rawList[[1]])]
+rawList[[2]]<-rawList[[2]][,-ncol(rawList[[2]])]
+```
+ 
+
+## Parte 2: información ambiental
+
+Determinamos el número de fila hasta donde va la información ambiental.
+En las 2 pestañas, es la fila antes de que la columna 1 contenga "Genre" (genero, en francés).
+
+
+```{r}
+(lastRowEnv_1 <- which(rawList[[1]][,1] == "Genre")-1)
+(lastRowEnv_2 <- which(rawList[[2]][,1] == "Genre")-1)
+```
+
+Ahora podemos extraer los datos:
+
+* los nombres de los relevés (muestras fitosociologicas) están en la primera fila (pero son iguales en las dos pestañas, vamos a tener que modificarlos para poder asociar las 2 tablas)
+* la segunda columna tiene que estar suprimida porque no tiene datos
+* queremos que las filas sean las unidades de muestreo y las columnas las variables: esa operación se llama "transponer" y se hace con la función `t`. Nota: acordarse que los data.frame solo tienen sentido cuando las variables están en columnas: las columnas son vectores que tienen un modo.
+
+
+
+```{r}
+# Extraer las filas que corresponden, las columnas que tienen un numero de relevé,
+# sacar la columna que contiene los nombres de filas, transponer lo extraído y
+# pasarlos en formato data.frame
+fFF_env_info1 <- data.frame(t(rawList[[1]][1:lastRowEnv_1, !is.na(rawList[[1]][1,])][,-1]))
+fFF_env_info2 <- data.frame(t(rawList[[2]][1:lastRowEnv_2, !is.na(rawList[[2]][1,])][,-1]))
+# Añadir los colnames
+colnames(fFF_env_info1) <- rawList[[1]][1:lastRowEnv_1,1] 
+colnames(fFF_env_info2) <- rawList[[2]][1:lastRowEnv_2,1] 
+```
+
+Ahora tenemos que manejar los modos de las columnas, el problema es que la variable "Taux de carbonate" (Tasa de carbonatos en francés) tiene el valor "Traces" cuando hay carbonatos, pero bajo el umbral de cuantificación. Es siempre un problema complicado en las bases de datos ambientales, pero, por ahora, podemos ponerlos el valor "0". 
+
+La función `type.convert` permite reiniciar los modos de las columnas de un data.frame.
+Es la función que llama `read.table` para determinar los tipos de datos según los contenidos de los archivos.
+
+```{r}
+fFF_env_info1$`Taux de carbonates`[fFF_env_info1$`Taux de carbonates` == "Traces"] <- 0
+fFF_env_info1 <- type.convert(fFF_env_info1,as.is=T)
+fFF_env_info2 <- type.convert(fFF_env_info2,as.is=T)
+```
+
+Tenemos que dar un nombre a cada una de las unidades de muestreo, para que no haya conflictos al momento de juntar las tablas.
+Lo que les propongo es juntar un prefijo "LZ1_" o "LZ2_" con el número de relevé.
+La función `paste` nos permite hacer eso:
+
+
+
+```{r}
+fFF_env_info1$cd_rel <- paste("LZ1_",fFF_env_info1$`Numéros des relevés`,sep="")
+fFF_env_info2$cd_rel <- paste("LZ2_",fFF_env_info2$`Numéros des relevés`,sep="")
+```
+
+Ahora tenemos que juntar las tablas.
+Para eso tenemos que determinar las columnas que existen solo en una de las tablas.
+
+
+```{r}
+# Cuales son todos los nombres de columnas
+totCol <- union(colnames(fFF_env_info1),colnames(fFF_env_info2))
+# Cuales las columnas que faltan en la tabla1
+(missingCol1 <- totCol[! totCol %in% colnames(fFF_env_info1)])
+# Cuales las columnas que faltan en la tabla2
+(missingCol2 <- totCol[! totCol %in% colnames(fFF_env_info2)])
+# Crear las columnas faltantes y llenarlas de NA
+fFF_env_info1[,missingCol1]<-NA
+fFF_env_info2[,missingCol2]<-NA
+# Hacer que las columnas de las dos tablas tengan el mismo orden
+fFF_env_info1<-fFF_env_info1[totCol]
+fFF_env_info2<-fFF_env_info2[totCol]
+```
+
+Ahora sí, podemos juntar las tablas con la función `rbind` (concatenar por filas)
+
+```{r}
+fFF_env_info<-rbind(fFF_env_info1, fFF_env_info2)
+```
+
+## Parte 3: matrices de especies
+
+Lo que nos toca extraer para obtener las matrices es:
+
+* la filas desde *lastRowEnv_1 + 2*
+* las columnas desde la columna 3
+* pasar en formato matriz con la función `as.matrix`
+* transponer el resultado para tener los taxones como columnas
+
+```{r}
+raw_mat1 <- as.matrix(t(rawList[[1]][(lastRowEnv_1+2):nrow(rawList[[1]]), 3:ncol(rawList[[1]])]))
+raw_mat2 <- as.matrix(t(rawList[[2]][(lastRowEnv_2+2):nrow(rawList[[2]]), 3:ncol(rawList[[2]])]))
+```
+
+Cuales son los nombres completos de los taxones, aqui tambien utilizamos la función `paste`
+
+```{r}
+(tax1 <- paste(
+  rawList[[1]][(lastRowEnv_1+2):nrow(rawList[[1]]),1],
+  rawList[[1]][(lastRowEnv_1+2):nrow(rawList[[1]]),2]
+))[1:10]
+(tax2 <- paste(
+  rawList[[2]][(lastRowEnv_2+2):nrow(rawList[[2]]),1],
+  rawList[[2]][(lastRowEnv_2+2):nrow(rawList[[2]]),2]
+))[1:10]
+# Los pongamos como nombre de columnas
+colnames(raw_mat1) <- tax1
+colnames(raw_mat2) <- tax2
+```
+
+Pongamos los "cd_rel" como rownames de las matrices
+
+```{r}
+rownames(raw_mat1) <- fFF_env_info1$cd_rel
+rownames(raw_mat2) <- fFF_env_info2$cd_rel
+```
+
+Ahora vamos a mirar cuales son las especies que están solo en una matriz, y pegar una matriz de NA con las especies faltantes en cada caso, utilizando las funciones `matrix` y `cbind`.
+
+```{r}
+# Lista completa de especies
+totSp <- union(colnames(raw_mat1), colnames(raw_mat2))
+# especies faltantes en cada matriz
+missingSpMat1 <- totSp[! totSp %in% colnames(raw_mat1)]
+missingSpMat2 <- totSp[! totSp %in% colnames(raw_mat2)]
+# crear las matrices de NA con las especies faltantes.
+# Anotar: el argumento dimnames tiene que ser una lista: el primer elemento contiene los
+# nombres de filas, el segundo los nombres de columnas
+matSupp1 <- matrix(NA, nrow=nrow(raw_mat1), ncol=length(missingSpMat1), 
+                   dimnames=list(rownames(raw_mat1), missingSpMat1))
+matSupp2 <- matrix(NA, nrow=nrow(raw_mat2), ncol=length(missingSpMat2), 
+                   dimnames=list(rownames(raw_mat2), missingSpMat2))
+# Ahora pegamos por columna esas matrices a las matrices originales
+raw_mat1 <- cbind(raw_mat1, matSupp1)
+raw_mat2 <- cbind(raw_mat2, matSupp2)
+#Ponemos las columnas en el mismo orden en las 2 matrices
+raw_mat1 <- raw_mat1[,totSp]
+raw_mat2 <- raw_mat2[,totSp]
+```
+
+Ahora juntamos las matrices
+
+```{r}
+raw_mat <- rbind(raw_mat1, raw_mat2)
+```
+
+## Parte 4: cambiar de la escala de Braun-Blanquet a los valores medianos de cobertura
+
+Copiamos la tabla de correspondencia desde la información del ejercicio:
+
+```{r}
+bbScale <-data.frame(
+  code=c("r","+",as.character(1:5)),
+  description= c("Menos del 1% de cobertura, 3-5 individuos", "Menos del 5% de cobertura, pocos individuos","~5% más individuos","5%-25%","25%-50%","50%-75%","75%-100%"),
+  minPercent=c(0,1,5,5,25,50,75),
+  maxPercent=c(1,5,5,25,50,75,100)
+)
+bbScale$finalVal <- (bbScale$minPercent+bbScale$maxPercent)/2
+```
+
+La función `match` nos permite hacer la correspondencia entre la matriz total y la tabla bbScale.
+Vamos a utilizar una propiedad de las matrices: ¡son vectores con una estructura de filas y columnas!
+Así, podemos utilizar directamente la función `match` para determinar a que elementos de *bbScale* corresponden cada uno de los elementos de la matriz, uno por uno.
+
+```{r}
+m_raw_mat_code <- match(raw_mat,bbScale$code)
+```
+¡Ahora, simplemente creamos la matriz final con los valores "finalVal" en lugar de los code!
+
+```{r}
+matCobertura <- matrix(bbScale$finalVal[m_raw_mat_code],nrow=nrow(raw_mat),ncol=ncol(raw_mat), dimnames=dimnames(raw_mat))
+```
+
+Reemplazamos los valores NA por 0:
+
+```{r}
+matCobertura[is.na(matCobertura)] <- 0
+```
+
+Pueden mirar el resultado en RStudio utilizando `View(matCobertura)`
+
+Lo que voy a hacer ahora es exportar esas tablas en un archivo excel:
+
+```{r}
+# Crear el workbook
+wbFinal <- createWorkbook()
+# Crear las pestañas
+addWorksheet(wbFinal,"Sampling units")
+addWorksheet(wbFinal,"Cobertura")
+# Poner los datos
+writeData(wbFinal,"Sampling units", fFF_env_info, rowNames = F)
+writeData(wbFinal,"Cobertura", matCobertura, rowNames = T)
+# Exportar el archivo excel
+saveWorkbook(wbFinal, file = paste(fol_Results,"fitosociologíaFagusFranciaFinal.xlsx"), overwrite = T)
+```
+
+
+# Relaciones entre tablas en R
+
+## Ejercicio
+
+La base de datos de diatomeas descrita en el primer ejercicio referencia los taxones por sus códigos, que están definidos por varios expertos europeos, pero esos códigos no son siempre especies, pueden corresponder a varios niveles taxonómicos.
+
+Imaginemos que un grupo de investigadores quiere desarrollar un indice simple de calidad del agua como un cociente entre la abundancia de la familia *Fragilariaceae* y la familia *Naviculaceae*.
+
+1. Calcular ese indice para cada una de las muestras de la matriz sp_abund_mat
+1. Comparar los valores entre los sitios de referencia y los demás
+
+*Ejercicio suplementario para utilizar el mismo tipo de razonamiento* (solo para si tenemos tiempo):
+
+¡Hacer una matriz por nivel taxonomico!
+
+
+# Construir funciones
+

@@ -30,7 +30,7 @@ En esta semana, los temas que vamos a trabajar se pueden dividir así:
 1. Presentación introductiva: pensar la gestión de los datos de biodiversidad en el entorno cientifico y social actual
 1. Manejar datos en R: entender como filtrar, seleccionar, manejar datos en R
 1. Manejar datos en SQL: consultas simples y avanzadas en SQL, pensar la estructura de una base de datos, modificar y manejar una base de datos SQL
-1. Expresiones regulares en R y SQL: manejar las cadenas de caracter en las bases de datos 
+1. Expresiones regulares en R y SQL: manejar las cadenas de carácter en las bases de datos 
 1. Estructura de la biodiversidad, estructura de los proyectos de investigación y monitoreo, estructura de los datos: ¿como pensarlos juntos?
 1. Taxonomía: manejar datos taxonómicos en R y SQL
 1. Datos espaciales: manejar datos espaciales en Qgis, R, y SQL
@@ -76,3 +76,10 @@ Los datos necesarios para los ejercicios y actividades están disponibles en [Go
 
 # Documentación
 
+# Soluciones de los ejercicios
+
+Si quieren que los ejercicios sean útiles para desarrollar sus capacidades de programación en R y SQL, es mejor enfrentarse a las dificultades y buscar soluciones por sí mismo.
+Sin embargo, es muy probable que no tengamos el tiempo para resolver todos los ejercicios, acá encontrarán las soluciones que propongo yo.
+Anotar: en programación, existen varios caminos para obtener el mismo resultado, no descarten su propia solución por no ser igual a la solución que proponga...
+
+* [Solución de la actividad manejar datos en R](act_R_intro_corr.html)
