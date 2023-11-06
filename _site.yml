@@ -24,6 +24,7 @@ navbar:
         - text: "SQL"
         - text: "---"
         - text: "Consultas simples"
+          href: doc_SQL_simple.html
         - text: "Consultas avanzadas"
         - text: "Bases de datos y connecciones"
         - text: "Crear tablas"

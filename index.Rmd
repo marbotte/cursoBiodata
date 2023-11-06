@@ -65,7 +65,7 @@ En las paginas siguientes pueden encontrar los enlaces y instrucciones para inst
 # Presentaciones
 
 * [Presentación introductoria del curso](https://docs.google.com/presentation/d/1l-kktBV9cM-4mRmelO9Q10KaTazcKD3NpXsdHmhPIIQ/edit?usp=sharing)
-
+* [SQL](https://docs.google.com/presentation/d/1HLSBmr53_AnhHta0ptoaDzR01M9sY8BrGAxDpM1r8zk/edit?usp=sharing)
 
 # Actividades
 

@@ -1,0 +1,226 @@
+---
+title: "Consultas simples en SQL"
+lang: "es_CL"
+description: "¿Como hacer consultas simples (en una tabla) con PostgreSQL y SQLite?"
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    pandoc_args: ["--number-sections"]
+---
+
+```{r setup, echo=F, message=F,warning=F, purl=FALSE}
+library(knitr)
+library(kableExtra)
+library(downloadthis)
+library(RSQLite)
+library(RPostgreSQL)
+source("./r_func/sql_extract.R")
+pg_biodata1 <- dbConnect(PostgreSQL(),dbname="biodata1")
+sl_biodata1 <- dbConnect(SQLite(),dbname="../Datos/biodata1.sqlite3")
+```
+
+
+En este documento voy a mostrar las bases de las consultas SQL en una tabla simple.
+Voy a utilizar principalmente PostgreSQL, pero cuando existan diferencias, mostraré tambien la versión SQLite.
+
+
+# SELECT y FROM
+
+## Ejemplo basico de consulta
+
+La consulta más simple consiste en el uso de las clausulas `SELECT` y `FROM`
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","select_example_1")}
+```
+
+Notas: las variables en `SELECT` están separadas por coma, y la consulta termina por `;`
+
+## Uso de `*`
+
+Para evitar de escribir todas las variables de una tabla, podemos utilizar "*":
+
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","select_estrella")}
+```
+
+
+## Sensibilidad a las mayusculas y uso de las comillas
+
+### Nombres de las clausulas
+
+SQL es sensible al uso de las mayúsculas y minúsculas, sin embargo, los nombres de las clausulas se pueden escribir de cualquier manera.
+Usualmente las escribemos en mayuscula, para que las consultas sean más claras para leer...
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","case1")}
+```
+
+### Comillas `"`
+
+En SQL, los nombres de los objetos deberían escribirse con comillas:
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","quote1")}
+```
+
+Sin embargo, todo como funciona como si el sistema pasaría todo a minúsculas cuando no utilizamos las comillas.
+
+```{sql, connection=sl_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","case2")}
+```
+
+Así que si cambiamos mayusculas y minusculas en una consulta con comillas `"`, obtenemos un error (el error depende del sistema y de la interfaz que utilicen).
+
+Pueden intentar eso en DBeaver con postgreSQL
+
+```sql
+SELECT "PaIs","Superficie_km2"
+FROM countries;
+```
+
+En SQLite, no van a tener un error!
+
+
+## Cambiar el nombre de las columnas
+
+Por utilizar la clausula `AS`, pueden cambiar los nombres de las columnas en las clausulas
+
+
+```{sql, connection=sl_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","colnames1")}
+```
+
+Realmente, la clausula `AS` es facultativa:
+
+
+```{sql, connection=sl_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","colnames2")}
+```
+
+## Schemas
+
+Existe una noción en PostgreSQL que es el "schema".
+Las tablas se pueden organizar en diferentes partes en la base de datos, cada una de esas partes es un "schema".
+
+Así que la manera completa de llamar una tabla en una clausula `FROM` es "nombre_schema"."nombre_tabla". Sin embargo existe una [forma](https://www.postgresql.org/docs/current/ddl-schemas.html#DDL-SCHEMAS-PATH) para que PostgreSQL busque automáticamente los nombres de las tablas en uno o varios schema.
+Por defecto, el schema "public" está configurado así, y la tabla "countries" está en este schema.
+
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","colnames2")}
+```
+
+En SQLite, no existen los schemas, si uno quiere separar las tablas, tiene que utilizar varios archivos (¡pero es posible trabajar en varios archivos en una misma sesión!)
+
+## Añadir datos en SELECT
+
+Todos los datos que utilizamos en SELECT no tienen que estar en una tabla de la base de datos
+
+### Añadir una columna
+
+Podemos añadir una columna con el contenido que queremos
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","select_anadir_num")}
+```
+
+### Añadir texto con comillas `'`
+
+En SQL, para diferenciar los objetos de las cadenas de carácter, utilizamos las comillas `'` para esas ultimas.
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","select_anadir_texto")}
+```
+
+### Añadir una columna de calculo
+
+
+### Utilizar `||`
+
+### Sin tablas
+
+En postgreSQL y SQLite, la clausula FROM no es obligatoría (Nota: no es el caso en todos los "sabores" de SQL)
+
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","sin_from1")}
+```
+
+
+### Crear una tabla en FROM
+
+La clausula FROM usualmente contiene una tabla de la base de datos, pero no es una regla stricta, se pueden utilizar otras cosas.
+
+Para mostrar un caso extremo en PostgreSQL (¡no funciona en SQLite!):
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","from_raro")}
+```
+
+
+# WHERE
+La clausula WHERE permite filtrar las filas de una tabla, acepta tipos booleanos:
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","where_1")}
+```
+
+## WHERE y operadores de comparación
+
+Si WHERE acepta tipos booleanos, también se pueden utilizar operadores de comparación booleanos([postgreSQL](https://www.postgresql.org/docs/current/functions-comparison.html), [SQLite](https://www.tutorialspoint.com/sqlite/sqlite_operators.htm)
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","where_2")}
+```
+
+### `=`
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","where_3")}
+```
+
+
+
+### `<>` "es diferente de"
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","where_4")}
+```
+
+
+### `IN`
+
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","where_5")}
+```
+
+## WHERE y operadores booleanos
+
+Se pueden utilizar [operadores booleanos](https://www.postgresql.org/docs/current/functions-logical.html)) para combinar condiciones:
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","where_6")}
+```
+
+# ORDER BY
+
+# Funciones agregativas
+
+## COUNT
+
+## GROUP BY
+
+## SUM
+
+## AVG
+
+## Concatenar texto
+
+## Concatenar ARRAYS (PostgreSQL)
+
+## HAVING
+
+# DISTINCT
+
+# CASE
+
+# 
+
+
+
+
+
+# 
+
+
+```{r closing, echo=F, message=F,warning=F, purl=FALSE, results='hide'}
+dbDisconnect(pg_biodata1)
+dbDisconnect(sl_biodata1)
+```
+
