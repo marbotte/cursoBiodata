@@ -220,5 +220,78 @@ writeData(wbFinal,"Cobertura", matCobertura, rowNames = T)
 # Exportar el archivo excel
 saveWorkbook(wbFinal, file = paste(fol_Results,"fitosociologíaFagusFranciaFinal.xlsx"), overwrite = T)
 
+
+## -------------------------------------------------------------------
+(load(paste0(fol_Datos,"diatomTaxonomy.RData")))
+
+
+## -------------------------------------------------------------------
+m_sp_mat_taxo <- match(colnames(sp_abund_mat),taxonomy$cd)
+
+
+## -------------------------------------------------------------------
+w_fragilariaceae <- which(taxonomy$family[m_sp_mat_taxo]=="Fragilariaceae")
+w_naviculaceae <- which(taxonomy$family[m_sp_mat_taxo]=="Naviculaceae")
+
+
+## -------------------------------------------------------------------
+indexFraNav <- rowSums(sp_abund_mat[,w_fragilariaceae])/rowSums(sp_abund_mat[,w_naviculaceae])
+
+
+## -------------------------------------------------------------------
+boxplot(indexFraNav~reference_sites)
+
+
+## -------------------------------------------------------------------
+# Buscamos, para cada taxón, la familia que corresponde
+family <- taxonomy$family[m_sp_mat_taxo]
+# Miramos la lista de familia (unica) y excluímos los taxones que no tienen una información de familia
+un_family <- na.omit(unique(family))
+# Creamos la matriz
+mat_diat_fam <- matrix(NA, nrow=nrow(sp_abund_mat), ncol=length(un_family),dimnames=list(NULL,un_family))
+# Hacemos un bucle que toma cada familia una por una
+# Para cada familia filtramos la matriz de abundancia, y calculamos la suma por fila
+for(i in un_family)
+{
+  #Caso 1: solo hay un taxon en la familia 
+  if(sum(family==i,na.rm=T)==1)
+  {mat_diat_fam[,i] <- sp_abund_mat[,which(family==i)]
+  }else{ # Caso 2 existe una matriz de más de una columna en esta familia
+    mat_diat_fam[,i]<-rowSums(sp_abund_mat[,which(family==i)])
+  }
+}
+
+
+## -------------------------------------------------------------------
+mat2dbTab <-
+function(mat,checklist=F)
+{
+  W<-which(mat>0,arr.ind=T)
+	if(!checklist){
+  dbTab<-data.frame(SU=rownames(mat)[W[,"row"]],sp=colnames(mat)[W[,"col"]],ab=mat[W])
+	}else{
+  dbTab<-data.frame(SU=rownames(mat)[W[,"row"]],sp=colnames(mat)[W[,"col"]])
+	}
+	numSU<-all(grepl("^[0-9]+$",dbTab$SU))
+	if(numSU){dbTab$SU<-as.numeric(as.character(dbTab$SU))}
+  dbTab<-dbTab[order(dbTab$SU,dbTab$sp),]
+  return(dbTab)
+}
+
+dbTab2mat <-
+function(dbTab,col_samplingUnits="SU",col_species="sp",col_content="abundance",empty=NA,checklist=F)
+{
+  COLS<-unique(as.character(dbTab[,col_species]))
+  ROWS<-unique(as.character(dbTab[,col_samplingUnits]))
+  arr.which<-matrix(NA,ncol=2,nrow=nrow(dbTab),dimnames=list(1:nrow(dbTab),c("row","col")))
+  arr.which[,1]<-match(as.character(dbTab[,col_samplingUnits]),ROWS)
+  arr.which[,2]<-match(as.character(dbTab[,col_species]),COLS)
+  modeContent<-ifelse(checklist,"logical",mode(dbTab[,col_content]))
+  if(is.na(empty)){empty<-switch(modeContent,character="",numeric=0,logical=F)}
+  res<-matrix(empty,ncol=length(COLS),nrow=length(ROWS),dimnames=list(ROWS,COLS))
+	if(checklist){ res[arr.which]<-T}else{res[arr.which]<-dbTab[,col_content]}
+  return(res)
+}
+
 ```{.r .distill-force-highlighting-css}
 ```

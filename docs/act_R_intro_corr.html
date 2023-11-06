@@ -2218,8 +2218,15 @@ Documentación taxonomía
 <li><a href="#relaciones-entre-tablas-en-r" id="toc-relaciones-entre-tablas-en-r"><span class="toc-section-number">3</span> Relaciones entre tablas en R</a>
 <ul>
 <li><a href="#ejercicio-2" id="toc-ejercicio-2"><span class="toc-section-number">3.1</span> Ejercicio</a></li>
+<li><a href="#parte-1-indice-fragilariaceanaviculaceae" id="toc-parte-1-indice-fragilariaceanaviculaceae"><span class="toc-section-number">3.2</span> Parte 1: Indice Fragilariacea/Naviculaceae</a></li>
+<li><a href="#parte-2-matriz-por-familia" id="toc-parte-2-matriz-por-familia"><span class="toc-section-number">3.3</span> Parte 2: Matriz por familia</a></li>
 </ul></li>
-<li><a href="#construir-funciones" id="toc-construir-funciones"><span class="toc-section-number">4</span> Construir funciones</a></li>
+<li><a href="#construir-funciones" id="toc-construir-funciones"><span class="toc-section-number">4</span> Construir funciones</a>
+<ul>
+<li><a href="#ejercicio-3" id="toc-ejercicio-3"><span class="toc-section-number">4.1</span> Ejercicio</a></li>
+<li><a href="#parte-1-crear-las-funciones" id="toc-parte-1-crear-las-funciones"><span class="toc-section-number">4.2</span> Parte 1: crear las funciones</a></li>
+<li><a href="#parte-2-utilizar-las-funciones-para-resolver-el-ejercicio-de-matriz-de-genero-de-diatomeas" id="toc-parte-2-utilizar-las-funciones-para-resolver-el-ejercicio-de-matriz-de-genero-de-diatomeas"><span class="toc-section-number">4.3</span> Parte 2: utilizar las funciones para resolver el ejercicio de matriz de genero de diatomeas</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
@@ -2641,15 +2648,115 @@ Así, podemos utilizar directamente la función <code>match</code> para determin
 <h1 data-number="3" id="relaciones-entre-tablas-en-r"><span class="header-section-number">3</span> Relaciones entre tablas en R</h1>
 <h2 data-number="3.1" id="ejercicio-2"><span class="header-section-number">3.1</span> Ejercicio</h2>
 <p>La base de datos de diatomeas descrita en el primer ejercicio referencia los taxones por sus códigos, que están definidos por varios expertos europeos, pero esos códigos no son siempre especies, pueden corresponder a varios niveles taxonómicos.</p>
-<p>Imaginemos que un grupo de investigadores quiere desarrollar un indice simple de calidad del agua como un cociente entre la abundancia de la familia <em>Fragilariaceae</em> y la familia <em>Naviculaceae</em>.</p>
+<p>Imaginemos que un grupo de investigadores quiere desarrollar un indice simple de calidad del agua como un cociente entre la abundancia de la familia <em>Fragilariaceae</em> y la familia <em>Naviculaceae</em> (en realidad no tiene mucho sentido, es más un ejercicio de programación que realmente un indíce que tenga sentido).</p>
 <ol type="1">
 <li>Calcular ese indice para cada una de las muestras de la matriz sp_abund_mat</li>
 <li>Comparar los valores entre los sitios de referencia y los demás</li>
 </ol>
 <p><em>Ejercicio suplementario para utilizar el mismo tipo de razonamiento</em> (solo para si tenemos tiempo):</p>
 <p>¡Hacer una matriz por nivel taxonomico!</p>
+<h2 data-number="3.2" id="parte-1-indice-fragilariaceanaviculaceae"><span class="header-section-number">3.2</span> Parte 1: Indice Fragilariacea/Naviculaceae</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>fol_Datos</span>,<span class='st'>"diatomTaxonomy.RData"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;taxonomy&quot; &quot;synonyms&quot;</code></pre>
+</div>
+<p>Lo que hacemos es buscar la correspondancia entre los colnames de la matriz de abundancia de las diatomeas:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>m_sp_mat_taxo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>sp_abund_mat</span><span class='op'>)</span>,<span class='va'>taxonomy</span><span class='op'>$</span><span class='va'>cd</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>Luego miramos cuales son las columnas que corresponden a cada una de las familias del indice:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>w_fragilariaceae</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>taxonomy</span><span class='op'>$</span><span class='va'>family</span><span class='op'>[</span><span class='va'>m_sp_mat_taxo</span><span class='op'>]</span><span class='op'>==</span><span class='st'>"Fragilariaceae"</span><span class='op'>)</span></span>
+<span><span class='va'>w_naviculaceae</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>taxonomy</span><span class='op'>$</span><span class='va'>family</span><span class='op'>[</span><span class='va'>m_sp_mat_taxo</span><span class='op'>]</span><span class='op'>==</span><span class='st'>"Naviculaceae"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>Finalmente calculamos los rowSums de las matriz filtradas con cada una de esas familias:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>indexFraNav</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span><span class='op'>(</span><span class='va'>sp_abund_mat</span><span class='op'>[</span>,<span class='va'>w_fragilariaceae</span><span class='op'>]</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span><span class='op'>(</span><span class='va'>sp_abund_mat</span><span class='op'>[</span>,<span class='va'>w_naviculaceae</span><span class='op'>]</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>Finalmente hacemos un grafico boxplot del indice en función de los sitios de referencia (el signo <code>~</code> quiere decir <em>en función de</em>)</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/boxplot.html'>boxplot</a></span><span class='op'>(</span><span class='va'>indexFraNav</span><span class='op'>~</span><span class='va'>reference_sites</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="act_R_intro_corr_files/figure-html5/unnamed-chunk-43-1.png" width="624" /></p>
+</div>
+<h2 data-number="3.3" id="parte-2-matriz-por-familia"><span class="header-section-number">3.3</span> Parte 2: Matriz por familia</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Buscamos, para cada taxón, la familia que corresponde</span></span>
+<span><span class='va'>family</span> <span class='op'>&lt;-</span> <span class='va'>taxonomy</span><span class='op'>$</span><span class='va'>family</span><span class='op'>[</span><span class='va'>m_sp_mat_taxo</span><span class='op'>]</span></span>
+<span><span class='co'># Miramos la lista de familia (unica) y excluímos los taxones que no tienen una información de familia</span></span>
+<span><span class='va'>un_family</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/na.fail.html'>na.omit</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>family</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='co'># Creamos la matriz</span></span>
+<span><span class='va'>mat_diat_fam</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='cn'>NA</span>, nrow<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>sp_abund_mat</span><span class='op'>)</span>, ncol<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>un_family</span><span class='op'>)</span>,dimnames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='cn'>NULL</span>,<span class='va'>un_family</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='co'># Hacemos un bucle que toma cada familia una por una</span></span>
+<span><span class='co'># Para cada familia filtramos la matriz de abundancia, y calculamos la suma por fila</span></span>
+<span><span class='kw'>for</span><span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='va'>un_family</span><span class='op'>)</span></span>
+<span><span class='op'>{</span></span>
+<span>  <span class='co'>#Caso 1: solo hay un taxon en la familia </span></span>
+<span>  <span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>family</span><span class='op'>==</span><span class='va'>i</span>,na.rm<span class='op'>=</span><span class='cn'>T</span><span class='op'>)</span><span class='op'>==</span><span class='fl'>1</span><span class='op'>)</span></span>
+<span>  <span class='op'>{</span><span class='va'>mat_diat_fam</span><span class='op'>[</span>,<span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>sp_abund_mat</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>family</span><span class='op'>==</span><span class='va'>i</span><span class='op'>)</span><span class='op'>]</span></span>
+<span>  <span class='op'>}</span><span class='kw'>else</span><span class='op'>{</span> <span class='co'># Caso 2 existe una matriz de más de una columna en esta familia</span></span>
+<span>    <span class='va'>mat_diat_fam</span><span class='op'>[</span>,<span class='va'>i</span><span class='op'>]</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span><span class='op'>(</span><span class='va'>sp_abund_mat</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>family</span><span class='op'>==</span><span class='va'>i</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span></span>
+<span>  <span class='op'>}</span></span>
+<span><span class='op'>}</span></span></code></pre>
+</div>
+</div>
 <h1 data-number="4" id="construir-funciones"><span class="header-section-number">4</span> Construir funciones</h1>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 data-number="4.1" id="ejercicio-3"><span class="header-section-number">4.1</span> Ejercicio</h2>
+<p>Contruir las funciones en R que permiten pasar de un formato “base de datos” a una matriz de abundancia o de presencia.</p>
+<p>Las funciones deben tener los argumentos adecuados para :</p>
+<ul>
+<li>poder dar el nombre de la columna que contiene los taxones y de las unidades de muestreo</li>
+<li>poder manejar casos de presencia/ausencia, abundancia</li>
+<li>poder llenar las matrices con 0 o NA, y transformar las matrices con NA o 0 cuando las especies son ausentes</li>
+<li>añadir todas las opciones que les parecen útil (un ejercicio más tarde consistira en publicar esas funciones en la forma de un paquete R en GitHub)</li>
+</ul>
+<p>Construir una función que permita utilizar el formato “base de datos” y hacer la suma de todos las filas que tienen el mismo taxon en la misma unidad de muestreo, y utilizarla para construir la matriz de genero de diatomeas (ver ejercicio previo).</p>
+<h2 data-number="4.2" id="parte-1-crear-las-funciones"><span class="header-section-number">4.2</span> Parte 1: crear las funciones</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>mat2dbTab</span> <span class='op'>&lt;-</span></span>
+<span><span class='kw'>function</span><span class='op'>(</span><span class='va'>mat</span>,<span class='va'>checklist</span><span class='op'>=</span><span class='cn'>F</span><span class='op'>)</span></span>
+<span><span class='op'>{</span></span>
+<span>  <span class='va'>W</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>mat</span><span class='op'>&gt;</span><span class='fl'>0</span>,arr.ind<span class='op'>=</span><span class='cn'>T</span><span class='op'>)</span></span>
+<span>  <span class='kw'>if</span><span class='op'>(</span><span class='op'>!</span><span class='va'>checklist</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  <span class='va'>dbTab</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>SU<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span><span class='op'>(</span><span class='va'>mat</span><span class='op'>)</span><span class='op'>[</span><span class='va'>W</span><span class='op'>[</span>,<span class='st'>"row"</span><span class='op'>]</span><span class='op'>]</span>,sp<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>mat</span><span class='op'>)</span><span class='op'>[</span><span class='va'>W</span><span class='op'>[</span>,<span class='st'>"col"</span><span class='op'>]</span><span class='op'>]</span>,ab<span class='op'>=</span><span class='va'>mat</span><span class='op'>[</span><span class='va'>W</span><span class='op'>]</span><span class='op'>)</span></span>
+<span>  <span class='op'>}</span><span class='kw'>else</span><span class='op'>{</span></span>
+<span>  <span class='va'>dbTab</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>SU<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span><span class='op'>(</span><span class='va'>mat</span><span class='op'>)</span><span class='op'>[</span><span class='va'>W</span><span class='op'>[</span>,<span class='st'>"row"</span><span class='op'>]</span><span class='op'>]</span>,sp<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>mat</span><span class='op'>)</span><span class='op'>[</span><span class='va'>W</span><span class='op'>[</span>,<span class='st'>"col"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span></span>
+<span>  <span class='op'>}</span></span>
+<span>  <span class='va'>numSU</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grepl</a></span><span class='op'>(</span><span class='st'>"^[0-9]+$"</span>,<span class='va'>dbTab</span><span class='op'>$</span><span class='va'>SU</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  <span class='kw'>if</span><span class='op'>(</span><span class='va'>numSU</span><span class='op'>)</span><span class='op'>{</span><span class='va'>dbTab</span><span class='op'>$</span><span class='va'>SU</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>dbTab</span><span class='op'>$</span><span class='va'>SU</span><span class='op'>)</span><span class='op'>)</span><span class='op'>}</span></span>
+<span>  <span class='va'>dbTab</span><span class='op'>&lt;-</span><span class='va'>dbTab</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/order.html'>order</a></span><span class='op'>(</span><span class='va'>dbTab</span><span class='op'>$</span><span class='va'>SU</span>,<span class='va'>dbTab</span><span class='op'>$</span><span class='va'>sp</span><span class='op'>)</span>,<span class='op'>]</span></span>
+<span>  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>dbTab</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span>
+<span></span>
+<span><span class='va'>dbTab2mat</span> <span class='op'>&lt;-</span></span>
+<span><span class='kw'>function</span><span class='op'>(</span><span class='va'>dbTab</span>,<span class='va'>col_samplingUnits</span><span class='op'>=</span><span class='st'>"SU"</span>,<span class='va'>col_species</span><span class='op'>=</span><span class='st'>"sp"</span>,<span class='va'>col_content</span><span class='op'>=</span><span class='st'>"abundance"</span>,<span class='va'>empty</span><span class='op'>=</span><span class='cn'>NA</span>,<span class='va'>checklist</span><span class='op'>=</span><span class='cn'>F</span><span class='op'>)</span></span>
+<span><span class='op'>{</span></span>
+<span>  <span class='va'>COLS</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>dbTab</span><span class='op'>[</span>,<span class='va'>col_species</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  <span class='va'>ROWS</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>dbTab</span><span class='op'>[</span>,<span class='va'>col_samplingUnits</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  <span class='va'>arr.which</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='cn'>NA</span>,ncol<span class='op'>=</span><span class='fl'>2</span>,nrow<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>dbTab</span><span class='op'>)</span>,dimnames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>dbTab</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"row"</span>,<span class='st'>"col"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  <span class='va'>arr.which</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>]</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>dbTab</span><span class='op'>[</span>,<span class='va'>col_samplingUnits</span><span class='op'>]</span><span class='op'>)</span>,<span class='va'>ROWS</span><span class='op'>)</span></span>
+<span>  <span class='va'>arr.which</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>]</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>dbTab</span><span class='op'>[</span>,<span class='va'>col_species</span><span class='op'>]</span><span class='op'>)</span>,<span class='va'>COLS</span><span class='op'>)</span></span>
+<span>  <span class='va'>modeContent</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>checklist</span>,<span class='st'>"logical"</span>,<span class='fu'><a href='https://rdrr.io/r/base/mode.html'>mode</a></span><span class='op'>(</span><span class='va'>dbTab</span><span class='op'>[</span>,<span class='va'>col_content</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  <span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>empty</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span><span class='va'>empty</span><span class='op'>&lt;-</span><span class='kw'><a href='https://rdrr.io/r/base/switch.html'>switch</a></span><span class='op'>(</span><span class='va'>modeContent</span>,character<span class='op'>=</span><span class='st'>""</span>,numeric<span class='op'>=</span><span class='fl'>0</span>,logical<span class='op'>=</span><span class='cn'>F</span><span class='op'>)</span><span class='op'>}</span></span>
+<span>  <span class='va'>res</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='va'>empty</span>,ncol<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>COLS</span><span class='op'>)</span>,nrow<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>ROWS</span><span class='op'>)</span>,dimnames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>ROWS</span>,<span class='va'>COLS</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  <span class='kw'>if</span><span class='op'>(</span><span class='va'>checklist</span><span class='op'>)</span><span class='op'>{</span> <span class='va'>res</span><span class='op'>[</span><span class='va'>arr.which</span><span class='op'>]</span><span class='op'>&lt;-</span><span class='cn'>T</span><span class='op'>}</span><span class='kw'>else</span><span class='op'>{</span><span class='va'>res</span><span class='op'>[</span><span class='va'>arr.which</span><span class='op'>]</span><span class='op'>&lt;-</span><span class='va'>dbTab</span><span class='op'>[</span>,<span class='va'>col_content</span><span class='op'>]</span><span class='op'>}</span></span>
+<span>  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span></code></pre>
+</div>
+</div>
+<h2 data-number="4.3" id="parte-2-utilizar-las-funciones-para-resolver-el-ejercicio-de-matriz-de-genero-de-diatomeas"><span class="header-section-number">4.3</span> Parte 2: utilizar las funciones para resolver el ejercicio de matriz de genero de diatomeas</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -406,7 +406,7 @@ saveWorkbook(wbFinal, file = paste(fol_Results,"fitosociologíaFagusFranciaFinal
 
 La base de datos de diatomeas descrita en el primer ejercicio referencia los taxones por sus códigos, que están definidos por varios expertos europeos, pero esos códigos no son siempre especies, pueden corresponder a varios niveles taxonómicos.
 
-Imaginemos que un grupo de investigadores quiere desarrollar un indice simple de calidad del agua como un cociente entre la abundancia de la familia *Fragilariaceae* y la familia *Naviculaceae*.
+Imaginemos que un grupo de investigadores quiere desarrollar un indice simple de calidad del agua como un cociente entre la abundancia de la familia *Fragilariaceae* y la familia *Naviculaceae* (en realidad no tiene mucho sentido, es más un ejercicio de programación que realmente un indíce que tenga sentido).
 
 1. Calcular ese indice para cada una de las muestras de la matriz sp_abund_mat
 1. Comparar los valores entre los sitios de referencia y los demás
@@ -415,6 +415,107 @@ Imaginemos que un grupo de investigadores quiere desarrollar un indice simple de
 
 ¡Hacer una matriz por nivel taxonomico!
 
+## Parte 1: Indice Fragilariacea/Naviculaceae
+
+```{r}
+(load(paste0(fol_Datos,"diatomTaxonomy.RData")))
+```
+Lo que hacemos es buscar la correspondancia entre los colnames de la matriz de abundancia de las diatomeas:
+
+```{r}
+m_sp_mat_taxo <- match(colnames(sp_abund_mat),taxonomy$cd)
+```
+
+Luego miramos cuales son las columnas que corresponden a cada una de las  familias del indice:
+
+```{r}
+w_fragilariaceae <- which(taxonomy$family[m_sp_mat_taxo]=="Fragilariaceae")
+w_naviculaceae <- which(taxonomy$family[m_sp_mat_taxo]=="Naviculaceae")
+```
+
+Finalmente calculamos los rowSums de las matriz filtradas con cada una de esas familias:
+
+```{r}
+indexFraNav <- rowSums(sp_abund_mat[,w_fragilariaceae])/rowSums(sp_abund_mat[,w_naviculaceae])
+```
+
+Finalmente hacemos un grafico boxplot del indice en función de los sitios de referencia (el signo `~` quiere decir *en función de*)
+
+```{r}
+boxplot(indexFraNav~reference_sites)
+```
+
+## Parte 2: Matriz por familia
+
+```{r}
+# Buscamos, para cada taxón, la familia que corresponde
+family <- taxonomy$family[m_sp_mat_taxo]
+# Miramos la lista de familia (unica) y excluímos los taxones que no tienen una información de familia
+un_family <- na.omit(unique(family))
+# Creamos la matriz
+mat_diat_fam <- matrix(NA, nrow=nrow(sp_abund_mat), ncol=length(un_family),dimnames=list(NULL,un_family))
+# Hacemos un bucle que toma cada familia una por una
+# Para cada familia filtramos la matriz de abundancia, y calculamos la suma por fila
+for(i in un_family)
+{
+  #Caso 1: solo hay un taxon en la familia 
+  if(sum(family==i,na.rm=T)==1)
+  {mat_diat_fam[,i] <- sp_abund_mat[,which(family==i)]
+  }else{ # Caso 2 existe una matriz de más de una columna en esta familia
+    mat_diat_fam[,i]<-rowSums(sp_abund_mat[,which(family==i)])
+  }
+}
+```
+
+
 
 # Construir funciones
 
+## Ejercicio
+
+Contruir las funciones en R que permiten pasar de un formato "base de datos" a una matriz de abundancia o de presencia.
+
+Las funciones deben tener los argumentos adecuados para :
+
+* poder dar el nombre de la columna que contiene los taxones y de las unidades de muestreo
+* poder manejar casos de presencia/ausencia, abundancia
+* poder llenar las matrices con 0 o NA, y transformar las matrices con NA o 0 cuando las especies son ausentes
+* añadir todas las opciones que les parecen útil (un ejercicio más tarde consistira en publicar esas funciones en la forma de un paquete R en GitHub)
+
+Construir una función que permita utilizar el formato "base de datos" y hacer la suma de todos las filas que tienen el mismo taxon en la misma unidad de muestreo, y utilizarla para construir la matriz de genero de diatomeas (ver ejercicio previo).
+
+## Parte 1: crear las funciones
+
+```{r}
+mat2dbTab <-
+function(mat,checklist=F)
+{
+  W<-which(mat>0,arr.ind=T)
+	if(!checklist){
+  dbTab<-data.frame(SU=rownames(mat)[W[,"row"]],sp=colnames(mat)[W[,"col"]],ab=mat[W])
+	}else{
+  dbTab<-data.frame(SU=rownames(mat)[W[,"row"]],sp=colnames(mat)[W[,"col"]])
+	}
+	numSU<-all(grepl("^[0-9]+$",dbTab$SU))
+	if(numSU){dbTab$SU<-as.numeric(as.character(dbTab$SU))}
+  dbTab<-dbTab[order(dbTab$SU,dbTab$sp),]
+  return(dbTab)
+}
+
+dbTab2mat <-
+function(dbTab,col_samplingUnits="SU",col_species="sp",col_content="abundance",empty=NA,checklist=F)
+{
+  COLS<-unique(as.character(dbTab[,col_species]))
+  ROWS<-unique(as.character(dbTab[,col_samplingUnits]))
+  arr.which<-matrix(NA,ncol=2,nrow=nrow(dbTab),dimnames=list(1:nrow(dbTab),c("row","col")))
+  arr.which[,1]<-match(as.character(dbTab[,col_samplingUnits]),ROWS)
+  arr.which[,2]<-match(as.character(dbTab[,col_species]),COLS)
+  modeContent<-ifelse(checklist,"logical",mode(dbTab[,col_content]))
+  if(is.na(empty)){empty<-switch(modeContent,character="",numeric=0,logical=F)}
+  res<-matrix(empty,ncol=length(COLS),nrow=length(ROWS),dimnames=list(ROWS,COLS))
+	if(checklist){ res[arr.which]<-T}else{res[arr.which]<-dbTab[,col_content]}
+  return(res)
+}
+```
+
+## Parte 2: utilizar las funciones para resolver el ejercicio de matriz de genero de diatomeas
