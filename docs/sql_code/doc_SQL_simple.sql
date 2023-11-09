@@ -52,6 +52,13 @@ SELECT *, 'lo que quiera' AS "Puedo añadir"
 FROM countries;
 -- <select_anadir_texto END>
 
+
+-- <calculo1>
+SELECT *, superficie_km2/2 mitad
+FROM countries
+-- <calculo1 END>
+
+
 -- <sin_from1>
 SELECT '¡Viene de mi cerebro, no de una tabla!' AS "frase cualquiera"
 -- <sin_from1 END>
@@ -98,4 +105,28 @@ SELECT *
 FROM countries
 WHERE sur_america AND superficie_km2 < 1000000;
 -- <where_6 END>
+
+-- <order1>
+SELECT *
+FROM countries
+ORDER BY superficie_km2 ASC
+-- <order1 END>
+
+-- <order2>
+SELECT *
+FROM countries
+ORDER BY superficie_km2 DESC
+-- <order2 END>
+
+-- <order3>
+SELECT *
+FROM countries
+ORDER BY sur_america,superficie_km2 DESC
+-- <order3 END>
+
+-- <limit>
+SELECT *
+FROM countries
+LIMIT 2;
+-- <limit END>
 

@@ -1,0 +1,39 @@
+---
+title: "Consultas avanzadas en SQL"
+lang: "es_CL"
+description: "¿Como hacer consultas avanzadas con PostgreSQL y SQLite?"
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    pandoc_args: ["--number-sections"]
+---
+
+```{r setup, echo=F, message=F,warning=F, purl=FALSE}
+library(knitr)
+library(kableExtra)
+library(downloadthis)
+library(RSQLite)
+library(RPostgreSQL)
+source("./r_func/sql_extract.R")
+pg_biodata1 <- dbConnect(PostgreSQL(),dbname="biodata1")
+sl_biodata1 <- dbConnect(SQLite(),dbname="../Datos/biodata1.sqlite3")
+```
+
+
+En este documento voy a mostrar las bases de las consultas SQL en multiplas tablas, así como la utilización de las clausulas WITH y UNION.
+Voy a utilizar principalmente PostgreSQL, pero cuando existan diferencias, mostraré tambien la versión SQLite.
+
+
+# JOIN
+
+# UNION
+
+# WITH
+
+
+```{r closing, echo=F, message=F,warning=F, purl=FALSE, results='hide'}
+dbDisconnect(pg_biodata1)
+dbDisconnect(sl_biodata1)
+```
+

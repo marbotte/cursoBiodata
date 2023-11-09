@@ -127,8 +127,15 @@ En SQL, para diferenciar los objetos de las cadenas de carácter, utilizamos las
 
 ### Añadir una columna de calculo
 
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","calculo1")}
+```
+
 
 ### Utilizar `||`
+
+
+
+
 
 ### Sin tablas
 
@@ -189,6 +196,45 @@ Se pueden utilizar [operadores booleanos](https://www.postgresql.org/docs/curren
 ```
 
 # ORDER BY
+
+## Simple
+
+Los resultados de una consulta se pueden ordenar con la clausula `ORDER BY`
+
+Esta clausula puede tener las opciones `DESC` (descending) y `ASC` (ascending).
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","order1")}
+```
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","order2")}
+```
+
+
+## Multiple
+
+Se pueden hacer sorteos complejos asociando varias variables
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","order3")}
+```
+
+
+
+
+## Nota sobre los ordenes de los datos
+
+En las bases de datos SQL, el orden del los datos usualmente no es fijo, depende en parte de las estadísticas de uso de los datos.
+Entonces, cuidado, ¡applicar dos veces la misma consulta no resulta siempre en el mismo resultado en terminos de sorteo!
+
+
+# LIMIT
+
+Siempre se puede limitar el numero de resultados en una consulta, para eso se utiliza la clausula `LIMIT`.
+Es una buena practica utilizar `LIMIT` para probar algunas consultas largas y complejas, para averiguar que los resultados parecen a lo que queremos.
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","limit")}
+```
+
+
 
 # Funciones agregativas
 
