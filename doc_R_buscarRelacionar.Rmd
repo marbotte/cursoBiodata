@@ -1,19 +1,39 @@
 ---
-title: "Buscar y relacionar datos en R: las funciones match, which etc."
-author: Marius Bottin
+title: "Buscar y relacionar datos en R"
 lang: "es_CL"
+description: "Funciones `match` y `which`"
 output:
-  bookdown::html_document2:
+  distill::distill_article:
     toc: true
-    number_sections: true
-always_allow_html: true
+    toc_float: true
+    pandoc_args: ["--number-sections"]
 ---
 
-```{r setup, echo=F, message=F,warning=F}
+```{r echo=F, message=F,warning=F, purl=FALSE}
 library(knitr)
 library(kableExtra)
+library(downloadthis)
 ```
 
+
+
+```{r echo=F, message=F,warning=F, purl=FALSE, results='hide', eval=!interactive()}
+fileR<-purl(knitr::current_input(),documentation = 1, quiet=T)
+file.rename(fileR,paste0("./download/R_code/documentation/",fileR))
+```
+
+
+
+```{r echo=F, message=F,warning=F, purl=FALSE, eval=!interactive()}
+download_link(
+  link = paste0("https://raw.githubusercontent.com/marbotte/cursoBiodata/master/download/R_code/documentation/",fileR),
+  button_label = "Download R script",
+  button_type = "default",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = TRUE
+)  
+```
 
 Los datos en R no son directamente relacionales como lo son en una base de datos en SQL.
 Sin embargo, existen funciones que permitan buscar datos, y manejar relaciones entre objetos de datos.
@@ -26,7 +46,9 @@ La función `which` permite obtener los indices de un vector de modo logico:
 ```{r}
 which(c(T,F,F,T))
 ```
+
 Así se pueden extraer resultados de una prueba lógica en un gran vector de datos:
+
 ```{r}
 vecLeyNormal <- rnorm(1000, mean = 0, sd = 1)
 (sup3 <- which(vecLeyNormal > 3))
@@ -34,5 +56,30 @@ vecLeyNormal[sup3]
 ```
 
 ## Arrays
+
+```{r}
+load("../Datos/bog_chinga.RData")
+mat_bog_chinga
+```
+
+La función `which` permite tambien trabajar con arrays con el argumento array.ind
+
+```{r}
+(sup0 <- which(mat_bog_chinga > 0, arr.ind = T))
+mat_bog_chinga[sup0]
+```
+
+
+# Función `match`
+
+La función match permite buscar correspondencias entre 2 vectores:
+
+```{r}
+var <- c("A","A","b","B","Z","E","I")
+LETTERS
+
+m_var_LET<-match(var,LETTERS)
+```
+
 
 
