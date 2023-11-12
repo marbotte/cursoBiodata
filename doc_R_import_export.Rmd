@@ -1,0 +1,75 @@
+---
+title: "Importar/Exportar en R"
+lang: "es_CL"
+description: "Importar y exportar archivos de datos con R"
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    pandoc_args: ["--number-sections"]
+---
+
+```{r setup, echo=F, message=F,warning=F}
+library(knitr)
+library(kableExtra)
+```
+
+Muchos formatos de archivo se pueden leer en R.
+Acá miraremos algunos, como los archivos de texto (csv, txt), los applicaciones de hojas de calcul (xlsx, ods) y los archivos especificos de R
+
+# Interactuar con el sistema de archivos
+
+R funciona con el sistema de archivos a través de un "working directory".
+
+## `getwd`, `setwd` y `dir`
+
+La función `getwd` (get working directory) les permite saber en que carpeta están trabajando.
+
+```{r}
+getwd()
+```
+
+La función `setwd` les permite definir o cambiar de carpeta de trabajo:
+
+```{r}
+setwd("/home/marius")
+```
+
+La función `dir` les permite obtener la lista de archivos en la carpeta de archivos actual.
+
+```{r}
+dir()
+```
+
+## "Caminos" de las carpetas
+
+Los "caminos" o "direcciones" de las carpetas están codificados como cadenas de carácter en R, siguen las normas de direcciones de los sistemas UNIX:
+
+* las carpetas "hijas" de la carpeta actual están separadas por `/`
+* el signo `.` designa la carpeta actual
+* el signo `..` designa la carpeta superior
+
+En los proyectos, les aconsejo siempre utilizar "caminos relativos", utilizando los signos `.` y `..` para escribir las direcciones de los archivos.
+De está manera pueden mover la carpeta, y los codigos no deberían dejar de funcionar, si la relación entre las carpetas de codigos y datos quedan iguales en la nueva dirección de carpeta.
+En Rstudio, `Session`>`Set working directory`>`To source file location` les permite aplicar un `setwd` a la carpeta donde está el script de R.
+
+
+# Archivos de texto
+
+## Leer archivos de texto
+
+La mayoría de los archivos que se utilizan son simplemente archivos de texto.
+Aunque tengan extensiones de archivos diferentes, los archivos txt, csv, o incluidó los scripts de R, SQL o python son todos simplemente archivos de texto, lo que les permite estar leído de manera nativa en todas las plataformas.
+
+### Función readlines
+
+La función `readLines` es una de las funciones más básica para leer archivos de texto (existen unos métodos para abrir archivos como "conexiones" de manera todavía más básica, pero se necesitan raramente, los que quieren pueden mirar las funciones `stdin`, `open`, `file` etc).
+Lo que hace la función `readLines` es simplemente poner cada linea de un archivo de texto en un elemento de un vector de modo carácter.
+
+
+### Funciones read.table, read.csv etc
+Las función `read.table`, `read.csv`, `read.delim` permiten leer archivos de texto que están estructurados como tablas (por ejemplo los archivos csv).
+Las principales diferencias entre esas funciones son los valores por defecto de sus argumentos
+
+## "file encoding"
+

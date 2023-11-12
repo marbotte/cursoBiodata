@@ -237,10 +237,31 @@ Es una buena practica utilizar `LIMIT` para probar algunas consultas largas y co
 
 
 # Funciones agregativas
-
+Las funciones agregrativas permiten tratar información sobre más de un registro (una fila) de una tabla.
 ## COUNT
 
+`COUNT` permite contar las filas.
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","count1")}
+```
+
+Esa consulta puede parecer un poco rara: ¿para que contar las filas de la columna país? y no de la tabla completa.
+Es cierto, poner el nombre de la columna tiene mucho más sentido cuando se utiliza con otras clausulas como DISTINCT o FILTER (que vamos a ver más tarde).
+Por esa razon tambien se utiliza seguido el `*`:
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","count2")}
+```
+
+
 ## GROUP BY
+
+Podemos asociar todas las funciones agregativas con una clausula `GROUP BY` que permite agrupar las filas.
+La tabla de resultados tiene una fila por asociación unica de los valores que están en la clausula `GROUP BY`.
+Tambien es importante saber que cuando utilizamos la clausula `GROUP BY`, la clausula `SELECT` solo acepta las variables que están en la clausula `GROUP BY` o funciones agregativas.
+
+
+
+
 
 ## SUM
 

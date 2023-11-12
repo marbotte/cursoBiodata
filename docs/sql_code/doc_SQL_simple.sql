@@ -130,3 +130,21 @@ FROM countries
 LIMIT 2;
 -- <limit END>
 
+-- <count1>
+SELECT count(pais) num_pais
+FROM countries
+-- <count1 END>
+
+
+-- <count2>
+SELECT count(*)
+FROM countries
+WHERE sur_america
+-- <count2 END>
+
+
+-- <group1>
+SELECT sur_america, count(*)
+FROM countries
+WGE
+

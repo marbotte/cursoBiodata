@@ -2150,7 +2150,7 @@ Documentación R y SQL
 <span class="nav-dropdown-header">R</span>
 <hr/>
 <a href="doc_R_clases_modos.html">Clases, modos y filtros en R</a>
-<span class="nav-dropdown-header">Importar y exportar datos en R</span>
+<a href="doc_R_import_export.html">Importar y exportar datos en R</a>
 <span class="nav-dropdown-header">Buscar datos y correspondencias entre objetos</span>
 <span class="nav-dropdown-header">Bucles, funciones *pply, y estructuras de control</span>
 <span class="nav-dropdown-header">Crear funciones en R</span>
@@ -2238,13 +2238,12 @@ Documentación taxonomía
 <li><a href="#limit" id="toc-limit"><span class="toc-section-number">4</span> LIMIT</a></li>
 <li><a href="#funciones-agregativas" id="toc-funciones-agregativas"><span class="toc-section-number">5</span> Funciones agregativas</a>
 <ul>
-<li><a href="#count" id="toc-count"><span class="toc-section-number">5.1</span> COUNT</a></li>
-<li><a href="#group-by" id="toc-group-by"><span class="toc-section-number">5.2</span> GROUP BY</a></li>
-<li><a href="#sum" id="toc-sum"><span class="toc-section-number">5.3</span> SUM</a></li>
-<li><a href="#avg" id="toc-avg"><span class="toc-section-number">5.4</span> AVG</a></li>
-<li><a href="#concatenar-texto" id="toc-concatenar-texto"><span class="toc-section-number">5.5</span> Concatenar texto</a></li>
-<li><a href="#concatenar-arrays-postgresql" id="toc-concatenar-arrays-postgresql"><span class="toc-section-number">5.6</span> Concatenar ARRAYS (PostgreSQL)</a></li>
-<li><a href="#having" id="toc-having"><span class="toc-section-number">5.7</span> HAVING</a></li>
+<li><a href="#group-by" id="toc-group-by"><span class="toc-section-number">5.1</span> GROUP BY</a></li>
+<li><a href="#sum" id="toc-sum"><span class="toc-section-number">5.2</span> SUM</a></li>
+<li><a href="#avg" id="toc-avg"><span class="toc-section-number">5.3</span> AVG</a></li>
+<li><a href="#concatenar-texto" id="toc-concatenar-texto"><span class="toc-section-number">5.4</span> Concatenar texto</a></li>
+<li><a href="#concatenar-arrays-postgresql" id="toc-concatenar-arrays-postgresql"><span class="toc-section-number">5.5</span> Concatenar ARRAYS (PostgreSQL)</a></li>
+<li><a href="#having" id="toc-having"><span class="toc-section-number">5.6</span> HAVING</a></li>
 </ul></li>
 <li><a href="#distinct" id="toc-distinct"><span class="toc-section-number">6</span> DISTINCT</a></li>
 <li><a href="#case" id="toc-case"><span class="toc-section-number">7</span> CASE</a></li>
@@ -3505,13 +3504,72 @@ TRUE
 </div>
 </div>
 <h1 data-number="5" id="funciones-agregativas"><span class="header-section-number">5</span> Funciones agregativas</h1>
-<h2 data-number="5.1" id="count"><span class="header-section-number">5.1</span> COUNT</h2>
-<h2 data-number="5.2" id="group-by"><span class="header-section-number">5.2</span> GROUP BY</h2>
-<h2 data-number="5.3" id="sum"><span class="header-section-number">5.3</span> SUM</h2>
-<h2 data-number="5.4" id="avg"><span class="header-section-number">5.4</span> AVG</h2>
-<h2 data-number="5.5" id="concatenar-texto"><span class="header-section-number">5.5</span> Concatenar texto</h2>
-<h2 data-number="5.6" id="concatenar-arrays-postgresql"><span class="header-section-number">5.6</span> Concatenar ARRAYS (PostgreSQL)</h2>
-<h2 data-number="5.7" id="having"><span class="header-section-number">5.7</span> HAVING</h2>
+<p>Las funciones agregrativas permiten tratar información sobre más de un registro (una fila) de una tabla.
+## COUNT</p>
+<p><code>COUNT</code> permite contar las filas.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb25"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">count</span>(pais) num_pais</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> countries</span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption>
+<span id="tab:unnamed-chunk-24">Table 24: </span>1 records
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+num_pais
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Esa consulta puede parecer un poco rara: ¿para que contar las filas de la columna país? y no de la tabla completa.
+Es cierto, poner el nombre de la columna tiene mucho más sentido cuando se utiliza con otras clausulas como DISTINCT o FILTER (que vamos a ver más tarde).
+Por esa razon tambien se utiliza seguido el <code>*</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb26"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">count</span>(<span class="op">*</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> countries</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> sur_america</span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption>
+<span id="tab:unnamed-chunk-25">Table 25: </span>1 records
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+count
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2 data-number="5.1" id="group-by"><span class="header-section-number">5.1</span> GROUP BY</h2>
+<p>Podemos asociar todas las funciones agregativas con una clausula <code>GROUP BY</code> que permite agrupar las filas.
+La tabla de resultados tiene una fila por asociación unica de los valores que están en la clausula <code>GROUP BY</code>.
+Tambien es importante saber que cuando utilizamos la clausula <code>GROUP BY</code>, la clausula <code>SELECT</code> solo acepta las variables que están en la clausula <code>GROUP BY</code> o funciones agregativas.</p>
+<h2 data-number="5.2" id="sum"><span class="header-section-number">5.2</span> SUM</h2>
+<h2 data-number="5.3" id="avg"><span class="header-section-number">5.3</span> AVG</h2>
+<h2 data-number="5.4" id="concatenar-texto"><span class="header-section-number">5.4</span> Concatenar texto</h2>
+<h2 data-number="5.5" id="concatenar-arrays-postgresql"><span class="header-section-number">5.5</span> Concatenar ARRAYS (PostgreSQL)</h2>
+<h2 data-number="5.6" id="having"><span class="header-section-number">5.6</span> HAVING</h2>
 <h1 data-number="6" id="distinct"><span class="header-section-number">6</span> DISTINCT</h1>
 <h1 data-number="7" id="case"><span class="header-section-number">7</span> CASE</h1>
 <h1 data-number="8" id="section-1"><span class="header-section-number">8</span> </h1>
@@ -3519,7 +3577,7 @@ TRUE
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
