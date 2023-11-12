@@ -2654,6 +2654,17 @@ Menos del 5% de cobertura, pocos individuos
 </tr>
 </tbody>
 </table>
+<p>Nota, esas tablas se pueden crear en R para probar las funciones:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>df_bog_chinga</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span></span>
+<span>  UniMuestreo<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"Bogotá"</span>,<span class='fl'>2</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"Chingaza"</span>,<span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span>  Especie<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Canis lupus"</span>,<span class='st'>"Felis catus"</span>,<span class='st'>"Tremarctos ornatus"</span>,<span class='st'>"Canis lupus"</span>,<span class='st'>"Odocoileus virginianus"</span><span class='op'>)</span>,</span>
+<span>  abundancia<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3000</span>,<span class='fl'>1000</span>,<span class='fl'>50</span>,<span class='fl'>100</span>,<span class='fl'>200</span><span class='op'>)</span></span>
+<span><span class='op'>)</span></span>
+<span><span class='va'>mat_bog_chinga</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3000</span>,<span class='fl'>100</span>,<span class='fl'>1000</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>0</span>,<span class='fl'>200</span><span class='op'>)</span>,nrow<span class='op'>=</span><span class='fl'>2</span>,dimnames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Bogotá"</span>,<span class='st'>"Chingaza"</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Canis lupus"</span>,<span class='st'>"Felis catus"</span>,<span class='st'>"Tramarctos ornatus"</span>,<span class='st'>"Odocoileus viginianus"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
 <h2 data-number="4.1" id="ejercicio-3"><span class="header-section-number">4.1</span> Ejercicio</h2>
 <p>Contruir las funciones en R que permiten pasar de un formato “base de datos” a una matriz de abundancia o de presencia.</p>
 <p>Las funciones deben tener los argumentos adecuados para :</p>

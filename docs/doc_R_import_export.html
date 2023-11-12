@@ -2100,6 +2100,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+  <link href="site_libs/font-awesome-5.13.0/css/all.min.css" rel="stylesheet" />
+  <link href="site_libs/font-awesome-5.13.0/css/v4-shims.min.css" rel="stylesheet" />
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2203,14 +2205,30 @@ Documentación taxonomía
 <li><a href="#getwd-setwd-y-dir" id="toc-getwd-setwd-y-dir"><span class="toc-section-number">1.1</span> <code>getwd</code>, <code>setwd</code> y <code>dir</code></a></li>
 <li><a href="#caminos-de-las-carpetas" id="toc-caminos-de-las-carpetas"><span class="toc-section-number">1.2</span> “Caminos” de las carpetas</a></li>
 </ul></li>
-<li><a href="#archivos-de-texto" id="toc-archivos-de-texto"><span class="toc-section-number">2</span> Archivos de texto</a>
+<li><a href="#file-encoding" id="toc-file-encoding"><span class="toc-section-number">2</span> “file encoding”</a></li>
+<li><a href="#archivos-de-texto" id="toc-archivos-de-texto"><span class="toc-section-number">3</span> Archivos de texto</a>
 <ul>
-<li><a href="#leer-archivos-de-texto" id="toc-leer-archivos-de-texto"><span class="toc-section-number">2.1</span> Leer archivos de texto</a>
+<li><a href="#leer-archivos-de-texto" id="toc-leer-archivos-de-texto"><span class="toc-section-number">3.1</span> Leer archivos de texto</a>
 <ul>
-<li><a href="#función-readlines" id="toc-función-readlines"><span class="toc-section-number">2.1.1</span> Función readlines</a></li>
-<li><a href="#funciones-read.table-read.csv-etc" id="toc-funciones-read.table-read.csv-etc"><span class="toc-section-number">2.1.2</span> Funciones read.table, read.csv etc</a></li>
+<li><a href="#función-readlines" id="toc-función-readlines"><span class="toc-section-number">3.1.1</span> Función readlines</a></li>
+<li><a href="#funciones-read.table-read.csv-etc" id="toc-funciones-read.table-read.csv-etc"><span class="toc-section-number">3.1.2</span> Funciones read.table, read.csv etc</a></li>
 </ul></li>
-<li><a href="#file-encoding" id="toc-file-encoding"><span class="toc-section-number">2.2</span> “file encoding”</a></li>
+<li><a href="#escribir-archivos-de-texto-con-r" id="toc-escribir-archivos-de-texto-con-r"><span class="toc-section-number">3.2</span> Escribir archivos de texto con R</a>
+<ul>
+<li><a href="#writelines" id="toc-writelines"><span class="toc-section-number">3.2.1</span> <code>writeLines</code></a></li>
+<li><a href="#write.csv-write.table-etc" id="toc-write.csv-write.table-etc"><span class="toc-section-number">3.2.2</span> <code>write.csv</code>, <code>write.table</code> etc</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#archivos-xlsx" id="toc-archivos-xlsx"><span class="toc-section-number">4</span> Archivos xlsx</a>
+<ul>
+<li><a href="#lectura" id="toc-lectura"><span class="toc-section-number">4.1</span> Lectura</a></li>
+<li><a href="#escritura" id="toc-escritura"><span class="toc-section-number">4.2</span> Escritura</a></li>
+</ul></li>
+<li><a href="#archivos-open-documents" id="toc-archivos-open-documents"><span class="toc-section-number">5</span> Archivos Open Documents</a></li>
+<li><a href="#archivos-de-datos-para-r" id="toc-archivos-de-datos-para-r"><span class="toc-section-number">6</span> Archivos de datos para R</a>
+<ul>
+<li><a href="#rdata" id="toc-rdata"><span class="toc-section-number">6.1</span> RData</a></li>
+<li><a href="#rds" id="toc-rds"><span class="toc-section-number">6.2</span> RDS</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -2218,8 +2236,16 @@ Documentación taxonomía
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<a href="https://raw.githubusercontent.com/marbotte/cursoBiodata/master/download/R_code/documentation/doc_R_import_export.R">
+<button class="btn btn-default"><i class="fa fa-save"></i> Download R script</button>
+</a>
+</div>
 <p>Muchos formatos de archivo se pueden leer en R.
-Acá miraremos algunos, como los archivos de texto (csv, txt), los applicaciones de hojas de calcul (xlsx, ods) y los archivos especificos de R</p>
+Acá miraremos algunos, como los archivos de texto (csv, txt), los applicaciones de hojas de calcul (xlsx, ods) y los archivos especificos de R.</p>
 <h1 data-number="1" id="interactuar-con-el-sistema-de-archivos"><span class="header-section-number">1</span> Interactuar con el sistema de archivos</h1>
 <p>R funciona con el sistema de archivos a través de un “working directory”.</p>
 <h2 data-number="1.1" id="getwd-setwd-y-dir"><span class="header-section-number">1.1</span> <code>getwd</code>, <code>setwd</code> y <code>dir</code></h2>
@@ -2242,39 +2268,31 @@ Acá miraremos algunos, como los archivos de texto (csv, txt), los applicaciones
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>dir</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code> [1] &quot;_site.yml&quot;                      
- [2] &quot;about.html&quot;                     
- [3] &quot;about.Rmd&quot;                      
- [4] &quot;act_R_intro_corr_files&quot;         
- [5] &quot;act_R_intro_corr.html&quot;          
- [6] &quot;act_R_intro_corr.Rmd&quot;           
- [7] &quot;act_R_intro_files&quot;              
- [8] &quot;act_R_intro.html&quot;               
- [9] &quot;act_R_intro.Rmd&quot;                
-[10] &quot;cursoBiodata.bib&quot;               
-[11] &quot;cursoBiodata.bib.bak&quot;           
-[12] &quot;cursoBiodata.Rproj&quot;             
-[13] &quot;doc_main_files&quot;                 
-[14] &quot;doc_main.html&quot;                  
-[15] &quot;doc_main.Rmd&quot;                   
-[16] &quot;doc_R_clases_modos.html&quot;        
-[17] &quot;doc_R_clases_modos.Rmd&quot;         
-[18] &quot;doc_R_import_export.Rmd&quot;        
-[19] &quot;doc_SQL_consultas_avanzadas.Rmd&quot;
-[20] &quot;doc_SQL_crear_bases.Rmd&quot;        
-[21] &quot;doc_SQL_modificar_bases.Rmd&quot;    
-[22] &quot;doc_SQL_simple.Rmd&quot;             
-[23] &quot;docs&quot;                           
-[24] &quot;download&quot;                       
-[25] &quot;ejemplo_POO.R&quot;                  
-[26] &quot;ejemplo_POO.Rmd&quot;                
-[27] &quot;index.Rmd&quot;                      
-[28] &quot;inst_software_linux.Rmd&quot;        
-[29] &quot;inst_software_windows.Rmd&quot;      
-[30] &quot;inst-paquetes_R.Rmd&quot;            
-[31] &quot;inst-software_macOS.Rmd&quot;        
-[32] &quot;r_func&quot;                         
-[33] &quot;site_libs&quot;                      
-[34] &quot;sql_code&quot;                       </code></pre>
+ [2] &quot;about.Rmd&quot;                      
+ [3] &quot;act_R_intro_corr.Rmd&quot;           
+ [4] &quot;act_R_intro.Rmd&quot;                
+ [5] &quot;cursoBiodata.bib&quot;               
+ [6] &quot;cursoBiodata.bib.bak&quot;           
+ [7] &quot;cursoBiodata.Rproj&quot;             
+ [8] &quot;doc_main.Rmd&quot;                   
+ [9] &quot;doc_R_buscarRelacionar.Rmd&quot;     
+[10] &quot;doc_R_clases_modos.Rmd&quot;         
+[11] &quot;doc_R_import_export.Rmd&quot;        
+[12] &quot;doc_SQL_consultas_avanzadas.Rmd&quot;
+[13] &quot;doc_SQL_crear_bases.Rmd&quot;        
+[14] &quot;doc_SQL_modificar_bases.Rmd&quot;    
+[15] &quot;doc_SQL_simple.Rmd&quot;             
+[16] &quot;docs&quot;                           
+[17] &quot;download&quot;                       
+[18] &quot;ejemplo_POO.R&quot;                  
+[19] &quot;ejemplo_POO.Rmd&quot;                
+[20] &quot;index.Rmd&quot;                      
+[21] &quot;inst_software_linux.Rmd&quot;        
+[22] &quot;inst_software_windows.Rmd&quot;      
+[23] &quot;inst-paquetes_R.Rmd&quot;            
+[24] &quot;inst-software_macOS.Rmd&quot;        
+[25] &quot;r_func&quot;                         
+[26] &quot;sql_code&quot;                       </code></pre>
 </div>
 <h2 data-number="1.2" id="caminos-de-las-carpetas"><span class="header-section-number">1.2</span> “Caminos” de las carpetas</h2>
 <p>Los “caminos” o “direcciones” de las carpetas están codificados como cadenas de carácter en R, siguen las normas de direcciones de los sistemas UNIX:</p>
@@ -2286,18 +2304,221 @@ Acá miraremos algunos, como los archivos de texto (csv, txt), los applicaciones
 <p>En los proyectos, les aconsejo siempre utilizar “caminos relativos”, utilizando los signos <code>.</code> y <code>..</code> para escribir las direcciones de los archivos.
 De está manera pueden mover la carpeta, y los codigos no deberían dejar de funcionar, si la relación entre las carpetas de codigos y datos quedan iguales en la nueva dirección de carpeta.
 En Rstudio, <code>Session</code>&gt;<code>Set working directory</code>&gt;<code>To source file location</code> les permite aplicar un <code>setwd</code> a la carpeta donde está el script de R.</p>
-<h1 data-number="2" id="archivos-de-texto"><span class="header-section-number">2</span> Archivos de texto</h1>
-<h2 data-number="2.1" id="leer-archivos-de-texto"><span class="header-section-number">2.1</span> Leer archivos de texto</h2>
+<h1 data-number="2" id="file-encoding"><span class="header-section-number">2</span> “file encoding”</h1>
+<p>El “encoding” es una definición del set de caracteres utilizado en los archivos. Para evitar problemas de compatibilidad, les aconsejo utilizar siempre “UTF-8”, una norma unificada de “encoding” disponible en la mayoría de los sistemas.</p>
+<p>En R eso se puede hacer con:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setlocale</span>(<span class="at">locale =</span> <span class="st">&#39;es_CL.UTF-8&#39;</span>)</span></code></pre></div>
+<p>Este comando se puede escribir en el archivo .Rprofile para que sea leído antes de empezar cada sesión de R (ver <a href="https://support.posit.co/hc/en-us/articles/360047157094-Managing-R-with-Rprofile-Renviron-Rprofile-site-Renviron-site-rsession-conf-and-repos-conf" class="uri">https://support.posit.co/hc/en-us/articles/360047157094-Managing-R-with-Rprofile-Renviron-Rprofile-site-Renviron-site-rsession-conf-and-repos-conf</a>).</p>
+<p>En Rstudio, vale la pena mirar como poner UTF8 como el encoding por defecto (<a href="https://community.rstudio.com/t/how-can-i-change-the-default-encoding-when-sourcing/14350" class="uri">https://community.rstudio.com/t/how-can-i-change-the-default-encoding-when-sourcing/14350</a>)</p>
+<h1 data-number="3" id="archivos-de-texto"><span class="header-section-number">3</span> Archivos de texto</h1>
+<h2 data-number="3.1" id="leer-archivos-de-texto"><span class="header-section-number">3.1</span> Leer archivos de texto</h2>
 <p>La mayoría de los archivos que se utilizan son simplemente archivos de texto.
 Aunque tengan extensiones de archivos diferentes, los archivos txt, csv, o incluidó los scripts de R, SQL o python son todos simplemente archivos de texto, lo que les permite estar leído de manera nativa en todas las plataformas.</p>
-<h3 data-number="2.1.1" id="función-readlines"><span class="header-section-number">2.1.1</span> Función readlines</h3>
+<h3 data-number="3.1.1" id="función-readlines"><span class="header-section-number">3.1.1</span> Función readlines</h3>
 <p>La función <code>readLines</code> es una de las funciones más básica para leer archivos de texto (existen unos métodos para abrir archivos como “conexiones” de manera todavía más básica, pero se necesitan raramente, los que quieren pueden mirar las funciones <code>stdin</code>, <code>open</code>, <code>file</code> etc).
 Lo que hace la función <code>readLines</code> es simplemente poner cada linea de un archivo de texto en un elemento de un vector de modo carácter.</p>
-<h3 data-number="2.1.2" id="funciones-read.table-read.csv-etc"><span class="header-section-number">2.1.2</span> Funciones read.table, read.csv etc</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span><span class='op'>(</span><span class='st'>"../Datos/bog_chinga.csv"</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;\&quot;UniMuestreo\&quot;,\&quot;Especie\&quot;,\&quot;abundancia\&quot;&quot; 
+[2] &quot;\&quot;Bogotá\&quot;,\&quot;Canis lupus\&quot;,3000&quot;            
+[3] &quot;\&quot;Bogotá\&quot;,\&quot;Felis catus\&quot;,1000&quot;            
+[4] &quot;\&quot;Chingaza\&quot;,\&quot;Tremarctos ornatus\&quot;,50&quot;     
+[5] &quot;\&quot;Chingaza\&quot;,\&quot;Canis lupus\&quot;,100&quot;           
+[6] &quot;\&quot;Chingaza\&quot;,\&quot;Odocoileus virginianus\&quot;,200&quot;</code></pre>
+</div>
+<h3 data-number="3.1.2" id="funciones-read.table-read.csv-etc"><span class="header-section-number">3.1.2</span> Funciones read.table, read.csv etc</h3>
 <p>Las función <code>read.table</code>, <code>read.csv</code>, <code>read.delim</code> permiten leer archivos de texto que están estructurados como tablas (por ejemplo los archivos csv).
-Las principales diferencias entre esas funciones son los valores por defecto de sus argumentos</p>
-<h2 data-number="2.2" id="file-encoding"><span class="header-section-number">2.2</span> “file encoding”</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+Las principales diferencias entre esas funciones son los valores por defecto de sus argumentos (consultar el archivo de ayuda para mirar las opciones).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"../Datos/bog_chinga.csv"</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>  UniMuestreo                Especie abundancia
+1      Bogotá            Canis lupus       3000
+2      Bogotá            Felis catus       1000
+3    Chingaza     Tremarctos ornatus         50
+4    Chingaza            Canis lupus        100
+5    Chingaza Odocoileus virginianus        200</code></pre>
+</div>
+<h2 data-number="3.2" id="escribir-archivos-de-texto-con-r"><span class="header-section-number">3.2</span> Escribir archivos de texto con R</h2>
+<h3 data-number="3.2.1" id="writelines"><span class="header-section-number">3.2.1</span> <code>writeLines</code></h3>
+<p>Para escribir archivos de texto simples, se puede utilizar la función <code>writeLines</code></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>miTexto</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Hello world"</span>,<span class='st'>"Me llamo Marius"</span>,<span class='st'>"y estoy escribiendo un texto en R"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span><span class='op'>(</span><span class='va'>miTexto</span>, con<span class='op'>=</span><span class='st'>"../Resultados/miTexto.txt"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h3 data-number="3.2.2" id="write.csv-write.table-etc"><span class="header-section-number">3.2.2</span> <code>write.csv</code>, <code>write.table</code> etc</h3>
+<p>Para guardar tablas que se pueden leer en otros programas, lo más seguro es guardar archivos csv (consultar el archivo de ayuda para mirar las opciones).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>letras_numeros</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>letras<span class='op'>=</span><span class='va'>LETTERS</span>,numeros<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>LETTERS</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>   letras numeros
+1       A       1
+2       B       2
+3       C       3
+4       D       4
+5       E       5
+6       F       6
+7       G       7
+8       H       8
+9       I       9
+10      J      10
+11      K      11
+12      L      12
+13      M      13
+14      N      14
+15      O      15
+16      P      16
+17      Q      17
+18      R      18
+19      S      19
+20      T      20
+21      U      21
+22      V      22
+23      W      23
+24      X      24
+25      Y      25
+26      Z      26</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>letras_numeros</span>,file<span class='op'>=</span><span class='st'>"../Resultados/let_num.csv"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h1 data-number="4" id="archivos-xlsx"><span class="header-section-number">4</span> Archivos xlsx</h1>
+<h2 data-number="4.1" id="lectura"><span class="header-section-number">4.1</span> Lectura</h2>
+<p>Existen varios paquetes que permiten leer archivos de Microsoft Excel.
+Personalmente, utilizo principalmente <code>openxlsx</code> y su función <code>read.xlsx</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ycphs.github.io/openxlsx/index.html'>openxlsx</a></span><span class='op'>)</span></span>
+<span><span class='op'>(</span><span class='va'>programa</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/read.xlsx.html'>read.xlsx</a></span><span class='op'>(</span><span class='st'>"../Datos/Curso.xlsx"</span>,sheet<span class='op'>=</span><span class='st'>"programa"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>         Día periodo                actividad
+1      Lunes  mañana            Introdución,R
+2      Lunes   tarde                        R
+3     Martes  mañana                      SQL
+4     Martes   tarde                      SQL
+5  Miercoles  mañana                taxonomía
+6  Miercoles   tarde                 espacial
+7     Jueves  mañana Modelo de datos de Chile
+8     Jueves   tarde Modelo de datos de Chile
+9    Viernes  mañana            Git, paquetes
+10   Viernes   tarde       Construir una base</code></pre>
+</div>
+<p>Existen numerosas opciones de lectura (ver ayuda de la función read.xlsx).</p>
+<p>Si queremos más posibilidades de edición, es posible cargar el archivo con la función <code>loadWorkbook</code></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>wbCurso</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/loadWorkbook.html'>loadWorkbook</a></span><span class='op'>(</span><span class='st'>"../Datos/Curso.xlsx"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>Los nombres de pestañas están en:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>wbCurso</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;programa&quot;    &quot;estudiantes&quot;</code></pre>
+</div>
+<p>Con el archivo cargado, se puede utilizar esa variable para leer el archivo:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>estudiantes</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/read.xlsx.html'>read.xlsx</a></span><span class='op'>(</span><span class='va'>wbCurso</span>,sheet<span class='op'>=</span><span class='st'>"estudiantes"</span>,colNames<span class='op'>=</span><span class='cn'>F</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>                              X1
+1       Catalina Merino Yunnissi
+2                  Diego Alarcón
+3   Alejandra Jiménez Hernández 
+4  Pamela Victoria Martínez Soto
+5                   juan larrain
+6        Gustavo Torres Mellado 
+7    francisca gonzalez deramond
+8         Victoria Arévalo Rocha
+9       Juan José Ortiz Sandoval
+10                  Karla García
+11                Soledad Kremer
+12         Valentina Perez Tello
+13        javiera vergara vidal 
+14 Francisca gonzalez Contreras 
+15                Diego Gonzalez
+16      Nicolás Ortega González 
+17                  Felipe Durán
+18   Juan Pablo Vicencio Segura 
+19              Amparo Rodríguez
+20     Angelica Villalobo López 
+21               Caterina Vivero</code></pre>
+</div>
+<h2 data-number="4.2" id="escritura"><span class="header-section-number">4.2</span> Escritura</h2>
+<p>Para escribir un archivo xlsx, lo más practico es utilizar la función <code>createWorkbook</code></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>mi_xlsx</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/createWorkbook.html'>createWorkbook</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/addWorksheet.html'>addWorksheet</a></span><span class='op'>(</span><span class='va'>mi_xlsx</span>,<span class='st'>"programa"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/addWorksheet.html'>addWorksheet</a></span><span class='op'>(</span><span class='va'>mi_xlsx</span>,<span class='st'>"estudiantes"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/addWorksheet.html'>addWorksheet</a></span><span class='op'>(</span><span class='va'>mi_xlsx</span>,<span class='st'>"num_estudiantes"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>Después, podemos escribir los datos en cada “worksheet”</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/writeData.html'>writeData</a></span><span class='op'>(</span><span class='va'>mi_xlsx</span>,<span class='st'>"programa"</span>,<span class='va'>programa</span>,rowNames <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/writeData.html'>writeData</a></span><span class='op'>(</span><span class='va'>mi_xlsx</span>,<span class='st'>"estudiantes"</span>,<span class='va'>estudiantes</span>,rowNames <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span></span>
+<span><span class='va'>num_estu</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>estudiantes</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/writeData.html'>writeData</a></span><span class='op'>(</span><span class='va'>mi_xlsx</span>,<span class='st'>"num_estudiantes"</span>,<span class='va'>num_estu</span>,rowNames <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>Finalmente, podemos exportar el archivo excel con:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/saveWorkbook.html'>saveWorkbook</a></span><span class='op'>(</span><span class='va'>mi_xlsx</span>,file<span class='op'>=</span><span class='st'>"../Resultados/mi_xlsx"</span>, overwrite <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h1 data-number="5" id="archivos-open-documents"><span class="header-section-number">5</span> Archivos Open Documents</h1>
+<p>Si utilizan los archivos Open Documents (es una buena idea, desafortunadamente, muchas personas prefieren utilizar el formato xlsx de Microsoft), pueden utilizar el paquete
+<a href="https://cran.r-project.org/web/packages/readODS/readODS.pdf"><code>readODS</code></a>.</p>
+<h1 data-number="6" id="archivos-de-datos-para-r"><span class="header-section-number">6</span> Archivos de datos para R</h1>
+<p>Exiten formatos de archivos de datos especificos para R: los archivos rds y RData.</p>
+<p>Las diferencias entre esos archivos son:</p>
+<ul>
+<li>rds se utiliza para guardar un solo objeto</li>
+<li>RData se puede utilizar para guardar una lista de objetos</li>
+<li>rds no contiene el nombre del archivo, se necesita afectar un nombre al importarlo</li>
+<li>RData contiene los nombres de los objetos, así que los nombres no se pueden cambiar al importarlos</li>
+</ul>
+<h2 data-number="6.1" id="rdata"><span class="header-section-number">6.1</span> RData</h2>
+<p>Los archivos RData se guardan así:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span><span class='op'>(</span>list<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"programa"</span>,<span class='st'>"estudiantes"</span><span class='op'>)</span>,file<span class='op'>=</span><span class='st'>"../Resultados/cursoBiodata.RData"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>y se importan así:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span>file<span class='op'>=</span><span class='st'>"../Resultados/cursoBiodata.RData"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;programa&quot;    &quot;estudiantes&quot;</code></pre>
+</div>
+<p>Nota: poner una linea de codigo entre parentesis permite imprimir el resultado en la consola, en el caso de load, es muy util porque contiene la lista de las variables importadas.</p>
+<h2 data-number="6.2" id="rds"><span class="header-section-number">6.2</span> RDS</h2>
+<p>Los archivos RDS se guardan así:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>saveRDS</a></span><span class='op'>(</span>object<span class='op'>=</span><span class='va'>num_estu</span>,file<span class='op'>=</span><span class='st'>"../Resultados/nbStud.rds"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>y se importan así:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>nbStud</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>readRDS</a></span><span class='op'>(</span><span class='st'>"../Resultados/nbStud.rds"</span><span class='op'>)</span></span>
+<span><span class='va'>nbStud</span><span class='op'>==</span><span class='va'>num_estu</span></span></code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

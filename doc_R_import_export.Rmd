@@ -8,14 +8,34 @@ output:
     toc_float: true
     pandoc_args: ["--number-sections"]
 ---
-
-```{r setup, echo=F, message=F,warning=F}
+```{r echo=F, message=F,warning=F, purl=FALSE}
 library(knitr)
 library(kableExtra)
+library(downloadthis)
+```
+
+
+
+```{r echo=F, message=F,warning=F, purl=FALSE, results='hide', eval=!interactive()}
+fileR<-purl(knitr::current_input(),documentation = 1, quiet=T)
+file.rename(fileR,paste0("./download/R_code/documentation/",fileR))
+```
+
+
+
+```{r echo=F, message=F,warning=F, purl=FALSE, eval=!interactive()}
+download_link(
+  link = paste0("https://raw.githubusercontent.com/marbotte/cursoBiodata/master/download/R_code/documentation/",fileR),
+  button_label = "Download R script",
+  button_type = "default",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = TRUE
+)  
 ```
 
 Muchos formatos de archivo se pueden leer en R.
-Acá miraremos algunos, como los archivos de texto (csv, txt), los applicaciones de hojas de calcul (xlsx, ods) y los archivos especificos de R
+Acá miraremos algunos, como los archivos de texto (csv, txt), los applicaciones de hojas de calcul (xlsx, ods) y los archivos especificos de R.
 
 # Interactuar con el sistema de archivos
 
@@ -53,6 +73,19 @@ En los proyectos, les aconsejo siempre utilizar "caminos relativos", utilizando 
 De está manera pueden mover la carpeta, y los codigos no deberían dejar de funcionar, si la relación entre las carpetas de codigos y datos quedan iguales en la nueva dirección de carpeta.
 En Rstudio, `Session`>`Set working directory`>`To source file location` les permite aplicar un `setwd` a la carpeta donde está el script de R.
 
+# "file encoding"
+
+El "encoding" es una definición del set de caracteres utilizado en los archivos. Para evitar problemas de compatibilidad, les aconsejo utilizar siempre "UTF-8", una norma unificada de "encoding" disponible en la mayoría de los sistemas.
+
+En R eso se puede hacer con:
+
+```r
+Sys.setlocale(locale = 'es_CL.UTF-8')
+```
+
+Este comando se puede escribir en el archivo .Rprofile para que sea leído antes de empezar cada sesión de R (ver <https://support.posit.co/hc/en-us/articles/360047157094-Managing-R-with-Rprofile-Renviron-Rprofile-site-Renviron-site-rsession-conf-and-repos-conf>).
+
+En Rstudio, vale la pena mirar como poner UTF8 como el encoding por defecto (<https://community.rstudio.com/t/how-can-i-change-the-default-encoding-when-sourcing/14350>)
 
 # Archivos de texto
 
@@ -67,9 +100,143 @@ La función `readLines` es una de las funciones más básica para leer archivos 
 Lo que hace la función `readLines` es simplemente poner cada linea de un archivo de texto en un elemento de un vector de modo carácter.
 
 
+```{r}
+readLines("../Datos/bog_chinga.csv")
+```
+
+
 ### Funciones read.table, read.csv etc
 Las función `read.table`, `read.csv`, `read.delim` permiten leer archivos de texto que están estructurados como tablas (por ejemplo los archivos csv).
-Las principales diferencias entre esas funciones son los valores por defecto de sus argumentos
+Las principales diferencias entre esas funciones son los valores por defecto de sus argumentos (consultar el archivo de ayuda para mirar las opciones).
 
-## "file encoding"
+```{r}
+read.csv("../Datos/bog_chinga.csv")
+```
+
+## Escribir archivos de texto con R
+
+
+### `writeLines`
+Para escribir archivos de texto simples, se puede utilizar la función `writeLines`
+
+```{r}
+miTexto<-c("Hello world","Me llamo Marius","y estoy escribiendo un texto en R")
+writeLines(miTexto, con="../Resultados/miTexto.txt")
+```
+
+### `write.csv`, `write.table` etc
+
+Para guardar tablas que se pueden leer en otros programas, lo más seguro es guardar archivos csv (consultar el archivo de ayuda para mirar las opciones).
+
+```{r}
+(letras_numeros<-data.frame(letras=LETTERS,numeros=1:length(LETTERS)))
+write.csv(letras_numeros,file="../Resultados/let_num.csv")
+```
+
+# Archivos xlsx
+
+## Lectura
+
+Existen varios paquetes que permiten leer archivos de Microsoft Excel.
+Personalmente, utilizo principalmente `openxlsx` y su función `read.xlsx`.
+
+
+```{r}
+library(openxlsx)
+(programa<-read.xlsx("../Datos/Curso.xlsx",sheet="programa"))
+```
+
+Existen numerosas opciones de lectura (ver ayuda de la función read.xlsx).
+
+Si queremos más posibilidades de edición, es posible cargar el archivo con la función `loadWorkbook`
+
+```{r}
+wbCurso <- loadWorkbook("../Datos/Curso.xlsx")
+```
+
+Los nombres de pestañas están en:
+
+```{r}
+names(wbCurso)
+```
+
+Con el archivo cargado, se puede utilizar esa variable para leer el archivo:
+
+
+```{r}
+(estudiantes<-read.xlsx(wbCurso,sheet="estudiantes",colNames=F))
+```
+
+## Escritura
+
+Para escribir un archivo xlsx, lo más practico es utilizar la función `createWorkbook`
+
+```{r}
+mi_xlsx<-createWorkbook()
+addWorksheet(mi_xlsx,"programa")
+addWorksheet(mi_xlsx,"estudiantes")
+addWorksheet(mi_xlsx,"num_estudiantes")
+```
+Después, podemos escribir los datos en cada "worksheet"
+
+
+```{r}
+writeData(mi_xlsx,"programa",programa,rowNames = F)
+writeData(mi_xlsx,"estudiantes",estudiantes,rowNames = F)
+num_estu<-length(estudiantes)
+writeData(mi_xlsx,"num_estudiantes",num_estu,rowNames = F)
+```
+
+Finalmente, podemos exportar el archivo excel con:
+
+```{r}
+saveWorkbook(mi_xlsx,file="../Resultados/mi_xlsx", overwrite = T)
+```
+
+# Archivos Open Documents
+
+Si utilizan los archivos Open Documents (es una buena idea, desafortunadamente, muchas personas prefieren utilizar el formato xlsx de Microsoft), pueden utilizar el paquete
+[`readODS`](https://cran.r-project.org/web/packages/readODS/readODS.pdf).
+
+# Archivos de datos para R
+
+Exiten formatos de archivos de datos especificos para R: los archivos rds y RData.
+
+Las diferencias entre esos archivos son:
+
+* rds se utiliza para guardar un solo objeto
+* RData se puede utilizar para guardar una lista de objetos
+* rds no contiene el nombre del archivo, se necesita afectar un nombre al importarlo
+* RData contiene los nombres de los objetos, así que los nombres no se pueden cambiar al importarlos
+
+## RData
+
+Los archivos RData se guardan así:
+
+```{r}
+save(list=c("programa","estudiantes"),file="../Resultados/cursoBiodata.RData")
+```
+
+y se importan así:
+
+```{r}
+(load(file="../Resultados/cursoBiodata.RData"))
+```
+
+Nota: poner una linea de codigo entre parentesis permite imprimir el resultado en la consola, en el caso de load, es muy util porque contiene la lista de las variables importadas.
+
+## RDS
+
+Los archivos RDS se guardan así:
+
+```{r}
+saveRDS(object=num_estu,file="../Resultados/nbStud.rds")
+```
+
+y se importan así:
+
+```{r}
+nbStud<-readRDS("../Resultados/nbStud.rds")
+nbStud==num_estu
+```
 

@@ -215,6 +215,19 @@ Desafortunadamente, los programas de análisis estadísticos funcionan mejor con
 |Bogotá|3000|1000|0|0|
 |Chingaza|100|0|50|200|
 
+
+Nota, esas tablas se pueden crear en R para probar las funciones:
+
+```{r}
+df_bog_chinga <- data.frame(
+  UniMuestreo=c(rep("Bogotá",2),rep("Chingaza",3)),
+  Especie=c("Canis lupus","Felis catus","Tremarctos ornatus","Canis lupus","Odocoileus virginianus"),
+  abundancia=c(3000,1000,50,100,200)
+)
+mat_bog_chinga <- matrix(c(3000,100,1000,0,0,50,0,200),nrow=2,dimnames=list(c("Bogotá","Chingaza"),c("Canis lupus","Felis catus","Tramarctos ornatus","Odocoileus viginianus")))
+```
+
+
 ## Ejercicio
 
 Contruir las funciones en R que permiten pasar de un formato "base de datos" a una matriz de abundancia o de presencia.

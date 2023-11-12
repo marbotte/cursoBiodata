@@ -1,0 +1,38 @@
+---
+title: "Buscar y relacionar datos en R: las funciones match, which etc."
+author: Marius Bottin
+lang: "es_CL"
+output:
+  bookdown::html_document2:
+    toc: true
+    number_sections: true
+always_allow_html: true
+---
+
+```{r setup, echo=F, message=F,warning=F}
+library(knitr)
+library(kableExtra)
+```
+
+
+Los datos en R no son directamente relacionales como lo son en una base de datos en SQL.
+Sin embargo, existen funciones que permitan buscar datos, y manejar relaciones entre objetos de datos.
+
+# Función `which`
+## Vectores
+
+La función `which` permite obtener los indices de un vector de modo logico:
+
+```{r}
+which(c(T,F,F,T))
+```
+Así se pueden extraer resultados de una prueba lógica en un gran vector de datos:
+```{r}
+vecLeyNormal <- rnorm(1000, mean = 0, sd = 1)
+(sup3 <- which(vecLeyNormal > 3))
+vecLeyNormal[sup3]
+```
+
+## Arrays
+
+
