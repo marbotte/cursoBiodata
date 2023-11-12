@@ -21,7 +21,7 @@ navbar:
         - text: "Buscar datos y correspondencias entre objetos"
           href: doc_R_buscarRelacionar.html
         - text: "Bucles, funciones *pply, y estructuras de control"
-        - text: "Crear funciones en R"
+          href: doc_R_structuraControl.html
         - text: "---"
         - text: "SQL"
         - text: "---"

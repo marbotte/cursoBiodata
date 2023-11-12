@@ -88,29 +88,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Curso Biodata: Ejemplo de POO</title>
+  <title>Curso Biodata: Bucles y estructuras de control en R</title>
 
-  <meta property="description" itemprop="description" content="Pequeño ejemplo illustrando la POO en R"/>
+  <meta property="description" itemprop="description" content="Bucles `for` y `while`, funciones de tipo `*PPLY` y funciones"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Curso Biodata: Ejemplo de POO"/>
+  <meta property="og:title" content="Curso Biodata: Bucles y estructuras de control en R"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Pequeño ejemplo illustrando la POO en R"/>
+  <meta property="og:description" content="Bucles `for` y `while`, funciones de tipo `*PPLY` y funciones"/>
   <meta property="og:locale" content="es_CL"/>
   <meta property="og:site_name" content="Curso Biodata"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Curso Biodata: Ejemplo de POO"/>
-  <meta property="twitter:description" content="Pequeño ejemplo illustrando la POO en R"/>
+  <meta property="twitter:title" content="Curso Biodata: Bucles y estructuras de control en R"/>
+  <meta property="twitter:description" content="Bucles `for` y `while`, funciones de tipo `*PPLY` y funciones"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","lang","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Ejemplo de POO"]},{"type":"character","attributes":{},"value":["es_CL"]},{"type":"character","attributes":{},"value":["Pequeño ejemplo illustrando la POO en R"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","lang","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Bucles y estructuras de control en R"]},{"type":"character","attributes":{},"value":["es_CL"]},{"type":"character","attributes":{},"value":["Bucles `for` y `while`, funciones de tipo `*PPLY` y funciones"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","pandoc_args"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["--number-sections"]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2100,6 +2100,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+  <link href="site_libs/font-awesome-5.13.0/css/all.min.css" rel="stylesheet" />
+  <link href="site_libs/font-awesome-5.13.0/css/v4-shims.min.css" rel="stylesheet" />
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2119,7 +2121,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Ejemplo de POO","description":"Pequeño ejemplo illustrando la POO en R","authors":[]}
+{"title":"Bucles y estructuras de control en R","description":"Bucles `for` y `while`, funciones de tipo `*PPLY` y funciones","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2184,40 +2186,264 @@ Documentación taxonomía
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Ejemplo de POO</h1>
+<h1>Bucles y estructuras de control en R</h1>
 
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p>Pequeño ejemplo illustrando la POO en R</p>
+<p>Bucles <code>for</code> y <code>while</code>, funciones de tipo <code>*PPLY</code> y funciones</p>
 </div>
 
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#bucles-en-r" id="toc-bucles-en-r"><span class="toc-section-number">1</span> Bucles en R</a></li>
+<li><a href="#funciones-pply" id="toc-funciones-pply"><span class="toc-section-number">2</span> Funciones *PPLY</a>
+<ul>
+<li><a href="#apply" id="toc-apply"><span class="toc-section-number">2.1</span> <code>apply</code></a></li>
+<li><a href="#lapply-y-sapply" id="toc-lapply-y-sapply"><span class="toc-section-number">2.2</span> <code>lapply</code> y <code>sapply</code></a></li>
+<li><a href="#reduce" id="toc-reduce"><span class="toc-section-number">2.3</span> Reduce</a></li>
+<li><a href="#tapply" id="toc-tapply"><span class="toc-section-number">2.4</span> <code>tapply</code></a></li>
+<li><a href="#by" id="toc-by"><span class="toc-section-number">2.5</span> <code>by</code></a></li>
+</ul></li>
+<li><a href="#crear-funciones" id="toc-crear-funciones"><span class="toc-section-number">3</span> Crear funciones</a></li>
+</ul>
+</nav>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<a href="https://raw.githubusercontent.com/marbotte/cursoBiodata/master/download/R_code/documentation/doc_R_structuraControl.R">
+<button class="btn btn-default"><i class="fa fa-save"></i> Download R script</button>
+</a>
+</div>
+<h1 data-number="1" id="bucles-en-r"><span class="header-section-number">1</span> Bucles en R</h1>
+<p>Las bucles permiten repetir operaciones y cambiar algunos valores en el proceso.</p>
+<p>El tipo de bucle más utilizado es <code>for</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>val</span><span class='op'>&lt;-</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span></span>
+<span><span class='op'>{</span></span>
+<span>  <span class='kw'>if</span><span class='op'>(</span><span class='va'>i</span><span class='op'><a href='https://rdrr.io/r/base/Arithmetic.html'>%%</a></span><span class='fl'>2</span> <span class='op'>==</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>{</span><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='va'>i</span>,<span class='st'>"es un número par\n"</span><span class='op'>)</span><span class='op'>}</span><span class='kw'>else</span><span class='op'>{</span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span><span class='op'>}</span></span>
+<span><span class='op'>}</span></span></code></pre>
 </div>
-<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre><code>[1] 1
+2 es un número par
+[1] 3
+4 es un número par
+[1] 5
+6 es un número par
+[1] 7
+8 es un número par
+[1] 9
+10 es un número par</code></pre>
+</div>
+<p>Tambien se puede utilizar <code>while</code> (principalmente útil cuando no se puede determinar el numero de operaciones, porque depende de lo que van a hacer las operaciones).</p>
+<div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>let</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>,<span class='st'>"b"</span>,<span class='st'>"c"</span><span class='op'>)</span>,size<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>val</span><span class='op'>)</span>,replace<span class='op'>=</span><span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>res</span><span class='op'>&lt;-</span><span class='fl'>1</span></span>
+<span><span class='kw'>while</span><span class='op'>(</span><span class='va'>res</span><span class='op'>&lt;</span><span class='fl'>10</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  <span class='va'>add</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>3</span><span class='op'>)</span>,<span class='fl'>1</span><span class='op'>)</span></span>
+<span>  <span class='va'>res</span><span class='op'>&lt;-</span><span class='va'>res</span><span class='op'>+</span><span class='va'>add</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"yo añado"</span>,<span class='va'>add</span>,<span class='st'>"ahora 'res' vale"</span>,<span class='va'>res</span>,<span class='st'>"\n"</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span></code></pre>
 </div>
-<pre><code> [1] &quot;a&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;c&quot; &quot;a&quot; &quot;b&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<pre><code>yo añado 1 ahora &#39;res&#39; vale 2 
+yo añado 1 ahora &#39;res&#39; vale 3 
+yo añado 3 ahora &#39;res&#39; vale 6 
+yo añado 1 ahora &#39;res&#39; vale 7 
+yo añado 3 ahora &#39;res&#39; vale 10 </code></pre>
+</div>
+<h1 data-number="2" id="funciones-pply"><span class="header-section-number">2</span> Funciones *PPLY</h1>
+<p>Las funciones de tipo <code>*PPLY</code> permiten aplicar implícitamente una función en una bucle <code>for</code> sobre un objeto.</p>
+<h2 data-number="2.1" id="apply"><span class="header-section-number">2.1</span> <code>apply</code></h2>
+<p><code>apply</code> aplica una función sobre una dimensión de un array (1 significa por fila, 2 por columna)</p>
+<div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>tab</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>let</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='st'>"../Datos/bog_chinga.RData"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>let
-a b c 
-2 6 2 </code></pre>
+<pre><code>[1] &quot;df_bog_chinga&quot;  &quot;mat_bog_chinga&quot;</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>val</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>mat_bog_chinga</span></span></code></pre>
 </div>
-<img src="ejemplo_POO_files/figure-html5/unnamed-chunk-1-1.png" width="624" />
+<pre><code>         Canis lupus Felis catus Tramarctos ornatus
+Bogotá          3000        1000                  0
+Chingaza         100           0                 50
+         Odocoileus viginianus
+Bogotá                       0
+Chingaza                   200</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>tab</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>mat_bog_chinga</span>,<span class='fl'>1</span>,<span class='va'>mean</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="ejemplo_POO_files/figure-html5/unnamed-chunk-1-2.png" width="624" /></p>
+<pre><code>  Bogotá Chingaza 
+  1000.0     87.5 </code></pre>
 </div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>mat_bog_chinga</span>,<span class='fl'>2</span>,<span class='va'>mean</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>          Canis lupus           Felis catus    Tramarctos ornatus 
+                 1550                   500                    25 
+Odocoileus viginianus 
+                  100 </code></pre>
+</div>
+<p>Cuando simplify está verdadero y que los objetos de resultados tienen las mismas dimensiones, <code>apply</code> intenta simplificar los objetos en vectores o arrays, cuando no se puede, o simplify es falso, entonces, envia una lista:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>mat_bog_chinga</span>,<span class='fl'>1</span>,<span class='va'>mean</span>,simplify <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>$Bogotá
+[1] 1000
+
+$Chingaza
+[1] 87.5</code></pre>
+</div>
+<p>Las funciones se pueden definir directamente en la función apply, y los argumentos de las funciones se pueden poner en los argumentos de apply (las demás funciones de tipo <code>*PPLY</code> tambien lo aceptan:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>mat_bog_chinga</span>,<span class='fl'>1</span>,<span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>,<span class='va'>a</span><span class='op'>)</span><span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>toupper</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/which.min.html'>which.max</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span>,a<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>mat_bog_chinga</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>                 Bogotá                Chingaza 
+          &quot;CANIS LUPUS&quot; &quot;ODOCOILEUS VIGINIANUS&quot; </code></pre>
+</div>
+<h2 data-number="2.2" id="lapply-y-sapply"><span class="header-section-number">2.2</span> <code>lapply</code> y <code>sapply</code></h2>
+<p>lapply y sapply aplican la función a todos los elementos de un vector (y entonces a todos los elemetos de una lista).
+<code>sapply</code> simplifica el resultado si es posible</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://ycphs.github.io/openxlsx/index.html'>openxlsx</a></span><span class='op'>)</span></span>
+<span><span class='va'>cursoWB</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/loadWorkbook.html'>loadWorkbook</a></span><span class='op'>(</span><span class='st'>"../Datos/Curso.xlsx"</span><span class='op'>)</span></span>
+<span><span class='va'>contenidoPestañas</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>cursoWB</span><span class='op'>)</span>, <span class='va'>read.xlsx</span>, xlsxFile <span class='op'>=</span> <span class='va'>cursoWB</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>contenidoPestañas</span>,<span class='va'>dim</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[[1]]
+[1] 10  3
+
+[[2]]
+[1] 20  1</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>contenidoPestañas</span>,<span class='va'>dim</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>     [,1] [,2]
+[1,]   10   20
+[2,]    3    1</code></pre>
+</div>
+<h2 data-number="2.3" id="reduce"><span class="header-section-number">2.3</span> Reduce</h2>
+<p>En asociación con <code>lapply</code>, <code>Reduce</code> puede ser muy util para simplificar el resultado de manera diferente.
+Reduce toma una lista y aplica una funcion entre sus elementos para reducir el objeto</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>totalRowCol</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/funprog.html'>Reduce</a></span><span class='op'>(</span><span class='va'>`+`</span>,<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>contenidoPestañas</span>,<span class='va'>dim</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 30  4</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>totalRowCol</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/funprog.html'>Reduce</a></span><span class='op'>(</span><span class='va'>`rbind`</span>,<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>contenidoPestañas</span>,<span class='va'>dim</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>     [,1] [,2]
+init   10    3
+       20    1</code></pre>
+</div>
+<h2 data-number="2.4" id="tapply"><span class="header-section-number">2.4</span> <code>tapply</code></h2>
+<p><code>tapply</code> permite aplicar una función en un vector en función de grupos definidos en otro vector:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>valores</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 1 2 3 4 5</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>grupos</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"A"</span>,<span class='fl'>3</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"B"</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] A A A B B
+Levels: A B</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/tapply.html'>tapply</a></span><span class='op'>(</span><span class='va'>valores</span>,<span class='va'>grupos</span>,<span class='va'>sum</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>A B 
+6 9 </code></pre>
+</div>
+<h2 data-number="2.5" id="by"><span class="header-section-number">2.5</span> <code>by</code></h2>
+<p><code>by</code> es el equivalente de tapply para aplicar una función a una tabla según un vector de grupos:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>misViajes</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>pais<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Francia"</span>,<span class='st'>"Colombia"</span>,<span class='st'>"Colombia"</span>,<span class='st'>"Chile"</span><span class='op'>)</span>,</span>
+<span>                        año<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2021</span>,<span class='fl'>2003</span>,<span class='fl'>2004</span>,<span class='fl'>2023</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>      pais  año
+1  Francia 2021
+2 Colombia 2003
+3 Colombia 2004
+4    Chile 2023</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/by.html'>by</a></span><span class='op'>(</span><span class='va'>misViajes</span>,<span class='va'>misViajes</span><span class='op'>$</span><span class='va'>pais</span>,<span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>,<span class='st'>"viajes:"</span>,<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>$</span><span class='va'>año</span>,sep<span class='op'>=</span><span class='st'>""</span>,collapse<span class='op'>=</span><span class='st'>", "</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>misViajes$pais: Chile
+[1] &quot;1 viajes: 2023&quot;
+---------------------------------------------------- 
+misViajes$pais: Colombia
+[1] &quot;2 viajes: 2003, 2004&quot;
+---------------------------------------------------- 
+misViajes$pais: Francia
+[1] &quot;1 viajes: 2021&quot;</code></pre>
+</div>
+<h1 data-number="3" id="crear-funciones"><span class="header-section-number">3</span> Crear funciones</h1>
+<p>En R, se pueden definir funciones utilizando <code>function</code></p>
+<p>Los argumentos se definen en las parentesis, y pueden tener valor por defecto:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>create_list_metaData</span><span class='op'>&lt;-</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>date</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='va'>tipoOrganismos</span>,<span class='va'>lugar</span><span class='op'>=</span><span class='st'>"Concepción, Chile"</span><span class='op'>)</span></span>
+<span><span class='op'>{</span></span>
+<span>  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>date<span class='op'>=</span><span class='va'>date</span>,tipoOrganismos<span class='op'>=</span><span class='va'>tipoOrganismos</span>,lugar<span class='op'>=</span><span class='va'>lugar</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span>
+<span><span class='fu'>create_list_metaData</span><span class='op'>(</span>tipoOrganismos <span class='op'>=</span> <span class='st'>"Plantas"</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>$date
+[1] &quot;2023-11-12&quot;
+
+$tipoOrganismos
+[1] &quot;Plantas&quot;
+
+$lugar
+[1] &quot;Concepción, Chile&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>create_list_metaData</span><span class='op'>(</span>date<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span><span class='fl'>1</span>, tipoOrganismos <span class='op'>=</span> <span class='st'>"Animales"</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>$date
+[1] &quot;2023-11-13&quot;
+
+$tipoOrganismos
+[1] &quot;Animales&quot;
+
+$lugar
+[1] &quot;Concepción, Chile&quot;</code></pre>
+</div>
+<p>Una posibilidad interesante en las funciones es utilizar el argumento “…” para pasar argumentos no definidos a otra función.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>max_mas1</span><span class='op'>&lt;-</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>,<span class='va'>...</span><span class='op'>)</span></span>
+<span><span class='op'>{</span></span>
+<span>  <span class='va'>a</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='va'>...</span><span class='op'>)</span></span>
+<span>  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>+</span><span class='fl'>1</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span>
+<span></span>
+<span><span class='fu'>max_mas1</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>6</span>,<span class='fl'>7</span>,<span class='fl'>9</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 10</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>max_mas1</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>6</span>,<span class='fl'>7</span>,<span class='fl'>9</span>,<span class='cn'>NA</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] NA</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>max_mas1</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>6</span>,<span class='fl'>7</span>,<span class='fl'>9</span>,<span class='cn'>NA</span><span class='op'>)</span>,na.rm<span class='op'>=</span><span class='cn'>T</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

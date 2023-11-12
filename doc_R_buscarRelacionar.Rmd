@@ -75,7 +75,7 @@ mat_bog_chinga[sup0]
 La función match permite buscar correspondencias entre 2 vectores:
 
 ```{r}
-var <- c("A","A","b","B","Z","E","I")
+(var <- c("A","A","b","B","Z","E","I"))
 LETTERS
 
 m_var_LET<-match(var,LETTERS)

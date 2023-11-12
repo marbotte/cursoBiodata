@@ -1,0 +1,172 @@
+---
+title: "Bucles y estructuras de control en R"
+lang: "es_CL"
+description: "Bucles `for` y `while`, funciones de tipo `*PPLY` y funciones"
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    pandoc_args: ["--number-sections"]
+---
+
+```{r echo=F, message=F,warning=F, purl=FALSE}
+library(knitr)
+library(kableExtra)
+library(downloadthis)
+```
+
+
+
+```{r echo=F, message=F,warning=F, purl=FALSE, results='hide', eval=!interactive()}
+fileR<-purl(knitr::current_input(),documentation = 1, quiet=T)
+file.rename(fileR,paste0("./download/R_code/documentation/",fileR))
+```
+
+
+
+```{r echo=F, message=F,warning=F, purl=FALSE, eval=!interactive()}
+download_link(
+  link = paste0("https://raw.githubusercontent.com/marbotte/cursoBiodata/master/download/R_code/documentation/",fileR),
+  button_label = "Download R script",
+  button_type = "default",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = TRUE
+)  
+```
+
+# Bucles en R
+
+Las bucles permiten repetir operaciones y cambiar algunos valores en el proceso.
+
+El tipo de bucle más utilizado es `for`:
+
+```{r}
+for (i in 1:10)
+{
+  if(i%%2 ==0){cat(i,"es un número par\n")}else{print(i)}
+}
+```
+
+
+Tambien se puede utilizar `while` (principalmente útil cuando no se puede determinar el numero de operaciones, porque depende de lo que van a hacer las operaciones).
+
+
+```{r}
+res<-1
+while(res<10){
+  add<-sample(c(1,2,3),1)
+  res<-res+add
+  cat("yo añado",add,"ahora 'res' vale",res,"\n")
+}
+```
+
+# Funciones *PPLY
+
+Las funciones de tipo `*PPLY` permiten aplicar implícitamente una función en una bucle `for` sobre un objeto.
+
+## `apply`
+
+`apply` aplica una función sobre una dimensión de un array (1 significa por fila, 2 por columna)
+
+
+```{r}
+(load("../Datos/bog_chinga.RData"))
+mat_bog_chinga
+apply(mat_bog_chinga,1,mean)
+```
+
+```{r}
+apply(mat_bog_chinga,2,mean)
+```
+
+Cuando simplify está verdadero y que los objetos de resultados tienen las mismas dimensiones, `apply` intenta simplificar los objetos en vectores o arrays, cuando no se puede, o simplify es falso, entonces, envia una lista:
+
+```{r}
+apply(mat_bog_chinga,1,mean,simplify = F)
+```
+
+Las funciones se pueden definir directamente en la función apply, y los argumentos de las funciones se pueden poner en los argumentos de apply (las demás funciones de tipo `*PPLY` tambien lo aceptan:
+
+```{r}
+apply(mat_bog_chinga,1,function(x,a)toupper(a[which.max(x)]),a=colnames(mat_bog_chinga))
+```
+
+## `lapply` y `sapply`
+
+lapply y sapply aplican la función a todos los elementos de un vector (y entonces a todos los elemetos de una lista).
+`sapply` simplifica el resultado si es posible
+
+```{r}
+require(openxlsx)
+cursoWB<-loadWorkbook("../Datos/Curso.xlsx")
+contenidoPestañas <- lapply(names(cursoWB), read.xlsx, xlsxFile = cursoWB)
+lapply(contenidoPestañas,dim)
+sapply(contenidoPestañas,dim)
+
+```
+
+## Reduce
+
+En asociación con `lapply`, `Reduce` puede ser muy util para simplificar el resultado de manera diferente.
+Reduce toma una lista y aplica una funcion entre sus elementos para reducir el objeto
+
+```{r}
+(totalRowCol<- Reduce(`+`,lapply(contenidoPestañas,dim)))
+(totalRowCol<- Reduce(`rbind`,lapply(contenidoPestañas,dim)))
+
+```
+
+## `tapply`
+
+`tapply` permite aplicar una función en un vector en función de grupos definidos en otro vector:
+
+```{r}
+(valores <- 1:5)
+(grupos <- as.factor(c(rep("A",3),rep("B",2))))
+tapply(valores,grupos,sum)
+```
+
+## `by` 
+
+`by` es el equivalente de tapply para aplicar una función a una tabla según un vector de grupos:
+
+```{r}
+(misViajes <- data.frame(pais=c("Francia","Colombia","Colombia","Chile"),
+                        año=c(2021,2003,2004,2023)))
+by(misViajes,misViajes$pais,function(x) paste(nrow(x),"viajes:",paste(x$año,sep="",collapse=", ")))
+```
+
+# Crear funciones
+
+
+En R, se pueden definir funciones utilizando `function`
+
+Los argumentos se definen en las parentesis, y pueden tener valor por defecto:
+
+```{r}
+create_list_metaData<-function(date=Sys.Date(),tipoOrganismos,lugar="Concepción, Chile")
+{
+  return(list(date=date,tipoOrganismos=tipoOrganismos,lugar=lugar))
+}
+create_list_metaData(tipoOrganismos = "Plantas")
+create_list_metaData(date=Sys.Date()+1, tipoOrganismos = "Animales")
+
+```
+
+Una posibilidad interesante en las funciones es utilizar el argumento "..." para pasar argumentos no definidos a otra función.
+
+```{r}
+max_mas1<-function(x,...)
+{
+  a<-max(x,...)
+  return(a+1)
+}
+
+max_mas1(c(6,7,9))
+max_mas1(c(6,7,9,NA))
+max_mas1(c(6,7,9,NA),na.rm=T)
+
+
+```
+

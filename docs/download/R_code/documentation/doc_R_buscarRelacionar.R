@@ -19,7 +19,7 @@ mat_bog_chinga[sup0]
 
 
 ## -------------------------------------------------------------------
-var <- c("A","A","b","B","Z","E","I")
+(var <- c("A","A","b","B","Z","E","I"))
 LETTERS
 
 m_var_LET<-match(var,LETTERS)
