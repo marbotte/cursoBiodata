@@ -142,7 +142,7 @@ by(misViajes,misViajes$pais,function(x) paste(nrow(x),"viajes:",paste(x$año,sep
 
 En R, se pueden definir funciones utilizando `function`
 
-Los argumentos se definen en las parentesis, y pueden tener valor por defecto:
+Los argumentos se definen en las paréntesis, y pueden tener valor por defecto:
 
 ```{r}
 create_list_metaData<-function(date=Sys.Date(),tipoOrganismos,lugar="Concepción, Chile")

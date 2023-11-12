@@ -2201,13 +2201,13 @@ Documentación taxonomía
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>let</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>,<span class='st'>"b"</span>,<span class='st'>"c"</span><span class='op'>)</span>,size<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>val</span><span class='op'>)</span>,replace<span class='op'>=</span><span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code> [1] &quot;a&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;c&quot; &quot;a&quot; &quot;b&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<pre><code> [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;b&quot; &quot;b&quot; &quot;c&quot; &quot;b&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>tab</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>let</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>let
 a b c 
-2 6 2 </code></pre>
+2 5 3 </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>val</span><span class='op'>)</span></span></code></pre>
 </div>

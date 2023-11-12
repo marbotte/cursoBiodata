@@ -2267,42 +2267,32 @@ Acá miraremos algunos, como los archivos de texto (csv, txt), los applicaciones
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>dir</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code> [1] &quot;_site.yml&quot;                      
- [2] &quot;about.html&quot;                     
- [3] &quot;about.Rmd&quot;                      
- [4] &quot;act_R_intro_corr_files&quot;         
- [5] &quot;act_R_intro_corr.html&quot;          
- [6] &quot;act_R_intro_corr.Rmd&quot;           
- [7] &quot;act_R_intro_files&quot;              
- [8] &quot;act_R_intro.html&quot;               
- [9] &quot;act_R_intro.Rmd&quot;                
-[10] &quot;cursoBiodata.bib&quot;               
-[11] &quot;cursoBiodata.bib.bak&quot;           
-[12] &quot;cursoBiodata.Rproj&quot;             
-[13] &quot;doc_main_files&quot;                 
-[14] &quot;doc_main.html&quot;                  
-[15] &quot;doc_main.Rmd&quot;                   
-[16] &quot;doc_R_buscarRelacionar.html&quot;    
-[17] &quot;doc_R_buscarRelacionar.Rmd&quot;     
-[18] &quot;doc_R_clases_modos.html&quot;        
-[19] &quot;doc_R_clases_modos.Rmd&quot;         
-[20] &quot;doc_R_import_export.Rmd&quot;        
-[21] &quot;doc_R_structuraControl.Rmd&quot;     
-[22] &quot;doc_SQL_consultas_avanzadas.Rmd&quot;
-[23] &quot;doc_SQL_crear_bases.Rmd&quot;        
-[24] &quot;doc_SQL_modificar_bases.Rmd&quot;    
-[25] &quot;doc_SQL_simple.Rmd&quot;             
-[26] &quot;docs&quot;                           
-[27] &quot;download&quot;                       
-[28] &quot;ejemplo_POO.R&quot;                  
-[29] &quot;ejemplo_POO.Rmd&quot;                
-[30] &quot;index.Rmd&quot;                      
-[31] &quot;inst_software_linux.Rmd&quot;        
-[32] &quot;inst_software_windows.Rmd&quot;      
-[33] &quot;inst-paquetes_R.Rmd&quot;            
-[34] &quot;inst-software_macOS.Rmd&quot;        
-[35] &quot;r_func&quot;                         
-[36] &quot;site_libs&quot;                      
-[37] &quot;sql_code&quot;                       </code></pre>
+ [2] &quot;about.Rmd&quot;                      
+ [3] &quot;act_R_intro_corr.Rmd&quot;           
+ [4] &quot;act_R_intro.Rmd&quot;                
+ [5] &quot;cursoBiodata.bib&quot;               
+ [6] &quot;cursoBiodata.bib.bak&quot;           
+ [7] &quot;cursoBiodata.Rproj&quot;             
+ [8] &quot;doc_main.Rmd&quot;                   
+ [9] &quot;doc_R_buscarRelacionar.Rmd&quot;     
+[10] &quot;doc_R_clases_modos.Rmd&quot;         
+[11] &quot;doc_R_import_export.Rmd&quot;        
+[12] &quot;doc_R_structuraControl.Rmd&quot;     
+[13] &quot;doc_SQL_consultas_avanzadas.Rmd&quot;
+[14] &quot;doc_SQL_crear_bases.Rmd&quot;        
+[15] &quot;doc_SQL_modificar_bases.Rmd&quot;    
+[16] &quot;doc_SQL_simple.Rmd&quot;             
+[17] &quot;docs&quot;                           
+[18] &quot;download&quot;                       
+[19] &quot;ejemplo_POO.R&quot;                  
+[20] &quot;ejemplo_POO.Rmd&quot;                
+[21] &quot;index.Rmd&quot;                      
+[22] &quot;inst_software_linux.Rmd&quot;        
+[23] &quot;inst_software_windows.Rmd&quot;      
+[24] &quot;inst-paquetes_R.Rmd&quot;            
+[25] &quot;inst-software_macOS.Rmd&quot;        
+[26] &quot;r_func&quot;                         
+[27] &quot;sql_code&quot;                       </code></pre>
 </div>
 <h2 data-number="1.2" id="caminos-de-las-carpetas"><span class="header-section-number">1.2</span> “Caminos” de las carpetas</h2>
 <p>Los “caminos” o “direcciones” de las carpetas están codificados como cadenas de carácter en R, siguen las normas de direcciones de los sistemas UNIX:</p>
@@ -2476,14 +2466,14 @@ Personalmente, utilizo principalmente <code>openxlsx</code> y su función <code>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/writeData.html'>writeData</a></span><span class='op'>(</span><span class='va'>mi_xlsx</span>,<span class='st'>"programa"</span>,<span class='va'>programa</span>,rowNames <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span></span>
 <span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/writeData.html'>writeData</a></span><span class='op'>(</span><span class='va'>mi_xlsx</span>,<span class='st'>"estudiantes"</span>,<span class='va'>estudiantes</span>,rowNames <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span></span>
-<span><span class='va'>num_estu</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>estudiantes</span><span class='op'>)</span></span>
+<span><span class='va'>num_estu</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>num_estudiantes<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>estudiantes</span><span class='op'>)</span><span class='op'>)</span></span>
 <span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/writeData.html'>writeData</a></span><span class='op'>(</span><span class='va'>mi_xlsx</span>,<span class='st'>"num_estudiantes"</span>,<span class='va'>num_estu</span>,rowNames <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Finalmente, podemos exportar el archivo excel con:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/saveWorkbook.html'>saveWorkbook</a></span><span class='op'>(</span><span class='va'>mi_xlsx</span>,file<span class='op'>=</span><span class='st'>"../Resultados/mi_xlsx"</span>, overwrite <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/saveWorkbook.html'>saveWorkbook</a></span><span class='op'>(</span><span class='va'>mi_xlsx</span>,file<span class='op'>=</span><span class='st'>"../Resultados/mi_xlsx.xlsx"</span>, overwrite <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h1 data-number="5" id="archivos-open-documents"><span class="header-section-number">5</span> Archivos Open Documents</h1>
@@ -2526,7 +2516,8 @@ Personalmente, utilizo principalmente <code>openxlsx</code> y su función <code>
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>nbStud</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>readRDS</a></span><span class='op'>(</span><span class='st'>"../Resultados/nbStud.rds"</span><span class='op'>)</span></span>
 <span><span class='va'>nbStud</span><span class='op'>==</span><span class='va'>num_estu</span></span></code></pre>
 </div>
-<pre><code>[1] TRUE</code></pre>
+<pre><code>     num_estudiantes
+[1,]            TRUE</code></pre>
 </div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

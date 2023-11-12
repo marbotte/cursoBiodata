@@ -10,6 +10,31 @@ output:
 bibliography: "./cursoBiodata.bib"
 ---
 
+```{r echo=F, message=F,warning=F, purl=FALSE}
+library(knitr)
+library(kableExtra)
+library(downloadthis)
+```
+
+
+```{r echo=F, message=F,warning=F, purl=FALSE, results='hide', eval=!interactive()}
+fileR<-purl(knitr::current_input(),documentation = 1, quiet=T)
+file.rename(fileR,paste0("./download/R_code/documentation/",fileR))
+```
+
+
+
+```{r echo=F, message=F,warning=F, purl=FALSE, eval=!interactive()}
+download_link(
+  link = paste0("https://raw.githubusercontent.com/marbotte/cursoBiodata/master/download/R_code/documentation/",fileR),
+  button_label = "Download R script",
+  button_type = "default",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = TRUE
+)  
+```
+
 En este documento, vamos a utilizar varios ejercicios para familiarizarnos con la gestión de datos en R.
 Les aconsejo:
 
@@ -97,6 +122,53 @@ Además, puede ser útil mirar las ayudas de las funciones siguientes:
 * `colSums` y `rowSums` para calcular las sumas de las filas y columnas de un array
 * [`quantile`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/quantile) para calcular los cuantiles de valor de un vector
 
+# Relaciones entre tablas en R
+
+## Ejercicio
+
+La base de datos de diatomeas descrita en el primer ejercicio referencia los taxones por sus códigos, que están definidos por varios expertos europeos, pero esos códigos no son siempre especies, pueden corresponder a varios niveles taxonómicos.
+
+Imaginemos que un grupo de investigadores quiere desarrollar un indice simple de calidad del agua como un cociente entre la abundancia de la familia *Fragilariaceae* y la familia *Naviculaceae*.
+
+1. Calcular ese indice para cada una de las muestras de la matriz sp_abund_mat
+1. Comparar los valores entre los sitios de referencia y los demás
+
+*Ejercicio suplementario para utilizar el mismo tipo de razonamiento* (solo para si tenemos tiempo):
+
+¡Hacer una matriz por nivel taxonomico!
+
+
+
+## Los datos
+
+El archivo "diatomTaxonomy.RData" contiene 2 objetos:
+
+* taxonomy que contiene informaciones sobre los taxones
+* synonyms que contiene las sinonimías entre taxones (la taxonomía de las diatomeas es muy... dinámica!)
+
+```{r}
+(load(paste0(fol_Datos, "diatomTaxonomy.RData")))
+```
+
+
+La tabla que nos interesa es el data.frame "taxonomy":
+
+```{r}
+str(taxonomy)
+```
+
+Como pueden ver la primera columna contiene los códigos que tenemos como nombres de columna de la matriz sp_abund_mat
+
+## Indicaciones para el ejercicio
+
+[Este documento](doc_R_buscarRelacionar.html) muestra como funcionan las funciones `which` y `match` que son útil para este ejercicio.
+
+[Este documento](doc_R_structuraControl.html) tiene información sobre bucles.
+
+
+
+
+
 # Leer un archivo complejo
 
 ## Ejercicio
@@ -136,7 +208,8 @@ knitr::kable(bbScale)
 
 Para poder hacer este ejercicio, consultar la documentación sobre:
 
-* [Clases modos y filtros en R](./doc_R_clases_modos.html)
+* [Importar y exportar datos en R](doc_R_import_export.html)
+* [funciones match y which](doc_R_buscarRelacionar.html)
 
 
 Además, puede ser útil mirar las ayudas de las funciones siguientes:
@@ -152,45 +225,6 @@ Además, puede ser útil mirar las ayudas de las funciones siguientes:
 
 
 
-
-# Relaciones entre tablas en R
-
-## Ejercicio
-
-La base de datos de diatomeas descrita en el primer ejercicio referencia los taxones por sus códigos, que están definidos por varios expertos europeos, pero esos códigos no son siempre especies, pueden corresponder a varios niveles taxonómicos.
-
-Imaginemos que un grupo de investigadores quiere desarrollar un indice simple de calidad del agua como un cociente entre la abundancia de la familia *Fragilariaceae* y la familia *Naviculaceae*.
-
-1. Calcular ese indice para cada una de las muestras de la matriz sp_abund_mat
-1. Comparar los valores entre los sitios de referencia y los demás
-
-*Ejercicio suplementario para utilizar el mismo tipo de razonamiento* (solo para si tenemos tiempo):
-
-¡Hacer una matriz por nivel taxonomico!
-
-
-
-## Los datos
-
-El archivo "diatomTaxonomy.RData" contiene 2 objetos:
-
-* taxonomy que contiene informaciones sobre los taxones
-* synonyms que contiene las sinonimías entre taxones (la taxonomía de las diatomeas es muy... dinámica!)
-
-```{r}
-(load(paste0(fol_Datos, "diatomTaxonomy.RData")))
-```
-
-
-La tabla que nos interesa es el data.frame "taxonomy":
-
-```{r}
-str(taxonomy)
-```
-
-Como pueden ver la primera columna contiene los códigos que tenemos como nombres de columna de la matriz sp_abund_mat
-
-## Indicaciones para el ejercicio
 
 # Construir funciones
 
@@ -236,10 +270,17 @@ Las funciones deben tener los argumentos adecuados para :
 
 * poder dar el nombre de la columna que contiene los taxones y de las unidades de muestreo
 * poder manejar casos de presencia/ausencia, abundancia
-* poder llenar las matrices con 0 o NA, y transformar las matrices con NA o 0 cuando las especies son ausentes
+* poder llenar las matrices con 0 o NA
 * añadir todas las opciones que les parecen útil (un ejercicio más tarde consistira en publicar esas funciones en la forma de un paquete R en GitHub)
 
 Construir una función que permita utilizar el formato "base de datos" y hacer la suma de todos las filas que tienen el mismo taxon en la misma unidad de muestreo, y utilizarla para construir la matriz de genero de diatomeas (ver ejercicio previo).
 
 ## Indicaciones para el ejercicio
+
+Puede ser util mirar la documentación sobre:
+
+* [which](doc_R_buscarRelacionar.html)
+* [crear funciones](doc_R_structuraControl.html)
+
+
 

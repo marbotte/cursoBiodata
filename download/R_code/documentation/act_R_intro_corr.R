@@ -73,6 +73,47 @@ save(list=c("sp_abund_mat_filtered","riq_acid","riq_alka"), file = paste0(fol_Re
 
 
 ## -------------------------------------------------------------------
+(load(paste0(fol_Datos,"diatomTaxonomy.RData")))
+
+
+## -------------------------------------------------------------------
+m_sp_mat_taxo <- match(colnames(sp_abund_mat),taxonomy$cd)
+
+
+## -------------------------------------------------------------------
+w_fragilariaceae <- which(taxonomy$family[m_sp_mat_taxo]=="Fragilariaceae")
+w_naviculaceae <- which(taxonomy$family[m_sp_mat_taxo]=="Naviculaceae")
+
+
+## -------------------------------------------------------------------
+indexFraNav <- rowSums(sp_abund_mat[,w_fragilariaceae])/rowSums(sp_abund_mat[,w_naviculaceae])
+
+
+## -------------------------------------------------------------------
+boxplot(indexFraNav~reference_sites)
+
+
+## -------------------------------------------------------------------
+# Buscamos, para cada taxón, la familia que corresponde
+family <- taxonomy$family[m_sp_mat_taxo]
+# Miramos la lista de familia (unica) y excluímos los taxones que no tienen una información de familia
+un_family <- na.omit(unique(family))
+# Creamos la matriz
+mat_diat_fam <- matrix(NA, nrow=nrow(sp_abund_mat), ncol=length(un_family),dimnames=list(NULL,un_family))
+# Hacemos un bucle que toma cada familia una por una
+# Para cada familia filtramos la matriz de abundancia, y calculamos la suma por fila
+for(i in un_family)
+{
+  #Caso 1: solo hay un taxon en la familia 
+  if(sum(family==i,na.rm=T)==1)
+  {mat_diat_fam[,i] <- sp_abund_mat[,which(family==i)]
+  }else{ # Caso 2 existe una matriz de más de una columna en esta familia
+    mat_diat_fam[,i]<-rowSums(sp_abund_mat[,which(family==i)])
+  }
+}
+
+
+## -------------------------------------------------------------------
 # Ejercicio 2 sobre la lectura de archivos complejos ----
 require(openxlsx)
 fFF <- loadWorkbook(paste0(fol_Datos,"fitosociologiaFagusFrancia.xlsx"))
@@ -222,62 +263,42 @@ saveWorkbook(wbFinal, file = paste(fol_Results,"fitosociologíaFagusFranciaFinal
 
 
 ## -------------------------------------------------------------------
-(load(paste0(fol_Datos,"diatomTaxonomy.RData")))
+(load("../Datos/bog_chinga.RData"))
+df_bog_chinga
 
 
 ## -------------------------------------------------------------------
-m_sp_mat_taxo <- match(colnames(sp_abund_mat),taxonomy$cd)
+load("../Datos/bog_chinga.RData")
+mat_bog_chinga
+(sup0 <- which(mat_bog_chinga > 0, arr.ind = T))
+mat_bog_chinga[sup0]
 
 
 ## -------------------------------------------------------------------
-w_fragilariaceae <- which(taxonomy$family[m_sp_mat_taxo]=="Fragilariaceae")
-w_naviculaceae <- which(taxonomy$family[m_sp_mat_taxo]=="Naviculaceae")
+(ROW <- unique(df_bog_chinga$UniMuestreo))
+(COL <- unique(df_bog_chinga$Especie)) 
 
 
 ## -------------------------------------------------------------------
-indexFraNav <- rowSums(sp_abund_mat[,w_fragilariaceae])/rowSums(sp_abund_mat[,w_naviculaceae])
+(mat <- matrix(0,nrow=length(ROW),ncol=length(COL),dimnames=list(ROW,COL)))
 
 
 ## -------------------------------------------------------------------
-boxplot(indexFraNav~reference_sites)
+match(df_bog_chinga$UniMuestreo, rownames(mat))
 
 
 ## -------------------------------------------------------------------
-# Buscamos, para cada taxón, la familia que corresponde
-family <- taxonomy$family[m_sp_mat_taxo]
-# Miramos la lista de familia (unica) y excluímos los taxones que no tienen una información de familia
-un_family <- na.omit(unique(family))
-# Creamos la matriz
-mat_diat_fam <- matrix(NA, nrow=nrow(sp_abund_mat), ncol=length(un_family),dimnames=list(NULL,un_family))
-# Hacemos un bucle que toma cada familia una por una
-# Para cada familia filtramos la matriz de abundancia, y calculamos la suma por fila
-for(i in un_family)
-{
-  #Caso 1: solo hay un taxon en la familia 
-  if(sum(family==i,na.rm=T)==1)
-  {mat_diat_fam[,i] <- sp_abund_mat[,which(family==i)]
-  }else{ # Caso 2 existe una matriz de más de una columna en esta familia
-    mat_diat_fam[,i]<-rowSums(sp_abund_mat[,which(family==i)])
-  }
-}
+matRowCol<-cbind(row=match(df_bog_chinga$UniMuestreo, rownames(mat)),
+      col=match(df_bog_chinga$Especie, colnames(mat))
+      )
 
 
 ## -------------------------------------------------------------------
-mat2dbTab <-
-function(mat,checklist=F)
-{
-  W<-which(mat>0,arr.ind=T)
-	if(!checklist){
-  dbTab<-data.frame(SU=rownames(mat)[W[,"row"]],sp=colnames(mat)[W[,"col"]],ab=mat[W])
-	}else{
-  dbTab<-data.frame(SU=rownames(mat)[W[,"row"]],sp=colnames(mat)[W[,"col"]])
-	}
-	numSU<-all(grepl("^[0-9]+$",dbTab$SU))
-	if(numSU){dbTab$SU<-as.numeric(as.character(dbTab$SU))}
-  dbTab<-dbTab[order(dbTab$SU,dbTab$sp),]
-  return(dbTab)
-}
+mat[matRowCol]<-df_bog_chinga$abundancia
+mat
 
+
+## -------------------------------------------------------------------
 dbTab2mat <-
 function(dbTab,col_samplingUnits="SU",col_species="sp",col_content="abundance",empty=NA,checklist=F)
 {
@@ -286,12 +307,113 @@ function(dbTab,col_samplingUnits="SU",col_species="sp",col_content="abundance",e
   arr.which<-matrix(NA,ncol=2,nrow=nrow(dbTab),dimnames=list(1:nrow(dbTab),c("row","col")))
   arr.which[,1]<-match(as.character(dbTab[,col_samplingUnits]),ROWS)
   arr.which[,2]<-match(as.character(dbTab[,col_species]),COLS)
+  # Esta linea es para determinar el modo de los datos, según los argumentos
+  # Si checklist está verdadero, entonces el modo es TRUE/FALSE (logico), sino corresponde al modo de la columna col_content
   modeContent<-ifelse(checklist,"logical",mode(dbTab[,col_content]))
+  # Ahora que tenemos el modo, entonces podemos saber con que llenar la matriz:
   if(is.na(empty)){empty<-switch(modeContent,character="",numeric=0,logical=F)}
+  # Creamos la matriz
   res<-matrix(empty,ncol=length(COLS),nrow=length(ROWS),dimnames=list(ROWS,COLS))
+  # La llenamos
 	if(checklist){ res[arr.which]<-T}else{res[arr.which]<-dbTab[,col_content]}
   return(res)
 }
+
+
+## -------------------------------------------------------------------
+dbTab2mat(df_bog_chinga, col_samplingUnits = "UniMuestreo", col_species = "Especie", col_content = "abundancia")
+
+
+## -------------------------------------------------------------------
+which(mat_bog_chinga>0,arr.ind =T)
+
+
+## -------------------------------------------------------------------
+mat2dbTab <-
+function(mat,checklist=F,col_samplingUnits="SU", col_taxon="taxon",col_content="Abundance")
+{
+  #busquemos los contenidos de la matriz superiores a 0
+  W<-which(mat>0,arr.ind=T)
+  
+	if(!checklist){# Si es presencia ausencia
+  dbTab<-data.frame(SU=rownames(mat)[W[,"row"]],sp=colnames(mat)[W[,"col"]],ab=mat[W])
+	}else{# Si no es presencia ausencia
+  dbTab<-data.frame(SU=rownames(mat)[W[,"row"]],sp=colnames(mat)[W[,"col"]])
+	}
+  # Reorganizamos la tabla por sitios, luego por especie
+  dbTab<-dbTab[order(dbTab$SU,dbTab$sp),]
+  # Ponemos los colnames
+  COLNAMES <- c(col_samplingUnits,col_taxon)
+  if(!checklist){COLNAMES<-c(COLNAMES,col_content)}
+  colnames(dbTab)<-COLNAMES
+  return(dbTab)
+}
+
+
+
+## -------------------------------------------------------------------
+mat2dbTab(mat_bog_chinga)
+mat2dbTab(mat_bog_chinga,checklist = T)
+
+
+## -------------------------------------------------------------------
+(df_bog_chinga<-rbind.data.frame(df_bog_chinga, 
+                                data.frame(UniMuestreo="Bogotá",
+                                           Especie="Felis catus",
+                                           abundancia=50
+                                )))
+
+
+## -------------------------------------------------------------------
+resultSUM<-by(df_bog_chinga,list(df_bog_chinga$UniMuestreo,df_bog_chinga$Especie),function(x){
+  x$abundancia<-sum(x$abundancia)
+  return(unique(x))
+})
+
+
+## -------------------------------------------------------------------
+(gatosMas <- Reduce(rbind,resultSUM))
+
+
+## -------------------------------------------------------------------
+sumRepeated<- function(dbTab,col_sampUnit ="SU",col_taxon="taxon",col_content="Abundance")
+{
+  resSum<-by(dbTab,list(dbTab[,col_sampUnit],dbTab[,col_taxon]),function(x,col_cont)
+  {
+    x[,col_cont]<-sum(x[,col_cont])
+    return(unique(x))
+  },col_cont=col_content)
+  return(Reduce(rbind,resSum))
+}
+
+
+## -------------------------------------------------------------------
+sumRepeated(df_bog_chinga, col_sampUnit = "UniMuestreo", col_taxon="Especie", col_content = "abundancia")
+
+
+## -------------------------------------------------------------------
+dbTabDiat <- mat2dbTab(sp_abund_mat)
+head(dbTabDiat)
+
+
+## -------------------------------------------------------------------
+dbTabDiat$genus<-taxonomy$genus[match(dbTabDiat$taxon,taxonomy$cd)]
+head(dbTabDiat)
+
+
+## -------------------------------------------------------------------
+dbTabDiatGenus<-dbTabDiat[,-which(colnames(dbTabDiat)=="taxon")]
+dbTabDiatGenus<-sumRepeated(dbTabDiatGenus, col_taxon="genus")
+head(dbTabDiatGenus)
+
+
+## -------------------------------------------------------------------
+matDiatGenus<-dbTab2mat(dbTabDiatGenus,col_samplingUnits = "SU",col_species = "genus",col_content = "Abundance")
+
+
+## -------------------------------------------------------------------
+save(list=c("dbTab2mat","mat2dbTab"), file=paste0(fol_Results,"funcionesMatDbTab.RData"))
+write.csv(matDiatGenus,file = paste0(fol_Results,"matDiatGenus.csv"))
 
 ```{.r .distill-force-highlighting-css}
 ```

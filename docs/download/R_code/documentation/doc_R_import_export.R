@@ -55,12 +55,12 @@ addWorksheet(mi_xlsx,"num_estudiantes")
 ## -------------------------------------------------------------------
 writeData(mi_xlsx,"programa",programa,rowNames = F)
 writeData(mi_xlsx,"estudiantes",estudiantes,rowNames = F)
-num_estu<-length(estudiantes)
+num_estu<-data.frame(num_estudiantes=nrow(estudiantes))
 writeData(mi_xlsx,"num_estudiantes",num_estu,rowNames = F)
 
 
 ## -------------------------------------------------------------------
-saveWorkbook(mi_xlsx,file="../Resultados/mi_xlsx", overwrite = T)
+saveWorkbook(mi_xlsx,file="../Resultados/mi_xlsx.xlsx", overwrite = T)
 
 
 ## -------------------------------------------------------------------
