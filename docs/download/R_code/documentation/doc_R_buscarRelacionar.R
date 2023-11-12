@@ -23,6 +23,7 @@ var <- c("A","A","b","B","Z","E","I")
 LETTERS
 
 m_var_LET<-match(var,LETTERS)
+LETTERS[m_var_LET]
 
 ```{.r .distill-force-highlighting-css}
 ```

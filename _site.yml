@@ -19,6 +19,7 @@ navbar:
         - text: "Importar y exportar datos en R"
           href: doc_R_import_export.html
         - text: "Buscar datos y correspondencias entre objetos"
+          href: doc_R_buscarRelacionar.html
         - text: "Bucles, funciones *pply, y estructuras de control"
         - text: "Crear funciones en R"
         - text: "---"
