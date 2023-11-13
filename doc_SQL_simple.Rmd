@@ -329,14 +329,6 @@ La clausula `WHERE` no funciona para probar condiciones sobre los valores agrega
 
 # CASE
 
-# 
-
-
-
-
-
-# 
-
 
 ```{r closing, echo=F, message=F,warning=F, purl=FALSE, results='hide'}
 dbDisconnect(pg_biodata1)
