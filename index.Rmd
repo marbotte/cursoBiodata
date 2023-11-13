@@ -59,8 +59,7 @@ En las paginas siguientes pueden encontrar los enlaces y instrucciones para inst
 * [Linux](./inst_software_linux.html)
 * [Mac OS](./inst-software_macOS.html)
 
-[Instalar los paquetes R](./inst_paquetes_R.html) (Cuidado, este documento no está terminado, por favor volver a mirarlo 1-2 días antes del curso)
-
+[Instalar los paquetes R](./inst_paquetes_R.html) Instalaremos los paquetes R juntos durante el curso, al final del curso pondré todos los paquetes en esta pagina para que puedan volver a instalarlos!
 
 # Presentaciones
 

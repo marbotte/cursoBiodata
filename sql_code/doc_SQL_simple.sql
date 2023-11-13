@@ -55,12 +55,21 @@ FROM countries;
 
 -- <calculo1>
 SELECT *, superficie_km2/2 mitad
-FROM countries
+FROM countries;
 -- <calculo1 END>
 
+-- <espeletia>
+SELECT *
+FROM espeletia;
+-- <espeletia END>
+
+-- <concatenate_text>
+SELECT *, genus ||' '|| spec_epith species
+FROM espeletia;
+-- <concatenate_text END>
 
 -- <sin_from1>
-SELECT '¡Viene de mi cerebro, no de una tabla!' AS "frase cualquiera"
+SELECT '¡Viene de mi cerebro, no de una tabla!' AS "frase cualquiera";
 -- <sin_from1 END>
 
 -- <from_raro>
@@ -109,19 +118,19 @@ WHERE sur_america AND superficie_km2 < 1000000;
 -- <order1>
 SELECT *
 FROM countries
-ORDER BY superficie_km2 ASC
+ORDER BY superficie_km2 ASC;
 -- <order1 END>
 
 -- <order2>
 SELECT *
 FROM countries
-ORDER BY superficie_km2 DESC
+ORDER BY superficie_km2 DESC;
 -- <order2 END>
 
 -- <order3>
 SELECT *
 FROM countries
-ORDER BY sur_america,superficie_km2 DESC
+ORDER BY sur_america,superficie_km2 DESC;
 -- <order3 END>
 
 -- <limit>
@@ -132,19 +141,58 @@ LIMIT 2;
 
 -- <count1>
 SELECT count(pais) num_pais
-FROM countries
+FROM countries;
 -- <count1 END>
 
 
 -- <count2>
 SELECT count(*)
 FROM countries
-WHERE sur_america
+WHERE sur_america;
 -- <count2 END>
 
 
+-- <bog_chinga>
+SELECT *
+FROM bogota_chingaza;
+-- <bog_chinga END>
+
 -- <group1>
-SELECT sur_america, count(*)
-FROM countries
-WGE
+SELECT unidad_muestreo,count(especie)
+FROM bogota_chingaza
+GROUP BY unidad_muestreo;
+-- <group1 END>
+
+-- <sum>
+SELECT especie ,sum(abundancia)
+FROM bogota_chingaza
+GROUP BY especie;
+-- <sum END>
+
+-- <avg>
+SELECT unidad_muestreo ,AVG(abundancia)
+FROM bogota_chingaza
+GROUP BY unidad_muestreo;
+-- <avg END>
+
+-- <aggregate_txt>
+SELECT unidad_muestreo , STRING_AGG(especie, ', ') list_esp
+FROM bogota_chingaza
+GROUP BY unidad_muestreo;
+-- <aggregate_txt END>
+
+
+-- <aggregate_arr>
+SELECT especie , ARRAY_AGG(abundancia) list_abund
+FROM bogota_chingaza
+GROUP BY especie;
+-- <aggregate_arr END>
+
+-- <having1>
+SELECT especie , SUM(abundancia) tot_abund
+FROM bogota_chingaza
+GROUP BY especie
+HAVING SUM(abundancia) >= 1000
+;
+-- <having1 END>
 

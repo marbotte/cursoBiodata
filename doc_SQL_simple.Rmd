@@ -133,6 +133,19 @@ En SQL, para diferenciar los objetos de las cadenas de carácter, utilizamos las
 
 ### Utilizar `||`
 
+El operador `||` permite pegar ("concatenar") cadenas de caracter:
+
+La tabla espeletia contiene la taxonomía del genero [Espeletia](https://es.wikipedia.org/wiki/Espeletia) para Colombia
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","espeletia")}
+```
+
+Podemos concatenar las columnas genus y spec_epith para obtener  los nombres de especies:
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","concatenate_text")}
+
+```
+
 
 
 
@@ -259,19 +272,58 @@ Podemos asociar todas las funciones agregativas con una clausula `GROUP BY` que 
 La tabla de resultados tiene una fila por asociación unica de los valores que están en la clausula `GROUP BY`.
 Tambien es importante saber que cuando utilizamos la clausula `GROUP BY`, la clausula `SELECT` solo acepta las variables que están en la clausula `GROUP BY` o funciones agregativas.
 
+Por ejemplo la tabla bogota_chingaza es un ejemplo simplificado de tabla de abundancia de especies en un formato de base de datos:
 
 
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","bog_chinga")}
+```
+
+Para calcular el numero de especies por sitio:
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","group1")}
+```
 
 
 ## SUM
 
+Para calcular la suma de individuo por especie
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","sum")}
+```
+
 ## AVG
+
+Para calcular el promedio de abundancia de las especies en cada unidad de muestreo
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","avg")}
+```
+
 
 ## Concatenar texto
 
+Tambien se puede agregar el texto de varios filas en asociación con GROUP BY
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","aggregate_txt")}
+```
+
 ## Concatenar ARRAYS (PostgreSQL)
 
+En postgreSQL existe una clase de objetos particulares que se llama "ARRAY" (<https://www.postgresql.org/docs/current/arrays.html>).
+
+Podemos aggregar un array en asociación con la clausula GROUP BY:
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","aggregate_arr")}
+```
+
 ## HAVING
+
+La clausula `WHERE` no funciona para probar condiciones sobre los valores agregados: hay que utilizar la clausula `HAVING`
+
+
+```{sql, connection=pg_biodata1,code=extractSQLquery("./sql_code/doc_SQL_simple.sql","having1")}
+```
+
+
 
 # DISTINCT
 
