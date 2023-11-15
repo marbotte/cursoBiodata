@@ -36,6 +36,6 @@ navbar:
       menu:
         - text: "Clases y modos en R" 
         - text: "Filtrar y seleccionar datos en R"
-    - text: "About"
-      href: about.html
+    - text: "Participantes"
+      href: participantes.html
 output: distill::distill_article
