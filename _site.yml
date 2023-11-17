@@ -31,11 +31,12 @@ navbar:
         - text: "Bases de datos y connecciones"
         - text: "Crear tablas"
         - text: "Modificar tablas"
-    - text: "Documentación taxonomía"
-      href: doc_main.html
+    - text: "Documentación taxo y espacial"
       menu:
-        - text: "Clases y modos en R" 
-        - text: "Filtrar y seleccionar datos en R"
+        - text: "taxonomía"
+          href: doc_tax.html
+        - text: "datos espaciales"
+          href: doc_spat.html
     - text: "Participantes"
       href: participantes.html
 output: distill::distill_article

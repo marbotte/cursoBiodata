@@ -17,10 +17,65 @@ Ricardo Segovia, coordinador del equipo BioData del Instituto de Ecología y Bio
 
 ![](Fotos/MariusBottin.jpg){width=50%}
 
-Marius Bottin. Soy un ecólogo francés viviendo en Bogotá, Colombia. He trabajado en la ecología de la diatomeas de los ríos franceses, las vegetaciones de las praderas secas del sur-occidente de Francia y los páramos colombianos. Ahora me dedico principalmente a... ¡limpiar datos de biodiversidad! (una otra manera más seria de decir lo mismo es: trabajo en la estructuración y el mantenimiento de bases de datos de biodiversidad).
+Soy un ecólogo francés viviendo en Bogotá, Colombia. He trabajado en la ecología de la diatomeas de los ríos franceses, las vegetaciones de las praderas secas del sur-occidente de Francia y los páramos colombianos. Ahora me dedico principalmente a... ¡limpiar datos de biodiversidad! (una otra manera más seria de decir lo mismo es: trabajo en la estructuración y el mantenimiento de bases de datos de biodiversidad).
 
 
 # Diego Alarcón
 
 ![](Fotos/DiegoAlarcon.jpg){width=50%}
 
+# Catalina Merino
+
+![](Fotos/CatalinaMerino.jpeg){width=50%}
+
+Mi nombre es Catalina Merino Yunnissi, soy Bióloga con estudios de postítulo en GIS y Métodos Estadísticos. Cuando egresé entré a trabajar en el Museo Nacional de Historia Natural, al Área de Zoología de Invertebrados. Actualmente soy la Administradora de Colecciones del Área y me encargo de la gestión, conservación y documentación de estas.
+
+
+# Felipe Durán
+
+![](Fotos/FelipeDurán.jpg){width=50%}
+
+Soy biólogo y actualmente estudiante del Doctorado en Sistemática y Biodiversidad de la Universidad de Concepción, donde me encuentro desarrollando mi proyecto de tesis relacionada a la evolución de los ciclos de vida, utilizando como modelo de estudio a los anfibios. Anteriormente me he dedicado a estudiar la biodiversidad de anuros chilenos desde una perspectiva taxonómica, filogeográfica y ecológica.
+
+
+
+# Gustavo Torres Mellado
+
+![](Fotos/GustavoTorresMellado.jpg){width=50%}
+
+Gustavo A. Torres Mellado, biólogo con mención en biodiversidad y conservación biológica UdeC. Desde hace más de una década me dedico a la consultoría ambiental, específicamente a la caracterización desde matrices bióticas diversas, principalmente flora y vegetación, y en menor grado funga, fauna terrestre, limnología, entre otros. Durante mis años formativos me he dedicado a la ecología de microorganismos del suelo, específicamente en la simbiosis micorrícica de ambientes extremos.
+
+# Pamela Martínez
+![](Fotos/PamelaMartínez .jpg){width=50%}
+
+Me llamo Pamela Martínez, soy Ingeniera Forestal de la Pontificia Universidad Católica de Chile. Me titulé con la especialidad de territorio y manejo de bosque. He trabajado construyendo una geodatabase de datos históricos vegetacionales, y he ayudado a crear indicadores para determinar lugares prioritarios de reforestación a nivel nacional. Además, me he desenvuelto en otras áreas, con temáticas relacionadas con mi profesión y otras que no son abarcadas dentro de esta. Actualmente me desempeño como asistente de gerencia en IEB.
+
+
+
+# Juan Pablo Vicencio Segura
+
+Me llamo Juan Pablo Vicencio Segura, provengo de la ciudad de San Felipe (Región de Valparaíso) y actualmente me encuentro cursando cuarto año de Ingeniería en Conservación de Recursos Naturales en la Universidad Austral de Chile (Valdivia).  Mi interés profesional aboga a la botánica, y en ese sentido he estado trabajado en el levantamiento del herbario VALD y la puesta en valor de su pequeña colección botánica. 
+
+
+# Javiera Vergara Vidal
+
+Mi github está incompleto y desordenado https://github.com/xavi-v
+
+Mi linkedin está incompleto y desordenado tambien https://www.linkedin.com/in/javi-vergara-vidal/
+
+pero dejo ambos links por ahora 
+
+# Angelica Villalobo Lopez
+
+Soy biólogo, MSc mención Botánica, actualmente estudiante de Doctorado en Sistemática y Biodiversidad en la Universidad de Concepción. Mi investigación se enfoca en la conservación, centrándome principalmente en las especies del género Copiapoa que habitan por toda la costa de Chile, he trabajado actualizando gran parte de las áreas de ocupaciones y extensiones de presencia de estas especies y en los estados de conservación.
+
+
+# Amparo Rodriguez
+
+![](./Fotos/AmparoRodriguez.jpg){width=50%}
+
+Soy bióloga ornitóloga, española, y estoy
+haciendo el doctorado en biodiversidad y sistemática. Mi especialidad y
+modelo de estudio para la tesis son las aves rapaces, pero me apasiona toda
+la fauna y he estudiado y trabajado con otros grupos, principalmente en
+conducta.

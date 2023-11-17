@@ -1,0 +1,53 @@
+---
+title: "Spatial"
+lang: "es_CL"
+description: "Postgis, spatialite y sf: como manejar datos espaciales con los datos espaciales"
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    pandoc_args: ["--number-sections"]
+---
+
+```{r echo=F, message=F,warning=F, purl=FALSE}
+library(knitr)
+library(kableExtra)
+library(downloadthis)
+```
+
+
+
+```{r echo=F, message=F,warning=F, purl=FALSE, results='hide', eval=!interactive()}
+fileR<-purl(knitr::current_input(),documentation = 1, quiet=T)
+file.rename(fileR,paste0("./download/R_code/documentation/",fileR))
+```
+
+
+
+```{r echo=F, message=F,warning=F, purl=FALSE, eval=!interactive()}
+download_link(
+  link = paste0("https://raw.githubusercontent.com/marbotte/cursoBiodata/master/download/R_code/documentation/",fileR),
+  button_label = "Download R script",
+  button_type = "default",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = TRUE
+)  
+```
+
+
+# Postgis
+
+<https://postgis.net/documentation/training/>
+
+# sf y postgis
+
+<https://www.r-bloggers.com/2019/04/interact-with-postgis-from-r/>
+
+
+<https://cran.r-project.org/web/packages/rnaturalearth/vignettes/rnaturalearth.html>
+
+# spatialite
+
+<https://www.gaia-gis.it/fossil/libspatialite/index>
+

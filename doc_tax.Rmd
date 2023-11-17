@@ -1,0 +1,59 @@
+---
+title: "Taxonomía"
+lang: "es_CL"
+description: "Como manejar la taxonomía en R y SQL"
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    pandoc_args: ["--number-sections"]
+---
+
+```{r echo=F, message=F,warning=F, purl=FALSE}
+library(knitr)
+library(kableExtra)
+library(downloadthis)
+```
+
+
+
+```{r echo=F, message=F,warning=F, purl=FALSE, results='hide', eval=!interactive()}
+fileR<-purl(knitr::current_input(),documentation = 1, quiet=T)
+file.rename(fileR,paste0("./download/R_code/documentation/",fileR))
+```
+
+
+
+```{r echo=F, message=F,warning=F, purl=FALSE, eval=!interactive()}
+download_link(
+  link = paste0("https://raw.githubusercontent.com/marbotte/cursoBiodata/master/download/R_code/documentation/",fileR),
+  button_label = "Download R script",
+  button_type = "default",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = TRUE
+)  
+```
+
+# TNRS (plantas)
+
+<https://cran.r-project.org/web/packages/TNRS/vignettes/TNRS_vignette_spa.html>
+
+
+# GBIF
+
+<https://docs.ropensci.org/rgbif/articles/taxonomic_names.html>
+
+
+# API gbif
+
+
+<https://www.gbif.org/developer/summary>
+
+
+para las api de manera general
+
+<https://www.dataquest.io/blog/r-api-tutorial/>
+
+
+
