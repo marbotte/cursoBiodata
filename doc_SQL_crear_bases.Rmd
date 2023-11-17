@@ -31,7 +31,7 @@ Anotar: si bien crear una base de datos postgreSQL puede ser un proceso un poco 
 ```{r}
 mbs<-dbConnect(SQLite(),"../Datos/mibase_sqlite.sqlite")
 mi_df<-data.frame(MiGeneroPreferido="Espeletia")
-dbWriteTable(mbs,"mi_tabla",mi_df)
+dbWriteTable(mbs,"mi_tabla",mi_df, overwrite=T)
 dbDisconnect(mbs)
 ```
 
