@@ -24,6 +24,20 @@ sl_biodata1 <- dbConnect(SQLite(),dbname="../Datos/biodata1.sqlite3")
 En este documento voy a mostrar las bases de las consultas SQL en multiplas tablas, así como la utilización de las clausulas WITH y UNION.
 Voy a utilizar principalmente PostgreSQL, pero cuando existan diferencias, mostraré tambien la versión SQLite.
 
+# SQLite
+
+Anotar: si bien crear una base de datos postgreSQL puede ser un proceso un poco fastidioso en terminos de creación de usuario etc, la creación de una base SQLite en R es tan facíl como:
+
+```{r}
+mbs<-dbConnect(SQLite(),"../Datos/mibase_sqlite.sqlite")
+mi_df<-data.frame(MiGeneroPreferido="Espeletia")
+dbWriteTable(mbs,"mi_tabla",mi_df)
+dbDisconnect(mbs)
+```
+
+Anotar: `dbConnect` crea una conexión, pero en el caso de SQLite, si el archivo no existe, lo crea!
+
+
 
 # JOIN
 

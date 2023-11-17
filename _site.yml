@@ -37,6 +37,8 @@ navbar:
           href: doc_tax.html
         - text: "datos espaciales"
           href: doc_spat.html
+        - text: "DarwinCore"
+          href: doc_DwC.html
     - text: "Participantes"
       href: participantes.html
 output: distill::distill_article
