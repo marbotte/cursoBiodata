@@ -6,6 +6,20 @@ output:
   distill::distill_article
 ---
 
+
+```{r echo=F}
+require(knitr)
+include_graphics('./Fotos/fotosGrupo/IMGP8110.jpg')
+include_graphics('./Fotos/fotosGrupo/IMGP8118.jpg')
+include_graphics('./Fotos/fotosGrupo/IMGP8119.jpg')
+include_graphics('./Fotos/fotosGrupo/IMGP8124.jpg')
+include_graphics('./Fotos/fotosGrupo/IMGP8125.jpg')
+include_graphics('./Fotos/fotosGrupo/IMGP8126.jpg')
+include_graphics('./Fotos/fotosGrupo/IMGP8132.jpg')
+```
+
+
+
 # Ricardo Segovia
 
 ![](Fotos/RicardoSegovia.jpg){width=50%}
@@ -33,7 +47,7 @@ Mi nombre es Catalina Merino Yunnissi, soy Bióloga con estudios de postítulo e
 
 # Felipe Durán
 
-![](Fotos/FelipeDurán.jpg){width=50%}
+![](./Fotos/FelipeDurán.jpg){width=50%}
 
 Soy biólogo y actualmente estudiante del Doctorado en Sistemática y Biodiversidad de la Universidad de Concepción, donde me encuentro desarrollando mi proyecto de tesis relacionada a la evolución de los ciclos de vida, utilizando como modelo de estudio a los anfibios. Anteriormente me he dedicado a estudiar la biodiversidad de anuros chilenos desde una perspectiva taxonómica, filogeográfica y ecológica.
 
@@ -52,20 +66,29 @@ Me llamo Pamela Martínez, soy Ingeniera Forestal de la Pontificia Universidad C
 
 
 
-# Juan Pablo Vicencio Segura
-
-Me llamo Juan Pablo Vicencio Segura, provengo de la ciudad de San Felipe (Región de Valparaíso) y actualmente me encuentro cursando cuarto año de Ingeniería en Conservación de Recursos Naturales en la Universidad Austral de Chile (Valdivia).  Mi interés profesional aboga a la botánica, y en ese sentido he estado trabajado en el levantamiento del herbario VALD y la puesta en valor de su pequeña colección botánica. 
-
 
 # Javiera Vergara Vidal
 
-Mi github está incompleto y desordenado https://github.com/xavi-v
+Soy de Concepción, Soy licenciada en biología de la Universidad de Concepción. 
+terminé un trainee en fullstack orientado a python (django), por lo que se supone soy programadora *junior* (pero creo que aun me falta mucho para considerarme junior)
+Estoy en un diplomado de data analyst pero me está costando mucho power Bi
+Estoy Seleccionada para un programa de talento digital para Chile en data science para el próximo año.
+Mi portafolio incompleto:
+https://portfolio-darkss.vercel.app/
+
+Mi github está incompleto y desordenado
+ https://github.com/xavi-v
 
 Mi linkedin está incompleto y desordenado tambien https://www.linkedin.com/in/javi-vergara-vidal/
 
-pero dejo ambos links por ahora 
+mini tutorial que hice para postgres en Windows
+https://miro.com/app/board/uXjVNOqt4Cw=/
+
+Pasé por paleontología, micología,tengo licencia de buceo autónomo básico pero aun no tengo licencia tipo B.
 
 # Angelica Villalobo Lopez
+
+![](./Fotos/AngelicaVillaloboLopez.jpg)
 
 Soy biólogo, MSc mención Botánica, actualmente estudiante de Doctorado en Sistemática y Biodiversidad en la Universidad de Concepción. Mi investigación se enfoca en la conservación, centrándome principalmente en las especies del género Copiapoa que habitan por toda la costa de Chile, he trabajado actualizando gran parte de las áreas de ocupaciones y extensiones de presencia de estas especies y en los estados de conservación.
 
@@ -73,9 +96,50 @@ Soy biólogo, MSc mención Botánica, actualmente estudiante de Doctorado en Sis
 # Amparo Rodriguez
 
 ![](./Fotos/AmparoRodriguez.jpg){width=50%}
+Soy Amparo M Rodríguez Ruiz, graduada en biología por la Universidad de Sevilla y diplomada en Ornitología. Mi interés se centra en la biología de vertebrados depredadores y su conservación, principalmente buscando la resolución de conflictos humano-animal. Actualmente profundizo en el estudio de la conducta y ecología de aves rapaces a través del doctorado en Sistemática y Biodiversidad de la Universidad de Concepción.
 
-Soy bióloga ornitóloga, española, y estoy
-haciendo el doctorado en biodiversidad y sistemática. Mi especialidad y
-modelo de estudio para la tesis son las aves rapaces, pero me apasiona toda
-la fauna y he estudiado y trabajado con otros grupos, principalmente en
-conducta.
+# Karla García
+
+
+![](./Fotos/KarlaGarcia.jpg){width=50%}
+
+Soy Bióloga con Mención en Biodiversidad y Conservación Biológica, Magíster en Zoología y Doctora en Biodiversidad. Mis líneas de interés e investigación han estado relacionadas a la conservación y ecología de poblaciones de mamíferos. Parte importante de mi trayectoria profesional también ha estado relacionada con la consultoría y gestión ambiental, enfocándome en realizar levantamientos biológicos, coordinación de equipos y formando parte de estudios de planificación territorial de áreas silvestres. 
+
+# Catalina Marin Cruz 
+
+![](./Fotos/CatalinaMarinCruz.jpg){width=50%}
+
+Soy Catalina Marín Cruz, Bióloga y Magister en Ciencias con mención en Botánica. Mis estudios científicos se han centrado en líquenes de ambientes extremos, principalmente aquellos que habitan en el Desierto de Atacama y la Antártica. Estudiando las condiciones microclimáticas en los lugares donde estos organismos habitan, comparado la respuesta de fotosintética primaria ante la desecación y shock térmico con especies del desierto y la Antártica, además el efecto del calentamiento pasivo en especies antárticas. Actualmente soy Data Manager del Instituto Milenio Bases de Ecosistemas Antárticos y Subantárticos (BASE), donde me encargo del manejo de datos de todas las líneas de investigación, asegurando la publicación de dicha información bajo los principios FAIR.
+
+
+# Francisca González Contreras
+
+
+![](./Fotos/FranciscaGonzálezContreras.jpg){width=50%}
+
+Encargada de Sistemas de Información Geográfica de proyecto Fauna Impactada.
+Candidata a Magíster en Análisis Geográfico de Universidad de Concepción.Licenciada en Geografía Universidad de Chile
+
+
+
+# fran gonzalez deramond
+
+![](./Fotos/fran gonzalez deramond.jpeg){width=50%}
+
+Hola!... Soy bióloga marina y me apasiona mucho las macroalgas, en especial las pardas. Mi pasatiempo favorito es ir a bucear junto con mis amigxs a la Reserva Marina Isla de Chañaral, ubicada en la región de Atacama. ¡Lo recomiendo enormemente! Este lugar es simplemente increíble, repleto de biodiversidad marina. En la actualidad, me desempeño como especialista en biodiversidad, trabajando en proyectos de impacto ambiental. Mi enfoque principal es la conservación de especies y la mitigación de los impactos en los ecosistemas. 
+
+
+# Juan Pablo Vicencio
+
+![](./Fotos/Juan Pablo Vicencio_.jpg){width=50%}
+
+Me llamo Juan Pablo Vicencio Segura, provengo de la ciudad de San Felipe (Región de Valparaíso) y actualmente me encuentro cursando cuarto año de Ingeniería en Conservación de Recursos Naturales en la Universidad Austral de Chile (Valdivia).  Mi interés profesional aboga a la botánica, y en ese sentido he estado trabajado en el levantamiento del herbario VALD y la puesta en valor de su pequeña colección botánica. 
+
+# Valentina Perez
+
+![](./Fotos/Valentina Perez_foto.jpeg){width=50%}
+Soy Valentina Pérez, Ingeniera forestal de profesión. Mis temas de interés son principalmente la botánica, la biogeografía y ecología evolutiva por lo que me gustan mucho las plantas. He trabajado con manejo de base de datos principalmente con rasgos funcionales de plantas leñosas de Chile. Me gusta andar en bicicleta, hacer cerámica y cocinar.
+
+
+# Victoria_Arevalo
+![](./Fotos/Victoria_Arevalo_R.jpg){width=50%}
