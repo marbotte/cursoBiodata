@@ -143,3 +143,6 @@ Soy Valentina Pérez, Ingeniera forestal de profesión. Mis temas de interés so
 
 # Victoria_Arevalo
 ![](./Fotos/Victoria_Arevalo_R.jpg){width=50%}
+
+
+Soy Ingeniera Forestal de la Universidad de Chile. Me he desempeñado como Especialista de Flora y Vegetación en el área de consultoría ambiental. Actualmente me desempeño como Profesional de Ecosistemas Terrestres en el Ministerio del Medio Ambiente, para el programa de Desarrollo Productivo Sostenible que tiene por objetivo el proyecto de construir una Línea de Base Pública (LBP). Principalmente trabajo con gestión de políticas públicas, bases de datos de biodiversidad a través del estándar DarwinCore, que provienen de distintas fuentes de información, como de colecciones biológicas, datos primarios tomados en terreno o archivos de texto (PDF/WORD). Además, ayudo en la transferencia de capacidades técnicas para nuevos publicadores de datos de biodiversidad a través de la red de GBIF.

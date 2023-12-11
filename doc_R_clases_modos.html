@@ -88,29 +88,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Curso Biodata: Participantes en el curso</title>
+  <title>Curso Biodata: Clases, modos y filtros en R</title>
 
-  <meta property="description" itemprop="description" content="¡La gente!"/>
+  <meta property="description" itemprop="description" content="Formato y estructura de los diferentes objetos de datos en R - Filtrar y seleccionar elementos de los objectos de R"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Curso Biodata: Participantes en el curso"/>
+  <meta property="og:title" content="Curso Biodata: Clases, modos y filtros en R"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="¡La gente!"/>
+  <meta property="og:description" content="Formato y estructura de los diferentes objetos de datos en R - Filtrar y seleccionar elementos de los objectos de R"/>
   <meta property="og:locale" content="es_CL"/>
   <meta property="og:site_name" content="Curso Biodata"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Curso Biodata: Participantes en el curso"/>
-  <meta property="twitter:description" content="¡La gente!"/>
+  <meta property="twitter:title" content="Curso Biodata: Clases, modos y filtros en R"/>
+  <meta property="twitter:description" content="Formato y estructura de los diferentes objetos de datos en R - Filtrar y seleccionar elementos de los objectos de R"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","lang","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Participantes en el curso"]},{"type":"character","attributes":{},"value":["es_CL"]},{"type":"character","attributes":{},"value":["¡La gente!"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","lang","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Clases, modos y filtros en R"]},{"type":"character","attributes":{},"value":["es_CL"]},{"type":"character","attributes":{},"value":["Formato y estructura de los diferentes objetos de datos en R - Filtrar y seleccionar elementos de los objectos de R"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","pandoc_args"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["--number-sections"]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2100,6 +2100,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+  <link href="site_libs/font-awesome-5.13.0/css/all.min.css" rel="stylesheet" />
+  <link href="site_libs/font-awesome-5.13.0/css/v4-shims.min.css" rel="stylesheet" />
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2119,7 +2123,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Participantes en el curso","description":"¡La gente!","authors":[]}
+{"title":"Clases, modos y filtros en R","description":"Formato y estructura de los diferentes objetos de datos en R - Filtrar y seleccionar elementos de los objectos de R","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2185,80 +2189,676 @@ Documentación taxo y espacial
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Participantes en el curso</h1>
+<h1>Clases, modos y filtros en R</h1>
 
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p>¡La gente!</p>
+<p>Formato y estructura de los diferentes objetos de datos en R - Filtrar y seleccionar elementos de los objectos de R</p>
 </div>
 
 
 <div class="d-article">
-<div class="layout-chunk" data-layout="l-body">
-<p><img src="Fotos/fotosGrupo/IMGP8110.jpg" width="2154" /><img src="Fotos/fotosGrupo/IMGP8118.jpg" width="2154" /><img src="Fotos/fotosGrupo/IMGP8119.jpg" width="2154" /><img src="Fotos/fotosGrupo/IMGP8124.jpg" width="2154" /><img src="Fotos/fotosGrupo/IMGP8125.jpg" width="2154" /><img src="Fotos/fotosGrupo/IMGP8126.jpg" width="2154" /><img src="Fotos/fotosGrupo/IMGP8132.jpg" width="2154" /></p>
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#objetos-de-datos-en-r" id="toc-objetos-de-datos-en-r"><span class="toc-section-number">1</span> Objetos de datos en R</a>
+<ul>
+<li><a href="#clases-simples-vectores-y-matrices" id="toc-clases-simples-vectores-y-matrices"><span class="toc-section-number">1.1</span> Clases simples: vectores y matrices</a>
+<ul>
+<li><a href="#vector" id="toc-vector"><span class="toc-section-number">1.1.1</span> vector</a></li>
+<li><a href="#arrays-y-matrices" id="toc-arrays-y-matrices"><span class="toc-section-number">1.1.2</span> Arrays y Matrices</a></li>
+</ul></li>
+<li><a href="#los-modos-de-datos" id="toc-los-modos-de-datos"><span class="toc-section-number">1.2</span> Los modos de datos</a>
+<ul>
+<li><a href="#modo-logico" id="toc-modo-logico"><span class="toc-section-number">1.2.1</span> Modo logico</a></li>
+<li><a href="#modo-numerico" id="toc-modo-numerico"><span class="toc-section-number">1.2.2</span> Modo numerico</a></li>
+<li><a href="#modo-caracter" id="toc-modo-caracter"><span class="toc-section-number">1.2.3</span> Modo caracter</a></li>
+<li><a href="#modo-factor" id="toc-modo-factor"><span class="toc-section-number">1.2.4</span> Modo factor</a></li>
+</ul></li>
+<li><a href="#clases-compuestas-list-y-data.frame" id="toc-clases-compuestas-list-y-data.frame"><span class="toc-section-number">1.3</span> Clases compuestas: list y data.frame</a>
+<ul>
+<li><a href="#un-solo-modo-en-los-vectores-y-matrices" id="toc-un-solo-modo-en-los-vectores-y-matrices"><span class="toc-section-number">1.3.1</span> Un solo modo en los vectores y matrices</a></li>
+<li><a href="#las-listas" id="toc-las-listas"><span class="toc-section-number">1.3.2</span> Las listas</a></li>
+<li><a href="#los-data-frames" id="toc-los-data-frames"><span class="toc-section-number">1.3.3</span> Los data frames</a></li>
+</ul></li>
+<li><a href="#recapitulativo-de-las-clases-de-los-objetos-en-r" id="toc-recapitulativo-de-las-clases-de-los-objetos-en-r"><span class="toc-section-number">1.4</span> Recapitulativo de las clases de los objetos en R</a></li>
+</ul></li>
+<li><a href="#applicar-filtros-a-los-objetos" id="toc-applicar-filtros-a-los-objetos"><span class="toc-section-number">2</span> Applicar filtros a los objetos</a>
+<ul>
+<li><a href="#filtros-sobre-vectores" id="toc-filtros-sobre-vectores"><span class="toc-section-number">2.1</span> Filtros sobre vectores</a>
+<ul>
+<li><a href="#modo-logical" id="toc-modo-logical"><span class="toc-section-number">2.1.1</span> Modo <em>logical</em></a></li>
+<li><a href="#indices" id="toc-indices"><span class="toc-section-number">2.1.2</span> Indices</a></li>
+<li><a href="#nombres" id="toc-nombres"><span class="toc-section-number">2.1.3</span> Nombres</a></li>
+<li><a href="#filtros-de-vectores-heredados" id="toc-filtros-de-vectores-heredados"><span class="toc-section-number">2.1.4</span> Filtros de vectores heredados</a></li>
+</ul></li>
+<li><a href="#filtros-sobre-arrays" id="toc-filtros-sobre-arrays"><span class="toc-section-number">2.2</span> Filtros sobre <em>arrays</em></a></li>
+<li><a href="#filtros-sobre-list" id="toc-filtros-sobre-list"><span class="toc-section-number">2.3</span> Filtros sobre <em>list</em></a>
+<ul>
+<li><a href="#el-operador" id="toc-el-operador"><span class="toc-section-number">2.3.1</span> El operador <code>$</code></a></li>
+<li><a href="#el-operador-..." id="toc-el-operador-..."><span class="toc-section-number">2.3.2</span> El operador <code>[[...]]</code></a></li>
+<li><a href="#los-data.frame-son-listas" id="toc-los-data.frame-son-listas"><span class="toc-section-number">2.3.3</span> Los data.frame son listas</a></li>
+</ul></li>
+<li><a href="#cambiar-los-contenidos-filtrados" id="toc-cambiar-los-contenidos-filtrados"><span class="toc-section-number">2.4</span> Cambiar los contenidos filtrados</a></li>
+</ul></li>
+</ul>
+</nav>
 </div>
-<h1 id="ricardo-segovia">Ricardo Segovia</h1>
-<p><img src="Fotos/RicardoSegovia.jpg" style="width:50.0%" /></p>
-<p>Ricardo Segovia, coordinador del equipo BioData del Instituto de Ecología y Biodiversidad. Con experiencia en biogeografía y ecología ahora estoy enfocado en la creación y gestión de bases de datos de biodiversidad.</p>
-<h1 id="marius-bottin">Marius Bottin</h1>
-<p><img src="Fotos/MariusBottin.jpg" style="width:50.0%" /></p>
-<p>Soy un ecólogo francés viviendo en Bogotá, Colombia. He trabajado en la ecología de la diatomeas de los ríos franceses, las vegetaciones de las praderas secas del sur-occidente de Francia y los páramos colombianos. Ahora me dedico principalmente a… ¡limpiar datos de biodiversidad! (una otra manera más seria de decir lo mismo es: trabajo en la estructuración y el mantenimiento de bases de datos de biodiversidad).</p>
-<h1 id="diego-alarcón">Diego Alarcón</h1>
-<p><img src="Fotos/DiegoAlarcon.jpg" style="width:50.0%" /></p>
-<h1 id="catalina-merino">Catalina Merino</h1>
-<p><img src="Fotos/CatalinaMerino.jpeg" style="width:50.0%" /></p>
-<p>Mi nombre es Catalina Merino Yunnissi, soy Bióloga con estudios de postítulo en GIS y Métodos Estadísticos. Cuando egresé entré a trabajar en el Museo Nacional de Historia Natural, al Área de Zoología de Invertebrados. Actualmente soy la Administradora de Colecciones del Área y me encargo de la gestión, conservación y documentación de estas.</p>
-<h1 id="felipe-durán">Felipe Durán</h1>
-<p><img src="Fotos/FelipeDur%C3%A1n.jpg" style="width:50.0%" /></p>
-<p>Soy biólogo y actualmente estudiante del Doctorado en Sistemática y Biodiversidad de la Universidad de Concepción, donde me encuentro desarrollando mi proyecto de tesis relacionada a la evolución de los ciclos de vida, utilizando como modelo de estudio a los anfibios. Anteriormente me he dedicado a estudiar la biodiversidad de anuros chilenos desde una perspectiva taxonómica, filogeográfica y ecológica.</p>
-<h1 id="gustavo-torres-mellado">Gustavo Torres Mellado</h1>
-<p><img src="Fotos/GustavoTorresMellado.jpg" style="width:50.0%" /></p>
-<p>Gustavo A. Torres Mellado, biólogo con mención en biodiversidad y conservación biológica UdeC. Desde hace más de una década me dedico a la consultoría ambiental, específicamente a la caracterización desde matrices bióticas diversas, principalmente flora y vegetación, y en menor grado funga, fauna terrestre, limnología, entre otros. Durante mis años formativos me he dedicado a la ecología de microorganismos del suelo, específicamente en la simbiosis micorrícica de ambientes extremos.</p>
-<h1 id="pamela-martínez">Pamela Martínez</h1>
-<p><img src="Fotos/PamelaMart%C3%ADnez%20.jpg" style="width:50.0%" /></p>
-<p>Me llamo Pamela Martínez, soy Ingeniera Forestal de la Pontificia Universidad Católica de Chile. Me titulé con la especialidad de territorio y manejo de bosque. He trabajado construyendo una geodatabase de datos históricos vegetacionales, y he ayudado a crear indicadores para determinar lugares prioritarios de reforestación a nivel nacional. Además, me he desenvuelto en otras áreas, con temáticas relacionadas con mi profesión y otras que no son abarcadas dentro de esta. Actualmente me desempeño como asistente de gerencia en IEB.</p>
-<h1 id="javiera-vergara-vidal">Javiera Vergara Vidal</h1>
-<p>Soy de Concepción, Soy licenciada en biología de la Universidad de Concepción.
-terminé un trainee en fullstack orientado a python (django), por lo que se supone soy programadora <em>junior</em> (pero creo que aun me falta mucho para considerarme junior)
-Estoy en un diplomado de data analyst pero me está costando mucho power Bi
-Estoy Seleccionada para un programa de talento digital para Chile en data science para el próximo año.
-Mi portafolio incompleto:
-<a href="https://portfolio-darkss.vercel.app/" class="uri">https://portfolio-darkss.vercel.app/</a></p>
-<p>Mi github está incompleto y desordenado
-<a href="https://github.com/xavi-v" class="uri">https://github.com/xavi-v</a></p>
-<p>Mi linkedin está incompleto y desordenado tambien <a href="https://www.linkedin.com/in/javi-vergara-vidal/" class="uri">https://www.linkedin.com/in/javi-vergara-vidal/</a></p>
-<p>mini tutorial que hice para postgres en Windows
-<a href="https://miro.com/app/board/uXjVNOqt4Cw=/" class="uri">https://miro.com/app/board/uXjVNOqt4Cw=/</a></p>
-<p>Pasé por paleontología, micología,tengo licencia de buceo autónomo básico pero aun no tengo licencia tipo B.</p>
-<h1 id="angelica-villalobo-lopez">Angelica Villalobo Lopez</h1>
-<p><img src="Fotos/AngelicaVillaloboLopez.jpg" /></p>
-<p>Soy biólogo, MSc mención Botánica, actualmente estudiante de Doctorado en Sistemática y Biodiversidad en la Universidad de Concepción. Mi investigación se enfoca en la conservación, centrándome principalmente en las especies del género Copiapoa que habitan por toda la costa de Chile, he trabajado actualizando gran parte de las áreas de ocupaciones y extensiones de presencia de estas especies y en los estados de conservación.</p>
-<h1 id="amparo-rodriguez">Amparo Rodriguez</h1>
-<p><img src="Fotos/AmparoRodriguez.jpg" style="width:50.0%" />
-Soy Amparo M Rodríguez Ruiz, graduada en biología por la Universidad de Sevilla y diplomada en Ornitología. Mi interés se centra en la biología de vertebrados depredadores y su conservación, principalmente buscando la resolución de conflictos humano-animal. Actualmente profundizo en el estudio de la conducta y ecología de aves rapaces a través del doctorado en Sistemática y Biodiversidad de la Universidad de Concepción.</p>
-<h1 id="karla-garcía">Karla García</h1>
-<p><img src="Fotos/KarlaGarcia.jpg" style="width:50.0%" /></p>
-<p>Soy Bióloga con Mención en Biodiversidad y Conservación Biológica, Magíster en Zoología y Doctora en Biodiversidad. Mis líneas de interés e investigación han estado relacionadas a la conservación y ecología de poblaciones de mamíferos. Parte importante de mi trayectoria profesional también ha estado relacionada con la consultoría y gestión ambiental, enfocándome en realizar levantamientos biológicos, coordinación de equipos y formando parte de estudios de planificación territorial de áreas silvestres.</p>
-<h1 id="catalina-marin-cruz">Catalina Marin Cruz</h1>
-<p><img src="Fotos/CatalinaMarinCruz.jpg" style="width:50.0%" /></p>
-<p>Soy Catalina Marín Cruz, Bióloga y Magister en Ciencias con mención en Botánica. Mis estudios científicos se han centrado en líquenes de ambientes extremos, principalmente aquellos que habitan en el Desierto de Atacama y la Antártica. Estudiando las condiciones microclimáticas en los lugares donde estos organismos habitan, comparado la respuesta de fotosintética primaria ante la desecación y shock térmico con especies del desierto y la Antártica, además el efecto del calentamiento pasivo en especies antárticas. Actualmente soy Data Manager del Instituto Milenio Bases de Ecosistemas Antárticos y Subantárticos (BASE), donde me encargo del manejo de datos de todas las líneas de investigación, asegurando la publicación de dicha información bajo los principios FAIR.</p>
-<h1 id="francisca-gonzález-contreras">Francisca González Contreras</h1>
-<p><img src="Fotos/FranciscaGonz%C3%A1lezContreras.jpg" style="width:50.0%" /></p>
-<p>Encargada de Sistemas de Información Geográfica de proyecto Fauna Impactada.
-Candidata a Magíster en Análisis Geográfico de Universidad de Concepción.Licenciada en Geografía Universidad de Chile</p>
-<h1 id="fran-gonzalez-deramond">fran gonzalez deramond</h1>
-<p><img src="Fotos/fran%20gonzalez%20deramond.jpeg" style="width:50.0%" /></p>
-<p>Hola!… Soy bióloga marina y me apasiona mucho las macroalgas, en especial las pardas. Mi pasatiempo favorito es ir a bucear junto con mis amigxs a la Reserva Marina Isla de Chañaral, ubicada en la región de Atacama. ¡Lo recomiendo enormemente! Este lugar es simplemente increíble, repleto de biodiversidad marina. En la actualidad, me desempeño como especialista en biodiversidad, trabajando en proyectos de impacto ambiental. Mi enfoque principal es la conservación de especies y la mitigación de los impactos en los ecosistemas.</p>
-<h1 id="juan-pablo-vicencio">Juan Pablo Vicencio</h1>
-<p><img src="Fotos/Juan%20Pablo%20Vicencio_.jpg" style="width:50.0%" /></p>
-<p>Me llamo Juan Pablo Vicencio Segura, provengo de la ciudad de San Felipe (Región de Valparaíso) y actualmente me encuentro cursando cuarto año de Ingeniería en Conservación de Recursos Naturales en la Universidad Austral de Chile (Valdivia). Mi interés profesional aboga a la botánica, y en ese sentido he estado trabajado en el levantamiento del herbario VALD y la puesta en valor de su pequeña colección botánica.</p>
-<h1 id="valentina-perez">Valentina Perez</h1>
-<p><img src="Fotos/Valentina%20Perez_foto.jpeg" style="width:50.0%" />
-Soy Valentina Pérez, Ingeniera forestal de profesión. Mis temas de interés son principalmente la botánica, la biogeografía y ecología evolutiva por lo que me gustan mucho las plantas. He trabajado con manejo de base de datos principalmente con rasgos funcionales de plantas leñosas de Chile. Me gusta andar en bicicleta, hacer cerámica y cocinar.</p>
-<h1 id="victoria_arevalo">Victoria_Arevalo</h1>
-<p><img src="Fotos/Victoria_Arevalo_R.jpg" style="width:50.0%" /></p>
-<p>Soy Ingeniera Forestal de la Universidad de Chile. Me he desempeñado como Especialista de Flora y Vegetación en el área de consultoría ambiental. Actualmente me desempeño como Profesional de Ecosistemas Terrestres en el Ministerio del Medio Ambiente, para el programa de Desarrollo Productivo Sostenible que tiene por objetivo el proyecto de construir una Línea de Base Pública (LBP). Principalmente trabajo con gestión de políticas públicas, bases de datos de biodiversidad a través del estándar DarwinCore, que provienen de distintas fuentes de información, como de colecciones biológicas, datos primarios tomados en terreno o archivos de texto (PDF/WORD). Además, ayudo en la transferencia de capacidades técnicas para nuevos publicadores de datos de biodiversidad a través de la red de GBIF.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<a href="https://raw.githubusercontent.com/marbotte/cursoBiodata/master/download/R_code/documentation/doc_R_clases_modos.R">
+<button class="btn btn-default"><i class="fa fa-save"></i> Download R script</button>
+</a>
+</div>
+<h1 data-number="1" id="objetos-de-datos-en-r"><span class="header-section-number">1</span> Objetos de datos en R</h1>
+<h2 data-number="1.1" id="clases-simples-vectores-y-matrices"><span class="header-section-number">1.1</span> Clases simples: vectores y matrices</h2>
+<p>Existen varios tipos de objetos en R. Dentro de los más simples están</p>
+<h3 data-number="1.1.1" id="vector"><span class="header-section-number">1.1.1</span> vector</h3>
+<p>Una noción central para entender el funcionamiento de R es el <strong>vector</strong>.
+Un vector es un ensamblaje de valores, y casi todos los objetos de R son vectores.
+La forma más simple de crear un vector es la función <code>c</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>numeros</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>1</span>,<span class='fl'>6</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 3 1 6</code></pre>
+</div>
+<p>Un vector es un objeto de una dimensión, que tiene una longitud.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>numeros</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 3</code></pre>
+</div>
+<p>Los elementos de los vectores pueden tener nombres:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>numeros</span><span class='op'>)</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>,<span class='st'>"b"</span>,<span class='st'>"c"</span><span class='op'>)</span></span>
+<span><span class='va'>numeros</span></span></code></pre>
+</div>
+<pre><code>a b c 
+3 1 6 </code></pre>
+</div>
+<h3 data-number="1.1.2" id="arrays-y-matrices"><span class="header-section-number">1.1.2</span> Arrays y Matrices</h3>
+<p>Existen también objetos que tienen más de una dimensión, en R usualmente pertenecen a la familia de los <strong>arrays</strong>.
+El objeto de la clase array más simple es la matriz, que se puede crear con la función <code>matrix</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>matExample</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>12</span><span class='op'>]</span>,nrow<span class='op'>=</span><span class='fl'>4</span>,ncol<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>     [,1] [,2] [,3]
+[1,] &quot;a&quot;  &quot;e&quot;  &quot;i&quot; 
+[2,] &quot;b&quot;  &quot;f&quot;  &quot;j&quot; 
+[3,] &quot;c&quot;  &quot;g&quot;  &quot;k&quot; 
+[4,] &quot;d&quot;  &quot;h&quot;  &quot;l&quot; </code></pre>
+</div>
+<p>Los arrays tienen dimensiones. Acá vamos a trabajar con arrays de 2 dimensiones pero existen arrays de más de 2 dimensiones.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>matExample</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 4 3</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>matExample</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 4</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>matExample</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 3</code></pre>
+</div>
+<p>Los arrays pueden tambien tener nombres de filas y nombres de columnas</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>matExample</span><span class='op'>)</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span>,<span class='st'>"B"</span>,<span class='st'>"C"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span><span class='op'>(</span><span class='va'>matExample</span><span class='op'>)</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"fila1"</span>,<span class='st'>"fila2"</span>,<span class='st'>"fila3"</span>,<span class='st'>"fila4"</span><span class='op'>)</span></span>
+<span><span class='va'>matExample</span></span></code></pre>
+</div>
+<pre><code>      A   B   C  
+fila1 &quot;a&quot; &quot;e&quot; &quot;i&quot;
+fila2 &quot;b&quot; &quot;f&quot; &quot;j&quot;
+fila3 &quot;c&quot; &quot;g&quot; &quot;k&quot;
+fila4 &quot;d&quot; &quot;h&quot; &quot;l&quot;</code></pre>
+</div>
+<h2 data-number="1.2" id="los-modos-de-datos"><span class="header-section-number">1.2</span> Los modos de datos</h2>
+<p>En R existen varios <em>modos</em> que corresponden a varios tipos de datos que se pueden manejar, y que se almacenan de manera diferente en la memoria del computador.
+Por ejemplo, los objetos <em>numeros</em> y <em>matExample</em> tienen modos diferentes:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/mode.html'>mode</a></span><span class='op'>(</span><span class='va'>numeros</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/mode.html'>mode</a></span><span class='op'>(</span><span class='va'>matExample</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;character&quot;</code></pre>
+</div>
+<h3 data-number="1.2.1" id="modo-logico"><span class="header-section-number">1.2.1</span> Modo logico</h3>
+<p>El modo más simple y más ligero es el modo de logica booleana <strong>logical</strong>, puede contener los valores TRUE y FALSE</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>vecLog</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>T</span>,<span class='cn'>F</span>,<span class='cn'>F</span>,<span class='cn'>T</span>,<span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1]  TRUE FALSE FALSE  TRUE  TRUE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/mode.html'>mode</a></span><span class='op'>(</span><span class='va'>vecLog</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;logical&quot;</code></pre>
+</div>
+<h3 data-number="1.2.2" id="modo-numerico"><span class="header-section-number">1.2.2</span> Modo numerico</h3>
+<p>Existen los modos numéricos, así como en el objeto numeros. Los objetos de modo numérico tienen varías precisiones y forma de almacenamiento. Los más importantes para conocer son los números enteros (integer) y los números generales (numeric que pueden ser de tipos single precision y double precision).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>numInt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5L</span>,<span class='fl'>3L</span>,<span class='fl'>1L</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 5 3 1</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/integer.html'>is.integer</a></span><span class='op'>(</span><span class='va'>numInt</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>numOtros</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>8.1837</span>, <span class='fl'>6.94785</span>, <span class='fl'>5</span>, <span class='fl'>17</span><span class='op'>/</span><span class='fl'>9</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 8.183700 6.947850 5.000000 1.888889</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/integer.html'>is.integer</a></span><span class='op'>(</span><span class='va'>numOtros</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+</div>
+<h3 data-number="1.2.3" id="modo-caracter"><span class="header-section-number">1.2.3</span> Modo caracter</h3>
+<p>Luego podemos mencionar los objetos de modo “character”, como en la matriz matExample.
+Los objetos de tipo character pueden almacenar cadenas de caracter con varías letras y simbolos alphanumericos:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>vecCar</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"palabras"</span>,<span class='st'>"con espacio"</span>, <span class='st'>"o numeros 123"</span>, <span class='st'>"o otras cosa [^"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;palabras&quot;        &quot;con espacio&quot;     &quot;o numeros 123&quot;  
+[4] &quot;o otras cosa [^&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/mode.html'>mode</a></span><span class='op'>(</span><span class='va'>vecCar</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;character&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/nchar.html'>nchar</a></span><span class='op'>(</span><span class='va'>vecCar</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1]  8 11 13 15</code></pre>
+</div>
+<p>Anotar: el modo caracter es el modo más pesado para la memoria en R.
+Si tienen problemas de memoria limitada en un script es mejor evitarlos…</p>
+<h3 data-number="1.2.4" id="modo-factor"><span class="header-section-number">1.2.4</span> Modo factor</h3>
+<p>Finalmente existe el modo factor, para almacenar variables con un numero de posibilidades de valores limitado.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>factorExample</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sí"</span>,<span class='st'>"No"</span>,<span class='st'>"Sí"</span>,<span class='st'>"Tal vez"</span><span class='op'>)</span>,levels<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sí"</span>,<span class='st'>"No"</span>,<span class='st'>"Tal vez"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] Sí      No      Sí      Tal vez
+Levels: Sí No Tal vez</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/mode.html'>mode</a></span><span class='op'>(</span><span class='va'>factorExample</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;numeric&quot;</code></pre>
+</div>
+<p>Anotar: R almacena los factores como numéricos en memoria:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>factorExample</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 1 2 1 3</code></pre>
+</div>
+<p>Permite economizar mucho espacio en memoria, pero también puede ser la raíz de errores difíciles de detectar en un código, cuidado!</p>
+<p>NB: para que lo sepan, existen otros modos como los números complejos, pero son poco útiles en la gestión de datos de biodiversidad</p>
+<h2 data-number="1.3" id="clases-compuestas-list-y-data.frame"><span class="header-section-number">1.3</span> Clases compuestas: list y data.frame</h2>
+<h3 data-number="1.3.1" id="un-solo-modo-en-los-vectores-y-matrices"><span class="header-section-number">1.3.1</span> Un solo modo en los vectores y matrices</h3>
+<p>Los vectores y matrices solo pueden contener datos de un modo:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>vecTestMode</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>T</span>, <span class='fl'>1L</span>, <span class='fl'>4.14</span>, <span class='st'>"palabra"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;TRUE&quot;    &quot;1&quot;       &quot;4.14&quot;    &quot;palabra&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/mode.html'>mode</a></span><span class='op'>(</span><span class='va'>vecTestMode</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;character&quot;</code></pre>
+</div>
+<p>Anotar: lo que pasó con este vector es que todo se volvió <em>character</em> porque este modo puede integrar los demás (logical &lt; factor &lt; numeric &lt; character).</p>
+<h3 data-number="1.3.2" id="las-listas"><span class="header-section-number">1.3.2</span> Las listas</h3>
+<p>Existen una clase de objetos que pueden mezclar diferentes modos: la clase <em>list</em>.
+Una <em>list</em> es un <em>vector</em> de otros objetos.</p>
+<p>Se puede crear con la función <code>list</code></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>list1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>numeros</span>, <span class='va'>matExample</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[[1]]
+a b c 
+3 1 6 
+
+[[2]]
+      A   B   C  
+fila1 &quot;a&quot; &quot;e&quot; &quot;i&quot;
+fila2 &quot;b&quot; &quot;f&quot; &quot;j&quot;
+fila3 &quot;c&quot; &quot;g&quot; &quot;k&quot;
+fila4 &quot;d&quot; &quot;h&quot; &quot;l&quot;</code></pre>
+</div>
+<p>Se pueden también poner nombres a los sub-objetos de la <em>list</em> en la creación del objeto:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>list1_withNames</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>numeros<span class='op'>=</span><span class='va'>numeros</span>, `Un ejemplo de matriz`<span class='op'>=</span><span class='va'>matExample</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>$numeros
+a b c 
+3 1 6 
+
+$`Un ejemplo de matriz`
+      A   B   C  
+fila1 &quot;a&quot; &quot;e&quot; &quot;i&quot;
+fila2 &quot;b&quot; &quot;f&quot; &quot;j&quot;
+fila3 &quot;c&quot; &quot;g&quot; &quot;k&quot;
+fila4 &quot;d&quot; &quot;h&quot; &quot;l&quot;</code></pre>
+</div>
+<h3 data-number="1.3.3" id="los-data-frames"><span class="header-section-number">1.3.3</span> Los data frames</h3>
+<p>Existe un caso particular de <em>list</em>: el <em>data.frame</em>.
+Es una <em>list</em> de <em>vectors</em> que tienen todos la misma longitud.
+Dado que es una <em>list</em>, cada uno de los vectores puede tener un modo diferente.
+También es un <em>array</em>: es decir que los <em>vectors</em>, que tienen todos la misma longitud, representan las columnas de una tabla.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>DF_example</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span></span>
+<span>  country<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Chile"</span>,<span class='st'>"Colombia"</span>,<span class='st'>"Francia"</span><span class='op'>)</span>,</span>
+<span>  surAmerica<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>T</span>,<span class='cn'>T</span>,<span class='cn'>F</span><span class='op'>)</span>,</span>
+<span>  superficie_km2<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>756626</span>,<span class='fl'>1142000</span>,<span class='fl'>549134</span><span class='op'>)</span></span>
+<span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>   country surAmerica superficie_km2
+1    Chile       TRUE         756626
+2 Colombia       TRUE        1142000
+3  Francia      FALSE         549134</code></pre>
+</div>
+<h2 data-number="1.4" id="recapitulativo-de-las-clases-de-los-objetos-en-r"><span class="header-section-number">1.4</span> Recapitulativo de las clases de los objetos en R</h2>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<caption>
+<span id="tab:clases">Table 1: </span>Tipos principales de objetos, y sus caracteristicas heredadas. La columna modo unico indica si el objeto solo puede contenir datos de un modo (ver noción de <em>atomic mode</em>).
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+vector
+</th>
+<th style="text-align:left;">
+array
+</th>
+<th style="text-align:left;">
+modo.único
+</th>
+<th style="text-align:left;">
+list
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+vector
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+matriz
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+list
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+data.frame
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La tabla <a href="#tab:clases">1</a> contiene las características principales de las clases de objetos principales en R (anotar: existen otras clases de objetos, pero esas son las clases de objetos más comunes para almacenar datos).</p>
+<hr />
+<p>Para los que quieren ir más allá en la comprensión de la tabla <a href="#tab:clases">1</a>: el lenguaje de programación R es un lenguaje de <em>programación orientado a objeto</em>.
+Eso implica que el tratamiento del objeto en el lenguaje va a depender de características que cada objeto va a heredar de familias de objetos que se llaman <em>clases</em> (classes).
+Por ejemplo, los objetos <em>matrix</em> en R heredan las características de las clases <em>vector</em> y <em>array</em>.
+Basicamente, una <em>matrix</em> es un vector que tiene dos dimensiones (filas y columnas).
+Por esa razon, tiene una longitud, como todos los vectores, pero tambien un numero de filas y un numero de columnas, como todos los arrays:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>matExample</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 12</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>matExample</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 4</code></pre>
+</div>
+<p>Un <em>data.frame</em> hereda las caracteristicas de los <em>list</em>. Además, hereda las características de los <em>arrays</em>!</p>
+<hr />
+<h1 data-number="2" id="applicar-filtros-a-los-objetos"><span class="header-section-number">2</span> Applicar filtros a los objetos</h1>
+<p>Para filtrar objetos en R, se utilizan los operadores de tipo <code>[...]</code>.
+Esos operadores aceptan 3 tipos de filtros:</p>
+<ul>
+<li>un vector de modo <em>logical</em> que indica con valores <em>TRUE/FALSE</em> cuales son los elementos que queremos guardar</li>
+<li>un vector de modo <em>integer</em> que indica los indices de los elementos que queremos guardar</li>
+<li>un vector de modo <em>character</em> que indica los nombres de los elementos que queremos guardar</li>
+</ul>
+<h2 data-number="2.1" id="filtros-sobre-vectores"><span class="header-section-number">2.1</span> Filtros sobre vectores</h2>
+<h3 data-number="2.1.1" id="modo-logical"><span class="header-section-number">2.1.1</span> Modo <em>logical</em></h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>numeros</span></span></code></pre>
+</div>
+<pre><code>a b c 
+3 1 6 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>numeros</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>T</span>,<span class='cn'>F</span>,<span class='cn'>T</span><span class='op'>)</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>a c 
+3 6 </code></pre>
+</div>
+<p>Si el vector utilizado en el filtro tiene una longitud inferior al vector que queremos filtrar, los valores están repetidos hasta obtener la longitud final</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>factorExample</span></span></code></pre>
+</div>
+<pre><code>[1] Sí      No      Sí      Tal vez
+Levels: Sí No Tal vez</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>factorExample</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>F</span>, <span class='cn'>T</span><span class='op'>)</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>[1] No      Tal vez
+Levels: Sí No Tal vez</code></pre>
+</div>
+<p>Por ejemplo, para conocer todos los múltiples de 3 entre 1 y 100:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='va'>mul3</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span><span class='op'>)</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>F</span>, <span class='cn'>F</span>, <span class='cn'>T</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code> [1]  3  6  9 12 15 18 21 24 27 30 33 36 39 42 45 48 51 54 57 60 63 66
+[23] 69 72 75 78 81 84 87 90 93 96 99</code></pre>
+</div>
+<h4 data-number="2.1.1.1" id="operadores-logicos"><span class="header-section-number">2.1.1.1</span> Operadores logicos</h4>
+<p>Varios operadores permiten obtener vectores logicos, por ejemplo:</p>
+<ul>
+<li><code>==</code>: <em>es igual a</em></li>
+<li><code>!=</code>: <em>es diferente de</em></li>
+<li><code>&gt;</code>, <code>&gt;=</code>: <em>es superior a</em>, <em>es superior o igual a</em></li>
+<li><code>&gt;</code>, <code>&gt;=</code>: <em>es inferior a</em>, <em>es inferior o igual a</em></li>
+<li><code>&amp;</code> : operador booleano <em>y</em></li>
+<li><code>|</code>: operador booleano <em>o</em></li>
+<li><code>!</code>: operador booleano <em>no</em></li>
+</ul>
+<p>Así, todos esos operadores se pueden utilizar en los filtros logicos:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>numeros</span> <span class='op'>&gt;=</span> <span class='fl'>2</span></span></code></pre>
+</div>
+<pre><code>    a     b     c 
+ TRUE FALSE  TRUE </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>numeros</span><span class='op'>[</span><span class='va'>numeros</span> <span class='op'>&gt;=</span> <span class='fl'>2</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>a c 
+3 6 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>numeros</span><span class='op'>[</span><span class='va'>numeros</span> <span class='op'>&gt;=</span> <span class='fl'>2</span> <span class='op'>&amp;</span> <span class='va'>numeros</span> <span class='op'>!=</span> <span class='fl'>6</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>a 
+3 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>numeros</span><span class='op'>[</span><span class='op'>!</span><span class='op'>(</span><span class='va'>numeros</span> <span class='op'>&gt;=</span> <span class='fl'>2</span> <span class='op'>&amp;</span> <span class='va'>numeros</span> <span class='op'>!=</span> <span class='fl'>6</span><span class='op'>)</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>b c 
+1 6 </code></pre>
+</div>
+<h3 data-number="2.1.2" id="indices"><span class="header-section-number">2.1.2</span> Indices</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>numeros</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>b c 
+1 6 </code></pre>
+</div>
+<p>Permite cambiar el orden de los vectores:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>numeros</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>numeros</span><span class='op'>)</span><span class='op'>:</span><span class='fl'>1</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>c b a 
+6 1 3 </code></pre>
+</div>
+<p>Podemos tambien repetir elementos</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>numeros</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>a b c b 
+3 1 6 1 </code></pre>
+</div>
+<h3 data-number="2.1.3" id="nombres"><span class="header-section-number">2.1.3</span> Nombres</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>numeros</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>,<span class='st'>"c"</span><span class='op'>)</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>a c 
+3 6 </code></pre>
+</div>
+<h3 data-number="2.1.4" id="filtros-de-vectores-heredados"><span class="header-section-number">2.1.4</span> Filtros de vectores heredados</h3>
+<p>Vimos antes que una matriz es un “vector con dimensiones”, así que los filtros de vectores se pueden aplicar:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>matExample</span></span></code></pre>
+</div>
+<pre><code>      A   B   C  
+fila1 &quot;a&quot; &quot;e&quot; &quot;i&quot;
+fila2 &quot;b&quot; &quot;f&quot; &quot;j&quot;
+fila3 &quot;c&quot; &quot;g&quot; &quot;k&quot;
+fila4 &quot;d&quot; &quot;h&quot; &quot;l&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>matExample</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>T</span>,<span class='cn'>T</span>,<span class='cn'>F</span>,<span class='cn'>T</span><span class='op'>)</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;a&quot; &quot;b&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;l&quot;</code></pre>
+</div>
+<p>Anotar: el orden del vector incluido en la matriz es por columna, así que lo que hicímos con este filtro es buscar el vector de valores que excluye la fila 3.</p>
+<p>Tambien vimos que las <em>list</em> son vectores de objetos, los filtros de vectores funcionan tambien sobre esos objetos:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>list1_withNames</span><span class='op'>[</span><span class='st'>"numeros"</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>$numeros
+a b c 
+3 1 6 </code></pre>
+</div>
+<p>Anotar también que las filas o las columnas de un <em>array</em> son <em>vectores</em>, entonces se pueden aplicar los filtros de vectores sobre la extracción de columnas y filas de <em>array</em>, como los <em>data.frame</em>.</p>
+<h2 data-number="2.2" id="filtros-sobre-arrays"><span class="header-section-number">2.2</span> Filtros sobre <em>arrays</em></h2>
+<p>En los casos de los arrays, se pueden aplicar filtros sobre filas y columnas. También funcionan con el operador <code>[...]</code>, solo se separan por una coma:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>matExample</span></span></code></pre>
+</div>
+<pre><code>      A   B   C  
+fila1 &quot;a&quot; &quot;e&quot; &quot;i&quot;
+fila2 &quot;b&quot; &quot;f&quot; &quot;j&quot;
+fila3 &quot;c&quot; &quot;g&quot; &quot;k&quot;
+fila4 &quot;d&quot; &quot;h&quot; &quot;l&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>matExample</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>T</span>,<span class='cn'>F</span>,<span class='cn'>T</span><span class='op'>)</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>      A   C  
+fila2 &quot;b&quot; &quot;j&quot;
+fila3 &quot;c&quot; &quot;k&quot;</code></pre>
+</div>
+<p>Cuando se utiliza la coma, pero el filtro de columna o fila es vacío entonces corresponde a guardar todos los elementos de la dimensión sin filtro:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>DF_example</span></span></code></pre>
+</div>
+<pre><code>   country surAmerica superficie_km2
+1    Chile       TRUE         756626
+2 Colombia       TRUE        1142000
+3  Francia      FALSE         549134</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>DF_example</span><span class='op'>[</span>,<span class='st'>"surAmerica"</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>[1]  TRUE  TRUE FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>DF_example</span><span class='op'>[</span><span class='va'>DF_example</span><span class='op'>[</span>,<span class='st'>"surAmerica"</span><span class='op'>]</span>,<span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>   country surAmerica superficie_km2
+1    Chile       TRUE         756626
+2 Colombia       TRUE        1142000</code></pre>
+</div>
+<p>En este ejemplo utilizamos un filtro logico extraído de la columna <em>surAmerica</em> para aplicarlo sobre las filas de la tabla misma.</p>
+<h2 data-number="2.3" id="filtros-sobre-list"><span class="header-section-number">2.3</span> Filtros sobre <em>list</em></h2>
+<p>Para las <em>list</em> existen operadores particulares: <code>$</code> y <code>[[...]]</code></p>
+<h3 data-number="2.3.1" id="el-operador"><span class="header-section-number">2.3.1</span> El operador <code>$</code></h3>
+<p>El operador <code>$</code> permite extraer un elemento de la <em>list</em> con su nombre:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>list1_withNames</span><span class='op'>$</span><span class='va'>numeros</span></span></code></pre>
+</div>
+<pre><code>a b c 
+3 1 6 </code></pre>
+</div>
+<p>Cuando los nombres de los elementos tienen espacios o caracteres particulares, el operador se puede utilizar con el caracter `</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>list1_withNames</span><span class='op'>$</span><span class='va'>`Un ejemplo de matriz`</span></span></code></pre>
+</div>
+<pre><code>      A   B   C  
+fila1 &quot;a&quot; &quot;e&quot; &quot;i&quot;
+fila2 &quot;b&quot; &quot;f&quot; &quot;j&quot;
+fila3 &quot;c&quot; &quot;g&quot; &quot;k&quot;
+fila4 &quot;d&quot; &quot;h&quot; &quot;l&quot;</code></pre>
+</div>
+<h3 data-number="2.3.2" id="el-operador-..."><span class="header-section-number">2.3.2</span> El operador <code>[[...]]</code></h3>
+<p>Otra forma de extraer un elemento de una <em>list</em> es utilizar el operador <code>[[...]]</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>list1_withNames</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>a b c 
+3 1 6 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>list1_withNames</span><span class='op'>[[</span><span class='st'>"Un ejemplo de matriz"</span><span class='op'>]</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>      A   B   C  
+fila1 &quot;a&quot; &quot;e&quot; &quot;i&quot;
+fila2 &quot;b&quot; &quot;f&quot; &quot;j&quot;
+fila3 &quot;c&quot; &quot;g&quot; &quot;k&quot;
+fila4 &quot;d&quot; &quot;h&quot; &quot;l&quot;</code></pre>
+</div>
+<p>Anotar: la diferencia entre <code>[...]</code> y <code>[[...]]</code> es que la primera solución envía una lista, y la segunda envia el contenido del elemento.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>list1_withNames</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>$numeros
+a b c 
+3 1 6 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>is.list</a></span><span class='op'>(</span><span class='va'>list1_withNames</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>list1_withNames</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>a b c 
+3 1 6 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>is.list</a></span><span class='op'>(</span><span class='va'>list1_withNames</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+</div>
+<h3 data-number="2.3.3" id="los-data.frame-son-listas"><span class="header-section-number">2.3.3</span> Los data.frame son listas</h3>
+<p>No olvidar que los <em>data.frames</em> heredan las caracteristicas de las <em>list</em>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>DF_example</span><span class='op'>[[</span><span class='st'>"country"</span><span class='op'>]</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;Chile&quot;    &quot;Colombia&quot; &quot;Francia&quot; </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>DF_example</span><span class='op'>[</span><span class='va'>DF_example</span><span class='op'>$</span><span class='va'>surAmerica</span>,<span class='op'>]</span><span class='op'>$</span><span class='va'>superficie_km2</span></span></code></pre>
+</div>
+<pre><code>[1]  756626 1142000</code></pre>
+</div>
+<h2 data-number="2.4" id="cambiar-los-contenidos-filtrados"><span class="header-section-number">2.4</span> Cambiar los contenidos filtrados</h2>
+<p>Todos los filtros que vimos en este documento pueden permitir afectar nuevos valores a los elementos filtrados:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>numeros</span></span></code></pre>
+</div>
+<pre><code>a b c 
+3 1 6 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>numeros</span><span class='op'>[</span><span class='st'>"b"</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>12</span></span>
+<span><span class='va'>numeros</span></span></code></pre>
+</div>
+<pre><code> a  b  c 
+ 3 12  6 </code></pre>
+</div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

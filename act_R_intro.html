@@ -86,31 +86,58 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+      margin-bottom: 0em;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
+</style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Curso Biodata: Participantes en el curso</title>
+  <title>Curso Biodata: Manejar datos en R</title>
 
-  <meta property="description" itemprop="description" content="¡La gente!"/>
+  <meta property="description" itemprop="description" content="Ejercicios para la gestión de datos en R"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Curso Biodata: Participantes en el curso"/>
+  <meta property="og:title" content="Curso Biodata: Manejar datos en R"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="¡La gente!"/>
+  <meta property="og:description" content="Ejercicios para la gestión de datos en R"/>
   <meta property="og:locale" content="es_CL"/>
   <meta property="og:site_name" content="Curso Biodata"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Curso Biodata: Participantes en el curso"/>
-  <meta property="twitter:description" content="¡La gente!"/>
+  <meta property="twitter:title" content="Curso Biodata: Manejar datos en R"/>
+  <meta property="twitter:description" content="Ejercicios para la gestión de datos en R"/>
 
   <!--/radix_placeholder_meta_tags-->
+  
+  <meta name="citation_reference" content="citation_title=Do spatial patterns of benthic diatom assemblages vary across regions and years?;citation_volume=33;citation_author=M Bottin;citation_author=J Soininen;citation_author=M Ferreol;citation_author=J. Tison-Rosebery"/>
+  <meta name="citation_reference" content="citation_title=Typology of diatom communities and the influence of hydro-ecoregions: A study on the french hydrosystem scale;citation_volume=39;citation_author=J. Tison;citation_author=Y. S. Park;citation_author=M. Coste;citation_author=J. G. Wasson;citation_author=L. Ector;citation_author=F. Rimet;citation_author=F. Delmas"/>
+  <meta name="citation_reference" content="citation_title=Rôles des facteurs locaux dans la distribution et la persistance des communautés à hêtre (fagus sylvatica) en marge d’aire de répartition;citation_author=Marion Walbott"/>
+  <meta name="citation_reference" content="citation_title=La végétation de l&#39; entre-deux-mers: Chênaies, châtaigneraies et charmaies mésophiles sur sol acide;citation_volume=3;citation_author=G Lapraz"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","lang","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Participantes en el curso"]},{"type":"character","attributes":{},"value":["es_CL"]},{"type":"character","attributes":{},"value":["¡La gente!"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","lang","description","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Manejar datos en R"]},{"type":"character","attributes":{},"value":["es_CL"]},{"type":"character","attributes":{},"value":["Ejercicios para la gestión de datos en R"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","pandoc_args"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["--number-sections"]}]}]},{"type":"character","attributes":{},"value":["./cursoBiodata.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2100,6 +2127,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+  <link href="site_libs/font-awesome-5.13.0/css/all.min.css" rel="stylesheet" />
+  <link href="site_libs/font-awesome-5.13.0/css/v4-shims.min.css" rel="stylesheet" />
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2119,7 +2148,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Participantes en el curso","description":"¡La gente!","authors":[]}
+{"title":"Manejar datos en R","description":"Ejercicios para la gestión de datos en R","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2185,80 +2214,504 @@ Documentación taxo y espacial
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Participantes en el curso</h1>
+<h1>Manejar datos en R</h1>
 
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p>¡La gente!</p>
+<p>Ejercicios para la gestión de datos en R</p>
 </div>
 
 
 <div class="d-article">
-<div class="layout-chunk" data-layout="l-body">
-<p><img src="Fotos/fotosGrupo/IMGP8110.jpg" width="2154" /><img src="Fotos/fotosGrupo/IMGP8118.jpg" width="2154" /><img src="Fotos/fotosGrupo/IMGP8119.jpg" width="2154" /><img src="Fotos/fotosGrupo/IMGP8124.jpg" width="2154" /><img src="Fotos/fotosGrupo/IMGP8125.jpg" width="2154" /><img src="Fotos/fotosGrupo/IMGP8126.jpg" width="2154" /><img src="Fotos/fotosGrupo/IMGP8132.jpg" width="2154" /></p>
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#utilizar-filtros-simples" id="toc-utilizar-filtros-simples"><span class="toc-section-number">1</span> Utilizar filtros simples</a>
+<ul>
+<li><a href="#ejercicio" id="toc-ejercicio"><span class="toc-section-number">1.1</span> Ejercicio</a></li>
+<li><a href="#diatomeas" id="toc-diatomeas"><span class="toc-section-number">1.2</span> Los datos</a></li>
+<li><a href="#indicaciones-para-el-ejercicio" id="toc-indicaciones-para-el-ejercicio"><span class="toc-section-number">1.3</span> Indicaciones para el ejercicio</a></li>
+</ul></li>
+<li><a href="#relaciones-entre-tablas-en-r" id="toc-relaciones-entre-tablas-en-r"><span class="toc-section-number">2</span> Relaciones entre tablas en R</a>
+<ul>
+<li><a href="#ejercicio-1" id="toc-ejercicio-1"><span class="toc-section-number">2.1</span> Ejercicio</a></li>
+<li><a href="#los-datos" id="toc-los-datos"><span class="toc-section-number">2.2</span> Los datos</a></li>
+<li><a href="#indicaciones-para-el-ejercicio-1" id="toc-indicaciones-para-el-ejercicio-1"><span class="toc-section-number">2.3</span> Indicaciones para el ejercicio</a></li>
+</ul></li>
+<li><a href="#leer-un-archivo-complejo" id="toc-leer-un-archivo-complejo"><span class="toc-section-number">3</span> Leer un archivo complejo</a>
+<ul>
+<li><a href="#ejercicio-2" id="toc-ejercicio-2"><span class="toc-section-number">3.1</span> Ejercicio</a></li>
+<li><a href="#los-datos-1" id="toc-los-datos-1"><span class="toc-section-number">3.2</span> Los datos</a></li>
+<li><a href="#indicaciones-para-el-ejercicio-2" id="toc-indicaciones-para-el-ejercicio-2"><span class="toc-section-number">3.3</span> Indicaciones para el ejercicio</a></li>
+</ul></li>
+<li><a href="#construir-funciones" id="toc-construir-funciones"><span class="toc-section-number">4</span> Construir funciones</a>
+<ul>
+<li><a href="#ejercicio-3" id="toc-ejercicio-3"><span class="toc-section-number">4.1</span> Ejercicio</a></li>
+<li><a href="#indicaciones-para-el-ejercicio-3" id="toc-indicaciones-para-el-ejercicio-3"><span class="toc-section-number">4.2</span> Indicaciones para el ejercicio</a></li>
+</ul></li>
+</ul>
+</nav>
 </div>
-<h1 id="ricardo-segovia">Ricardo Segovia</h1>
-<p><img src="Fotos/RicardoSegovia.jpg" style="width:50.0%" /></p>
-<p>Ricardo Segovia, coordinador del equipo BioData del Instituto de Ecología y Biodiversidad. Con experiencia en biogeografía y ecología ahora estoy enfocado en la creación y gestión de bases de datos de biodiversidad.</p>
-<h1 id="marius-bottin">Marius Bottin</h1>
-<p><img src="Fotos/MariusBottin.jpg" style="width:50.0%" /></p>
-<p>Soy un ecólogo francés viviendo en Bogotá, Colombia. He trabajado en la ecología de la diatomeas de los ríos franceses, las vegetaciones de las praderas secas del sur-occidente de Francia y los páramos colombianos. Ahora me dedico principalmente a… ¡limpiar datos de biodiversidad! (una otra manera más seria de decir lo mismo es: trabajo en la estructuración y el mantenimiento de bases de datos de biodiversidad).</p>
-<h1 id="diego-alarcón">Diego Alarcón</h1>
-<p><img src="Fotos/DiegoAlarcon.jpg" style="width:50.0%" /></p>
-<h1 id="catalina-merino">Catalina Merino</h1>
-<p><img src="Fotos/CatalinaMerino.jpeg" style="width:50.0%" /></p>
-<p>Mi nombre es Catalina Merino Yunnissi, soy Bióloga con estudios de postítulo en GIS y Métodos Estadísticos. Cuando egresé entré a trabajar en el Museo Nacional de Historia Natural, al Área de Zoología de Invertebrados. Actualmente soy la Administradora de Colecciones del Área y me encargo de la gestión, conservación y documentación de estas.</p>
-<h1 id="felipe-durán">Felipe Durán</h1>
-<p><img src="Fotos/FelipeDur%C3%A1n.jpg" style="width:50.0%" /></p>
-<p>Soy biólogo y actualmente estudiante del Doctorado en Sistemática y Biodiversidad de la Universidad de Concepción, donde me encuentro desarrollando mi proyecto de tesis relacionada a la evolución de los ciclos de vida, utilizando como modelo de estudio a los anfibios. Anteriormente me he dedicado a estudiar la biodiversidad de anuros chilenos desde una perspectiva taxonómica, filogeográfica y ecológica.</p>
-<h1 id="gustavo-torres-mellado">Gustavo Torres Mellado</h1>
-<p><img src="Fotos/GustavoTorresMellado.jpg" style="width:50.0%" /></p>
-<p>Gustavo A. Torres Mellado, biólogo con mención en biodiversidad y conservación biológica UdeC. Desde hace más de una década me dedico a la consultoría ambiental, específicamente a la caracterización desde matrices bióticas diversas, principalmente flora y vegetación, y en menor grado funga, fauna terrestre, limnología, entre otros. Durante mis años formativos me he dedicado a la ecología de microorganismos del suelo, específicamente en la simbiosis micorrícica de ambientes extremos.</p>
-<h1 id="pamela-martínez">Pamela Martínez</h1>
-<p><img src="Fotos/PamelaMart%C3%ADnez%20.jpg" style="width:50.0%" /></p>
-<p>Me llamo Pamela Martínez, soy Ingeniera Forestal de la Pontificia Universidad Católica de Chile. Me titulé con la especialidad de territorio y manejo de bosque. He trabajado construyendo una geodatabase de datos históricos vegetacionales, y he ayudado a crear indicadores para determinar lugares prioritarios de reforestación a nivel nacional. Además, me he desenvuelto en otras áreas, con temáticas relacionadas con mi profesión y otras que no son abarcadas dentro de esta. Actualmente me desempeño como asistente de gerencia en IEB.</p>
-<h1 id="javiera-vergara-vidal">Javiera Vergara Vidal</h1>
-<p>Soy de Concepción, Soy licenciada en biología de la Universidad de Concepción.
-terminé un trainee en fullstack orientado a python (django), por lo que se supone soy programadora <em>junior</em> (pero creo que aun me falta mucho para considerarme junior)
-Estoy en un diplomado de data analyst pero me está costando mucho power Bi
-Estoy Seleccionada para un programa de talento digital para Chile en data science para el próximo año.
-Mi portafolio incompleto:
-<a href="https://portfolio-darkss.vercel.app/" class="uri">https://portfolio-darkss.vercel.app/</a></p>
-<p>Mi github está incompleto y desordenado
-<a href="https://github.com/xavi-v" class="uri">https://github.com/xavi-v</a></p>
-<p>Mi linkedin está incompleto y desordenado tambien <a href="https://www.linkedin.com/in/javi-vergara-vidal/" class="uri">https://www.linkedin.com/in/javi-vergara-vidal/</a></p>
-<p>mini tutorial que hice para postgres en Windows
-<a href="https://miro.com/app/board/uXjVNOqt4Cw=/" class="uri">https://miro.com/app/board/uXjVNOqt4Cw=/</a></p>
-<p>Pasé por paleontología, micología,tengo licencia de buceo autónomo básico pero aun no tengo licencia tipo B.</p>
-<h1 id="angelica-villalobo-lopez">Angelica Villalobo Lopez</h1>
-<p><img src="Fotos/AngelicaVillaloboLopez.jpg" /></p>
-<p>Soy biólogo, MSc mención Botánica, actualmente estudiante de Doctorado en Sistemática y Biodiversidad en la Universidad de Concepción. Mi investigación se enfoca en la conservación, centrándome principalmente en las especies del género Copiapoa que habitan por toda la costa de Chile, he trabajado actualizando gran parte de las áreas de ocupaciones y extensiones de presencia de estas especies y en los estados de conservación.</p>
-<h1 id="amparo-rodriguez">Amparo Rodriguez</h1>
-<p><img src="Fotos/AmparoRodriguez.jpg" style="width:50.0%" />
-Soy Amparo M Rodríguez Ruiz, graduada en biología por la Universidad de Sevilla y diplomada en Ornitología. Mi interés se centra en la biología de vertebrados depredadores y su conservación, principalmente buscando la resolución de conflictos humano-animal. Actualmente profundizo en el estudio de la conducta y ecología de aves rapaces a través del doctorado en Sistemática y Biodiversidad de la Universidad de Concepción.</p>
-<h1 id="karla-garcía">Karla García</h1>
-<p><img src="Fotos/KarlaGarcia.jpg" style="width:50.0%" /></p>
-<p>Soy Bióloga con Mención en Biodiversidad y Conservación Biológica, Magíster en Zoología y Doctora en Biodiversidad. Mis líneas de interés e investigación han estado relacionadas a la conservación y ecología de poblaciones de mamíferos. Parte importante de mi trayectoria profesional también ha estado relacionada con la consultoría y gestión ambiental, enfocándome en realizar levantamientos biológicos, coordinación de equipos y formando parte de estudios de planificación territorial de áreas silvestres.</p>
-<h1 id="catalina-marin-cruz">Catalina Marin Cruz</h1>
-<p><img src="Fotos/CatalinaMarinCruz.jpg" style="width:50.0%" /></p>
-<p>Soy Catalina Marín Cruz, Bióloga y Magister en Ciencias con mención en Botánica. Mis estudios científicos se han centrado en líquenes de ambientes extremos, principalmente aquellos que habitan en el Desierto de Atacama y la Antártica. Estudiando las condiciones microclimáticas en los lugares donde estos organismos habitan, comparado la respuesta de fotosintética primaria ante la desecación y shock térmico con especies del desierto y la Antártica, además el efecto del calentamiento pasivo en especies antárticas. Actualmente soy Data Manager del Instituto Milenio Bases de Ecosistemas Antárticos y Subantárticos (BASE), donde me encargo del manejo de datos de todas las líneas de investigación, asegurando la publicación de dicha información bajo los principios FAIR.</p>
-<h1 id="francisca-gonzález-contreras">Francisca González Contreras</h1>
-<p><img src="Fotos/FranciscaGonz%C3%A1lezContreras.jpg" style="width:50.0%" /></p>
-<p>Encargada de Sistemas de Información Geográfica de proyecto Fauna Impactada.
-Candidata a Magíster en Análisis Geográfico de Universidad de Concepción.Licenciada en Geografía Universidad de Chile</p>
-<h1 id="fran-gonzalez-deramond">fran gonzalez deramond</h1>
-<p><img src="Fotos/fran%20gonzalez%20deramond.jpeg" style="width:50.0%" /></p>
-<p>Hola!… Soy bióloga marina y me apasiona mucho las macroalgas, en especial las pardas. Mi pasatiempo favorito es ir a bucear junto con mis amigxs a la Reserva Marina Isla de Chañaral, ubicada en la región de Atacama. ¡Lo recomiendo enormemente! Este lugar es simplemente increíble, repleto de biodiversidad marina. En la actualidad, me desempeño como especialista en biodiversidad, trabajando en proyectos de impacto ambiental. Mi enfoque principal es la conservación de especies y la mitigación de los impactos en los ecosistemas.</p>
-<h1 id="juan-pablo-vicencio">Juan Pablo Vicencio</h1>
-<p><img src="Fotos/Juan%20Pablo%20Vicencio_.jpg" style="width:50.0%" /></p>
-<p>Me llamo Juan Pablo Vicencio Segura, provengo de la ciudad de San Felipe (Región de Valparaíso) y actualmente me encuentro cursando cuarto año de Ingeniería en Conservación de Recursos Naturales en la Universidad Austral de Chile (Valdivia). Mi interés profesional aboga a la botánica, y en ese sentido he estado trabajado en el levantamiento del herbario VALD y la puesta en valor de su pequeña colección botánica.</p>
-<h1 id="valentina-perez">Valentina Perez</h1>
-<p><img src="Fotos/Valentina%20Perez_foto.jpeg" style="width:50.0%" />
-Soy Valentina Pérez, Ingeniera forestal de profesión. Mis temas de interés son principalmente la botánica, la biogeografía y ecología evolutiva por lo que me gustan mucho las plantas. He trabajado con manejo de base de datos principalmente con rasgos funcionales de plantas leñosas de Chile. Me gusta andar en bicicleta, hacer cerámica y cocinar.</p>
-<h1 id="victoria_arevalo">Victoria_Arevalo</h1>
-<p><img src="Fotos/Victoria_Arevalo_R.jpg" style="width:50.0%" /></p>
-<p>Soy Ingeniera Forestal de la Universidad de Chile. Me he desempeñado como Especialista de Flora y Vegetación en el área de consultoría ambiental. Actualmente me desempeño como Profesional de Ecosistemas Terrestres en el Ministerio del Medio Ambiente, para el programa de Desarrollo Productivo Sostenible que tiene por objetivo el proyecto de construir una Línea de Base Pública (LBP). Principalmente trabajo con gestión de políticas públicas, bases de datos de biodiversidad a través del estándar DarwinCore, que provienen de distintas fuentes de información, como de colecciones biológicas, datos primarios tomados en terreno o archivos de texto (PDF/WORD). Además, ayudo en la transferencia de capacidades técnicas para nuevos publicadores de datos de biodiversidad a través de la red de GBIF.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<a href="https://raw.githubusercontent.com/marbotte/cursoBiodata/master/download/R_code/documentation/act_R_intro.R">
+<button class="btn btn-default"><i class="fa fa-save"></i> Download R script</button>
+</a>
+</div>
+<p>En este documento, vamos a utilizar varios ejercicios para familiarizarnos con la gestión de datos en R.
+Les aconsejo:</p>
+<ul>
+<li>Crear una carpeta única para poner todo el contenido del curso</li>
+<li>descargar la carpeta de datos del curso, y ponerla como sub-carpeta “Datos”</li>
+<li>Crear una subcarpeta “scripts_R” donde poner todos los codigos R que van a escribir en los proximos días:
+<ul>
+<li>Pensar en la organización de esos codigos (1 archivo por sesión, o un archivo por ejercicio)</li>
+<li>Poner nombres de archivos que les permita volver a mirarlo, en 1 mes, o 10 años, si necesitan hacer un tratamiento parecido a lo que hicieron en un ejercicio</li>
+</ul></li>
+<li>Crear una subcarpeta diferente “Resultados” para guardar archivos creados desde sus codigos en R, figuras, o datos</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fol_Datos</span> <span class='op'>&lt;-</span> <span class='st'>"../Datos/"</span></span>
+<span><span class='va'>fol_Results</span> <span class='op'>&lt;-</span> <span class='st'>"../Resultados/"</span></span></code></pre>
+</div>
+</div>
+<h1 data-number="1" id="utilizar-filtros-simples"><span class="header-section-number">1</span> Utilizar filtros simples</h1>
+<h2 data-number="1.1" id="ejercicio"><span class="header-section-number">1.1</span> Ejercicio</h2>
+<ol type="1">
+<li>Crear una matriz de abundancia con únicamente los sitios de referencia de las hydro-eco-región de primer nivel: 2, 6 y 7 (Sur-Este de Francia)
+<ul>
+<li>la matriz no puede tener especies que no están presentes en esos sitios</li>
+<li>ordenar las columnas por orden alfabético de los códigos de especies</li>
+</ul></li>
+<li>Comparar la riqueza de las especies en los 5% de los sitios de agua más acida y lo 5% de los sitios de agua más alcalina de esa nueva matriz</li>
+</ol>
+<h2 data-number="1.2" id="diatomeas"><span class="header-section-number">1.2</span> Los datos</h2>
+<p>En esta actividad vamos a utilizar un juego de datos de diatomeas de los ríos franceses que se utilizó para varios proyectos, incluído mi tesis de doctorado <span class="citation" data-cites="Tison2005 Bottin2014a">(<a href="#ref-Tison2005" role="doc-biblioref">Tison et al. 2005</a>; <a href="#ref-Bottin2014a" role="doc-biblioref">Bottin et al. 2014</a>)</span>.</p>
+<p>El juego de datos está en la carpeta de los datos en un archivo “diatomeas.RData”.
+Se carga así:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>fol_Datos</span>,<span class='st'>"diatomeas.RData"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;sp_abund_mat&quot;    &quot;reference_sites&quot; &quot;env_info&quot;       
+[4] &quot;coord_x_y&quot;      </code></pre>
+</div>
+<p>Pueden ver que el archivo tiene variós elementos:</p>
+<ul>
+<li><em>sp_abund_mat</em> es la matriz de abundancia de las especies de diatomeas en los sitios</li>
+<li><em>reference_sites</em> es un vector logico que indica para cada sitio si es un sitio de referencia (en terminos de calidad del agua)</li>
+<li><em>env_info</em> es un data.frame que contiene las variables de caracterisación ambiental de los sitios muestreados</li>
+<li><em>coord_x_y</em> contiene las coordenadas de los sitios</li>
+</ul>
+<p>El juego de datos está organizado de una manera que permite hacer vinculos directos entre las tablas: todas los objetos se corresponden elemento por elemento.</p>
+<hr />
+<p><strong>Anotar</strong>: esa organización de los datos es una mala practica. Es mucho mejor utilizar nombres de sitios y referencias explicitas a esos nombres en cada una de las tablas, pero nos sirve para este primer ejercicio!</p>
+<hr />
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>sp_abund_mat</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 836</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>reference_sites</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 836</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>env_info</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 836</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>coord_x_y</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 836</code></pre>
+</div>
+<p>Dentro de las variables de caracterización ambiental, existen variables que nos interesan para el ejercicio.
+La variable <code>HER1Lyon</code> permite separar las hydro-eco-regiones:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/barplot.html'>barplot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>env_info</span><span class='op'>$</span><span class='va'>HER1Lyon</span><span class='op'>)</span>,cex.names<span class='op'>=</span><span class='fl'>.65</span>,xlab<span class='op'>=</span><span class='st'>"Hydro-Eco-Región de nivel 1"</span>,ylab<span class='op'>=</span><span class='st'>"Número de muestreos"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="act_R_intro_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
+</div>
+<p>La variable <code>PH</code> nos da el valor de potencial <span class="math inline">\(H^+\)</span> (los valores más pequeños son las aguas más acidas, los valores más altos son las aguas más alcalinas).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>env_info</span><span class='op'>$</span><span class='va'>PH</span>,main<span class='op'>=</span><span class='st'>""</span>,xlab<span class='op'>=</span><span class='st'>"pH"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="act_R_intro_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
+</div>
+<h2 data-number="1.3" id="indicaciones-para-el-ejercicio"><span class="header-section-number">1.3</span> Indicaciones para el ejercicio</h2>
+<p>Para poder hacer este ejercicio, consultar la documentación sobre:</p>
+<ul>
+<li><a href="./doc_R_clases_modos.html">Clases modos y filtros en R</a></li>
+</ul>
+<p>Además, puede ser útil mirar las ayudas de las funciones siguientes:</p>
+<ul>
+<li><code>matrix</code> para crear una matriz</li>
+<li><code>Comparison</code> para las pruebas booleanas <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code></li>
+<li><code>Logic</code> para los operadores logicos <code>&amp;</code> y <code>|</code></li>
+<li><code>as.logical</code> y <code>mode</code> para cambiar el modo de variables numericas a logicas</li>
+<li><code>colSums</code> y <code>rowSums</code> para calcular las sumas de las filas y columnas de un array</li>
+<li><a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/quantile"><code>quantile</code></a> para calcular los cuantiles de valor de un vector</li>
+</ul>
+<h1 data-number="2" id="relaciones-entre-tablas-en-r"><span class="header-section-number">2</span> Relaciones entre tablas en R</h1>
+<h2 data-number="2.1" id="ejercicio-1"><span class="header-section-number">2.1</span> Ejercicio</h2>
+<p>La base de datos de diatomeas descrita en el primer ejercicio referencia los taxones por sus códigos, que están definidos por varios expertos europeos, pero esos códigos no son siempre especies, pueden corresponder a varios niveles taxonómicos.</p>
+<p>Imaginemos que un grupo de investigadores quiere desarrollar un indice simple de calidad del agua como un cociente entre la abundancia de la familia <em>Fragilariaceae</em> y la familia <em>Naviculaceae</em>.</p>
+<ol type="1">
+<li>Calcular ese indice para cada una de las muestras de la matriz sp_abund_mat</li>
+<li>Comparar los valores entre los sitios de referencia y los demás</li>
+</ol>
+<p><em>Ejercicio suplementario para utilizar el mismo tipo de razonamiento</em> (solo para si tenemos tiempo):</p>
+<p>¡Hacer una matriz por nivel taxonomico!</p>
+<h2 data-number="2.2" id="los-datos"><span class="header-section-number">2.2</span> Los datos</h2>
+<p>El archivo “diatomTaxonomy.RData” contiene 2 objetos:</p>
+<ul>
+<li>taxonomy que contiene informaciones sobre los taxones</li>
+<li>synonyms que contiene las sinonimías entre taxones (la taxonomía de las diatomeas es muy… dinámica!)</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>fol_Datos</span>, <span class='st'>"diatomTaxonomy.RData"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;taxonomy&quot; &quot;synonyms&quot;</code></pre>
+</div>
+<p>La tabla que nos interesa es el data.frame “taxonomy”:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>taxonomy</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>&#39;data.frame&#39;:   16739 obs. of  17 variables:
+ $ cd           : chr  &quot;AAAP&quot; &quot;AAAR&quot; &quot;AABE&quot; &quot;AABL&quot; ...
+ $ division     : chr  &quot;Bacillariophyta&quot; &quot;Bacillariophyta&quot; &quot;Bacillariophyta&quot; &quot;Bacillariophyta&quot; ...
+ $ subdivision  : chr  &quot;Bacillariophytina&quot; &quot;Bacillariophytina&quot; &quot;Bacillariophytina&quot; &quot;Bacillariophytina&quot; ...
+ $ class        : chr  &quot;Bacillariophyceae&quot; &quot;Bacillariophyceae&quot; &quot;Bacillariophyceae&quot; &quot;Bacillariophyceae&quot; ...
+ $ order        : chr  &quot;Achnanthales&quot; &quot;Thalassiophysales&quot; &quot;Achnanthales&quot; &quot;Thalassiophysales&quot; ...
+ $ suborder     : chr  NA NA NA NA ...
+ $ family       : chr  &quot;Achnanthaceae&quot; &quot;Catenulaceae&quot; &quot;Achnanthaceae&quot; &quot;Catenulaceae&quot; ...
+ $ genus        : chr  &quot;Achnanthes&quot; &quot;Amphora&quot; &quot;Achnanthes&quot; &quot;Amphora&quot; ...
+ $ species      : chr  &quot;Achnanthes aapajaervensis&quot; &quot;Amphora acuta&quot; &quot;Achnanthes abundans&quot; &quot;Amphora abludens&quot; ...
+ $ subspecies   : chr  NA NA NA NA ...
+ $ group        : chr  NA NA NA NA ...
+ $ variety      : chr  NA &quot;var. arcuata&quot; &quot;var. elliptica&quot; NA ...
+ $ form         : chr  NA NA NA NA ...
+ $ sp.          : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+ $ authors_notes: chr  &quot;Cleve Euler &quot; &quot;var. arcuata (Schmidt in Schmidt &amp; al.) Cleve &quot; &quot;var. elliptica Manguin in Bourrelly &amp; Manguin &quot; &quot;Simonsen &quot; ...
+ $ Family_Coste : chr  &quot;MO&quot; NA &quot;MO&quot; NA ...
+ $ genus_cd     : chr  &quot;ACHN&quot; &quot;AMPH&quot; &quot;ACHN&quot; &quot;AMPH&quot; ...</code></pre>
+</div>
+<p>Como pueden ver la primera columna contiene los códigos que tenemos como nombres de columna de la matriz sp_abund_mat</p>
+<h2 data-number="2.3" id="indicaciones-para-el-ejercicio-1"><span class="header-section-number">2.3</span> Indicaciones para el ejercicio</h2>
+<p><a href="doc_R_buscarRelacionar.html">Este documento</a> muestra como funcionan las funciones <code>which</code> y <code>match</code> que son útil para este ejercicio.</p>
+<p><a href="doc_R_structuraControl.html">Este documento</a> tiene información sobre bucles.</p>
+<h1 data-number="3" id="leer-un-archivo-complejo"><span class="header-section-number">3</span> Leer un archivo complejo</h1>
+<h2 data-number="3.1" id="ejercicio-2"><span class="header-section-number">3.1</span> Ejercicio</h2>
+<p>Pasar los datos contenidos en el archivo “fitosociologiaFagusFrancia.xlsx” en:</p>
+<ul>
+<li>Una matriz de cobertura sitio x especie y la cobertura en porcentaje en la matriz</li>
+<li>Un data frame de información sobre los sitios</li>
+</ul>
+<p><strong>No modifiquen el archivo excel, todo se puede hacer en R</strong>, es por enfrentarse a este tipo de dificultades que nos mejoremos en R.</p>
+<h2 data-number="3.2" id="los-datos-1"><span class="header-section-number">3.2</span> Los datos</h2>
+<p>Para su tesis de doctorado en la universidad de Burdeos sobre las comunidades de los bosques de hayas y sus distribuciones en la región de Burdeos, Marion Walbott <span class="citation" data-cites="Walbott2018">(<a href="#ref-Walbott2018" role="doc-biblioref">2018</a>)</span> ha utilizado varios datos fitosociológicos antiguos.
+En el archivo, pueden ver la transcripción de las tablas fitosociologicas de <span class="citation" data-cites="Lapraz1963">Lapraz (<a href="#ref-Lapraz1963" role="doc-biblioref">1963</a>)</span>.</p>
+<p>Esa tablas utilizan una escala de Braun-Blanquet:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>bbScale</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span></span>
+<span>  code<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"r"</span>,<span class='st'>"+"</span>,<span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span>  description<span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Menos del 1% de cobertura, 3-5 individuos"</span>, <span class='st'>"Menos del 5% de cobertura, pocos individuos"</span>,<span class='st'>"~5% más individuos"</span>,<span class='st'>"5%-25%"</span>,<span class='st'>"25%-50%"</span>,<span class='st'>"50%-75%"</span>,<span class='st'>"75%-100%"</span><span class='op'>)</span>,</span>
+<span>  minPercent<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>5</span>,<span class='fl'>5</span>,<span class='fl'>25</span>,<span class='fl'>50</span>,<span class='fl'>75</span><span class='op'>)</span>,</span>
+<span>  maxPercent<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>5</span>,<span class='fl'>5</span>,<span class='fl'>25</span>,<span class='fl'>50</span>,<span class='fl'>75</span>,<span class='fl'>100</span><span class='op'>)</span></span>
+<span><span class='op'>)</span></span>
+<span><span class='va'>bbScale</span><span class='op'>$</span><span class='va'>finalVal</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='va'>bbScale</span><span class='op'>$</span><span class='va'>minPercent</span><span class='op'>+</span><span class='va'>bbScale</span><span class='op'>$</span><span class='va'>maxPercent</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+code
+</th>
+<th style="text-align:left;">
+description
+</th>
+<th style="text-align:right;">
+minPercent
+</th>
+<th style="text-align:right;">
+maxPercent
+</th>
+<th style="text-align:right;">
+finalVal
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+r
+</td>
+<td style="text-align:left;">
+Menos del 1% de cobertura, 3-5 individuos
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+Menos del 5% de cobertura, pocos individuos
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+~5% más individuos
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+5%-25%
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+15.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+25%-50%
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+37.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+50%-75%
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:right;">
+62.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+75%-100%
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+87.5
+</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+</div>
+<h2 data-number="3.3" id="indicaciones-para-el-ejercicio-2"><span class="header-section-number">3.3</span> Indicaciones para el ejercicio</h2>
+<p>Para poder hacer este ejercicio, consultar la documentación sobre:</p>
+<ul>
+<li><a href="doc_R_import_export.html">Importar y exportar datos en R</a></li>
+<li><a href="doc_R_buscarRelacionar.html">funciones match y which</a></li>
+</ul>
+<p>Además, puede ser útil mirar las ayudas de las funciones siguientes:</p>
+<ul>
+<li><code>openxlsx::read.xlsx</code> es una de las funciones para leer datos en archivos excel, no dudar en buscar los argumentos que les pueden facilitar el ejercicio</li>
+<li><code>is.na</code> permite saber cuales son los valores que faltan en un vector, da un vector logico</li>
+<li><code>matrix</code> para crear una matriz</li>
+<li><code>cbind</code> y <code>rbind</code> permiten concatenar arrays por filas o columnas</li>
+<li><code>paste</code> permite pegar varias cadenas de caracter juntas</li>
+<li><code>Comparison</code> para las pruebas booleanas <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code></li>
+<li><code>Logic</code> para los operadores logicos <code>&amp;</code> y <code>|</code></li>
+<li><code>as.logical</code> y <code>mode</code> para cambiar el modo de variables numericas a logicas</li>
+</ul>
+<h1 data-number="4" id="construir-funciones"><span class="header-section-number">4</span> Construir funciones</h1>
+<p>En una base de datos, utilizamos este tipo de tablas para almacenar las abundancias o presencias de especies:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Unidad de muestreo</th>
+<th>Especie</th>
+<th>abundancia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bogotá</td>
+<td>Canis lupus</td>
+<td>3000</td>
+</tr>
+<tr class="even">
+<td>Bogotá</td>
+<td>Felis catus</td>
+<td>1000</td>
+</tr>
+<tr class="odd">
+<td>Chingaza</td>
+<td>Tremarctos ornatus</td>
+<td>50</td>
+</tr>
+<tr class="even">
+<td>Chingaza</td>
+<td>Canis lupus</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>Chingaza</td>
+<td>Odocoileus virginianus</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando vayamos a explorar las bases de datos estructuradas, les explicaré el porque de esa forma!</p>
+<p>Desafortunadamente, los programas de análisis estadísticos funcionan mejor con este formato:</p>
+<table>
+<colgroup>
+<col style="width: 1%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 28%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Canis lupus</th>
+<th>Felis catus</th>
+<th>Tremarctos ornatus</th>
+<th>Odocoileus virginianus</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bogotá</td>
+<td>3000</td>
+<td>1000</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Chingaza</td>
+<td>100</td>
+<td>0</td>
+<td>50</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<p>Nota, esas tablas se pueden crear en R para probar las funciones:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>df_bog_chinga</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span></span>
+<span>  UniMuestreo<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"Bogotá"</span>,<span class='fl'>2</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"Chingaza"</span>,<span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span>  Especie<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Canis lupus"</span>,<span class='st'>"Felis catus"</span>,<span class='st'>"Tremarctos ornatus"</span>,<span class='st'>"Canis lupus"</span>,<span class='st'>"Odocoileus virginianus"</span><span class='op'>)</span>,</span>
+<span>  abundancia<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3000</span>,<span class='fl'>1000</span>,<span class='fl'>50</span>,<span class='fl'>100</span>,<span class='fl'>200</span><span class='op'>)</span></span>
+<span><span class='op'>)</span></span>
+<span><span class='va'>mat_bog_chinga</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3000</span>,<span class='fl'>100</span>,<span class='fl'>1000</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>0</span>,<span class='fl'>200</span><span class='op'>)</span>,nrow<span class='op'>=</span><span class='fl'>2</span>,dimnames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Bogotá"</span>,<span class='st'>"Chingaza"</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Canis lupus"</span>,<span class='st'>"Felis catus"</span>,<span class='st'>"Tramarctos ornatus"</span>,<span class='st'>"Odocoileus viginianus"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h2 data-number="4.1" id="ejercicio-3"><span class="header-section-number">4.1</span> Ejercicio</h2>
+<p>Contruir las funciones en R que permiten pasar de un formato “base de datos” a una matriz de abundancia o de presencia.</p>
+<p>Las funciones deben tener los argumentos adecuados para :</p>
+<ul>
+<li>poder dar el nombre de la columna que contiene los taxones y de las unidades de muestreo</li>
+<li>poder manejar casos de presencia/ausencia, abundancia</li>
+<li>poder llenar las matrices con 0 o NA</li>
+<li>añadir todas las opciones que les parecen útil (un ejercicio más tarde consistira en publicar esas funciones en la forma de un paquete R en GitHub)</li>
+</ul>
+<p>Construir una función que permita utilizar el formato “base de datos” y hacer la suma de todos las filas que tienen el mismo taxon en la misma unidad de muestreo, y utilizarla para construir la matriz de genero de diatomeas (ver ejercicio previo).</p>
+<h2 data-number="4.2" id="indicaciones-para-el-ejercicio-3"><span class="header-section-number">4.2</span> Indicaciones para el ejercicio</h2>
+<p>Puede ser util mirar la documentación sobre:</p>
+<ul>
+<li><a href="doc_R_buscarRelacionar.html">which</a></li>
+<li><a href="doc_R_structuraControl.html">crear funciones</a></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Bottin2014a" class="csl-entry" role="listitem">
+Bottin, M, J Soininen, M Ferreol, y J. Tison-Rosebery. 2014. <span>“Do spatial patterns of benthic diatom assemblages vary across regions and years?”</span> <em>Freshwater Science</em> 33 (2): 402–16.
+</div>
+<div id="ref-Lapraz1963" class="csl-entry" role="listitem">
+Lapraz, G. 1963. <span>“La v<span>é</span>g<span>é</span>tation de l' Entre-Deux-Mers: ch<span>ê</span>naies, ch<span>â</span>taigneraies et charmaies m<span>é</span>sophiles sur sol acide”</span>. <em>M<span>é</span>moire Soci. Sci. Physiques et Naturelles de Bordeaux</em> 3: 1–36.
+</div>
+<div id="ref-Tison2005" class="csl-entry" role="listitem">
+Tison, J., Y. S. Park, M. Coste, J. G. Wasson, L. Ector, F. Rimet, y F. Delmas. 2005. <span>“Typology of diatom communities and the influence of hydro-ecoregions: A study on the French hydrosystem scale”</span>. <em>Water Research</em> 39 (14): 3177–88. <a href="http://www.sciencedirect.com/science/article/B6V73-4GJM3GM-7/2/f4972eed7c2f635394bb0516fe897cad ">http://www.sciencedirect.com/science/article/B6V73-4GJM3GM-7/2/f4972eed7c2f635394bb0516fe897cad </a>.
+</div>
+<div id="ref-Walbott2018" class="csl-entry" role="listitem">
+Walbott, Marion. 2018. <span>“Rôles des facteurs locaux dans la distribution et la persistance des communautés à hêtre (Fagus sylvatica) en marge d’aire de répartition”</span>. Tesis doctoral. <a href="http://www.theses.fr/2018BORD0455">http://www.theses.fr/2018BORD0455</a>.
+</div>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2266,11 +2719,23 @@ Soy Valentina Pérez, Ingeniera forestal de profesión. Mis temas de interés so
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="references">References</h3>
+<div id="references-listing"></div>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->
